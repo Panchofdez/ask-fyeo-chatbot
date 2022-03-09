@@ -38,8 +38,8 @@ class Query(db.Model):
 
 
     id = db.Column(db.Integer, primary_key=True)
-    question = db.Column(db.String(300), nullable=False)
-    response = db.Column(db.String(300), nullable=False)
+    question = db.Column(db.String, nullable=False)
+    response = db.Column(db.String, nullable=False)
     resolved = db.Column(db.Boolean, nullable=False, default=False)
     conversation_id = db.Column(db.Integer, db.ForeignKey('conversation.id'), nullable=False)
 

@@ -152,7 +152,7 @@ def contact():
 def getAllConversations():
     if request.method == 'GET':
         try:
-            conversations = Conversation.query.all()
+            conversations = Conversation.query.order_by(Conversation.date.desc()).all()
             response = []
             for convo in conversations:
                 convoDict = asdict(convo)
@@ -174,9 +174,11 @@ def getConversationsByDate():
         year = request.args.get('year')
         month = request.args.get('month')
         day = request.args.get('day')
-        startDate  = datetime(year=int(year), month = int(month), day=int(day))
+        print(year, month, day)
+        startDate  = datetime(year=int(year), month = int(month), day=int(day)) # datetime day and months starts at 1, javascript months start at 0
+        print(startDate)
         try:
-            conversations = Conversation.query.filter(Conversation.date >= startDate )
+            conversations = Conversation.query.filter(Conversation.date >= startDate ).order_by(Conversation.date.desc())
             response = []
             for convo in conversations:
                 convoDict = asdict(convo)
@@ -204,8 +206,9 @@ def getConversationsByDateRange():
         endDay = request.args.get('endDay')
         startDate  = datetime(year=int(startYear), month = int(startMonth), day=int(startDay))
         endDate = datetime(year=int(endYear), month=int(endMonth), day=int(endDay))
+        print(startDate, endDate)
         try:
-            conversations = Conversation.query.filter(Conversation.date.between(startDate, endDate)).all()
+            conversations = Conversation.query.filter(Conversation.date.between(startDate, endDate)).order_by(Conversation.date.desc()).all()
           
             response = []
             for convo in conversations:

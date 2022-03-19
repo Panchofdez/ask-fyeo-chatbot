@@ -75,6 +75,7 @@ def token_required(func):
             try:
                 data = jwt.decode(token, app.config['SECRET_KEY'],  algorithms=["HS256"])
                 user = Staff.query.filter_by(email=data['email']).first()
+                print("User", user)
             except Exception as e:
                 print("ERROR in getting user: ", e)
                 return jsonify({'error':'Not Authorized'}), 403
@@ -156,16 +157,20 @@ def addStaff(user):
     return jsonify({'error':'Invalid request type'}), 400
 
 
-@app.route('/staff', methods=['DELETE'])
+@app.route('/staff/<id>', methods=['DELETE'])
 @cross_origin()
 @token_required
-def removeStaff(user):
-
+def removeStaff(user, id):
+    print("hello")
     if request.method == 'DELETE':
         try:
-            email = request.json['email']
-            user = Staff.query.filter_by(email=email).first()
-            db.session.delete(user)
+            
+            staffMember = Staff.query.get(id)
+            print(staffMember)
+            if user.email == staffMember.email:
+                return jsonify({'error':"Can't remove yourself from staff access"}), 400
+            
+            db.session.delete(staffMember)
             db.session.commit()
             all_staff = Staff.query.all()
             return jsonify({'staff': all_staff })

@@ -375,6 +375,7 @@ def updateConversation(user,conversation_id):
             queries = Query.query.filter_by(conversation_id=conversation_id).all()
             conversation.contact = False
             db.session.commit()
+            print("Convo: ", conversation)
             return jsonify({'conversation': conversation, 'queries': queries})
 
         except Exception as e:
@@ -424,18 +425,24 @@ def getStats(user):
         try:
             convoCount = db.session.query(func.count(Conversation.id)).scalar() 
             queryCount = db.session.query(func.count(Query.id)).scalar()
-
             pendingCount = getCount(Conversation.query.filter(Conversation.contact==True))
             resolvedQueriesCount = getCount(Query.query.filter(Query.resolved ==True))
-            accuracy = round((resolvedQueriesCount/queryCount) * 100)
             conversations = Conversation.query.order_by(Conversation.date).all()
-            firstDate = conversations[0].date
-            currentDate = datetime.now()
-            delta = currentDate - firstDate
-            numDays = delta.days
-            averageConvosDaily = round(convoCount/numDays)
             
-            print(pendingCount, resolvedQueriesCount)
+            if queryCount == 0:
+                accuracy = 0
+                averageConvosDaily = 0
+            else:
+                accuracy = round((resolvedQueriesCount/queryCount) * 100)
+                firstDate = conversations[0].date
+                currentDate = datetime.now()
+                delta = currentDate - firstDate
+                numDays = delta.days
+
+                if numDays == 0:
+                    numDays = 1
+                averageConvosDaily = round(convoCount/numDays)
+            
 
             return jsonify({'conversations': {
                 'total': convoCount,
@@ -471,19 +478,23 @@ def getStatsByDate(user):
             convoCount = getCount(conversations)
             queryCount = getCount(queries)
             pendingCount = getCount(conversations.filter(Conversation.contact==True))
-
             resolvedQueriesCount = getCount(queries.filter(Query.resolved ==True))
-            accuracy = round((resolvedQueriesCount/queryCount) * 100)
-            conversations = conversations.order_by(Conversation.date).all()
-            firstDate = conversations[0].date
-            currentDate = datetime.now()
-            delta = currentDate - firstDate
-            numDays = delta.days
-            averageConvosDaily = round(convoCount/numDays)
-            
-            print("COUNT: ", convoCount)
-            print("QUERY COUNT: ", queryCount)
-            print(pendingCount, resolvedQueriesCount)
+
+            if queryCount == 0:
+                accuracy = 0
+                averageConvosDaily = 0
+            else:
+                accuracy = round((resolvedQueriesCount/queryCount) * 100)
+                conversations = conversations.order_by(Conversation.date).all()
+                firstDate = conversations[0].date
+                currentDate = datetime.now()
+                delta = currentDate - firstDate
+                numDays = delta.days
+
+                if numDays == 0:
+                    numDays = 1
+                averageConvosDaily = round(convoCount/numDays)
+                
         
             return jsonify({'conversations': {
                 'total': convoCount,
@@ -523,17 +534,21 @@ def getStatsByDateRange(user):
             queryCount = getCount(queries)
             pendingCount = getCount(conversations.filter(Conversation.contact==True))
             resolvedQueriesCount = getCount(queries.filter(Query.resolved ==True))
-            accuracy = round((resolvedQueriesCount/queryCount) * 100)
             conversations = conversations.order_by(Conversation.date).all()
-            firstDate = conversations[0].date
-            currentDate = datetime.now()
-            delta = currentDate - firstDate
-            numDays = delta.days
-            print(numDays)
-            if numDays == 0:
-                numDays = 1
-            averageConvosDaily = round(convoCount/numDays)
-         
+
+            if queryCount == 0:
+                accuracy = 0
+                averageConvosDaily = 0
+            else:
+                accuracy = round((resolvedQueriesCount/queryCount) * 100)    
+                firstDate = conversations[0].date
+                currentDate = datetime.now()
+                delta = currentDate - firstDate
+                numDays = delta.days
+                if numDays == 0:
+                    numDays = 1
+                averageConvosDaily = round(convoCount/numDays)
+            
         
             return jsonify({'conversations': {
                 'total': convoCount,

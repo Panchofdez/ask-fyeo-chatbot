@@ -383,14 +383,13 @@ def updateConversation(user,conversation_id):
             return jsonify({'error':'Error updating conversation'}), 400
     return jsonify({'error':'Invalid request type'}), 400
 
-@app.route('/queries/', methods=['GET'])
+@app.route('/queries', methods=['GET'])
 @cross_origin()
 @token_required
-def getAllQueries(user):
+def getQueries(user):
     if request.method  == 'GET':
         try:
-            queries = Query.query.all()
-            print('Queries: ', queries)
+            queries = Query.query.join(Conversation).order_by(Conversation.date.desc()).all()
             return jsonify({'queries': queries})
 
         except Exception as e:
@@ -405,8 +404,7 @@ def getAllQueries(user):
 def getUnresolvedQueries(user):
     if request.method  == 'GET':
         try:
-            queries = Query.query.filter_by(resolved=False).all()
-            print('Unresolved Queries: ', queries)
+            queries = Query.query.join(Conversation).filter_by(resolved=False).order_by(Conversation.date.desc()).all()
             return jsonify({'queries': queries})
 
         except Exception as e:
@@ -415,6 +413,51 @@ def getUnresolvedQueries(user):
 
     return jsonify({'error':'Invalid request type'}), 400
 
+
+@app.route('/queries/date', methods=['GET'])
+@cross_origin()
+@token_required
+def getQueriesByDate(user):
+    if request.method  == 'GET':
+        try:
+            year = request.args.get('year')
+            month = request.args.get('month')
+            day = request.args.get('day')
+            print(year, month, day)
+            startDate  = datetime(year=int(year), month = int(month), day=int(day)) 
+            print(startDate)
+            queries = Query.query.join(Conversation).filter(Conversation.date >= startDate).order_by(Conversation.date.desc()).all()
+            return jsonify({'queries': queries})
+
+        except Exception as e:
+            print("Error: ", e)
+            return jsonify({'error':'Error fetching all queries'}), 400
+
+    return jsonify({'error':'Invalid request type'}), 400
+
+@app.route('/queries/daterange', methods=['GET'])
+@cross_origin()
+@token_required
+def getQueriesByDateRange(user):
+    if request.method  == 'GET':
+        try:
+            startYear = request.args.get('startYear')
+            startMonth = request.args.get('startMonth')
+            startDay = request.args.get('startDay')
+            endYear = request.args.get('endYear')
+            endMonth = request.args.get('endMonth')
+            endDay = request.args.get('endDay')
+            startDate  = datetime(year=int(startYear), month = int(startMonth), day=int(startDay))
+            endDate = datetime(year=int(endYear), month=int(endMonth), day=int(endDay))
+            print(startDate, endDate)
+            queries = Query.query.join(Conversation).filter(Conversation.date.between(startDate, endDate)).order_by(Conversation.date.desc()).all()
+            return jsonify({'queries': queries})
+
+        except Exception as e:
+            print("Error: ", e)
+            return jsonify({'error':'Error fetching all queries'}), 400
+
+    return jsonify({'error':'Invalid request type'}), 400
 
 
 @app.route('/stats', methods=['GET'])

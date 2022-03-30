@@ -1,4 +1,3 @@
-from re import A
 from flask import Flask, request, jsonify
 import json
 import torch
@@ -6,6 +5,7 @@ from model import NeuralNet
 from chat import chatbot
 from flask_cors import CORS, cross_origin
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from dotenv import load_dotenv
 import os
 from dataclasses import asdict
@@ -13,6 +13,7 @@ from datetime import datetime, timedelta
 from sqlalchemy.sql.functions import func
 import jwt 
 from functools import wraps
+from train import train
 
 app = Flask(__name__)
 CORS(app)
@@ -36,37 +37,45 @@ app.config['SECRET_KEY'] = os.environ.get('MY_SECRET_KEY')
 
 
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
-from models import Conversation, Query, Staff
-#Model SETUP
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
-
-with open('intents.json', 'r', encoding="utf8") as f:
-    intents = json.load(f)
+from models import Conversation, Query, Staff, FAQ
 
 
-FILE = "data.pth"
-data = torch.load(FILE)
+model = None
+data = None
 
-input_size = data["input_size"]
-hidden_size = data["hidden_size"]
-output_size = data["output_size"]
-all_words = data["all_words"]
-tags = data["tags"]
-model_state = data["model_state"]
 
-model = NeuralNet(input_size, hidden_size, output_size).to(device)
-model.load_state_dict(model_state)
-model.eval()
-context = {}
 
+def setupModel():
+    global model, data
+    #Model SETUP
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+    # with open('intents.json', 'r', encoding="utf8") as f:
+    #     intents = json.load(f)
+
+    FILE = "data.pth"
+    data = torch.load(FILE)
+
+    input_size = data["input_size"]
+    hidden_size = data["hidden_size"]
+    output_size = data["output_size"]
+    all_words = data["all_words"]
+    tags = data["tags"]
+    model_state = data["model_state"]
+
+    model = NeuralNet(input_size, hidden_size, output_size).to(device)
+    model.load_state_dict(model_state)
+    model.eval()
+
+
+setupModel()
 
 def token_required(func):
     '''Decorator that acts as a middleware to check if a user is signed before accessing route'''
     @wraps(func)
     def inner(*args, **kwargs):
-        print(request.headers)
         auth_header = request.headers.get('authorization')
         user= None
         print("header", auth_header)
@@ -83,8 +92,6 @@ def token_required(func):
             return jsonify({'error':'Not Authorized'}), 401
         return func(user, *args, **kwargs)
     return inner
-
-
 
 @app.route('/')
 @cross_origin()
@@ -205,10 +212,14 @@ def start():
 @cross_origin()
 def predict():
     if request.method == 'POST':
+        print("Hello")
         conversation_id = request.json['conversation_id']
         question = request.json['question']
         print(question, conversation_id)
-        response = chatbot(question, data, model, intents, context=context)
+        faqs = FAQ.query.all()
+        formatted_faqs = list(map(formatFAQ, map(asdict, faqs)))
+        print("AFTER faqs",formatted_faqs)
+        response = chatbot(question, data, model, {"intents": formatted_faqs})
         conversation = Conversation.query.get(conversation_id)
         query = Query(question=question, response=response, conversation_id=conversation.id)
         db.session.add(query)
@@ -409,7 +420,7 @@ def getUnresolvedQueries(user):
 
         except Exception as e:
             print("Error: ", e)
-            return jsonify({'error':'Error fetching all queries'}), 400
+            return jsonify({'error':'Error fetching all unresolved queries'}), 400
 
     return jsonify({'error':'Invalid request type'}), 400
 
@@ -431,7 +442,7 @@ def getQueriesByDate(user):
 
         except Exception as e:
             print("Error: ", e)
-            return jsonify({'error':'Error fetching all queries'}), 400
+            return jsonify({'error':'Error fetching queries by date'}), 400
 
     return jsonify({'error':'Invalid request type'}), 400
 
@@ -455,7 +466,7 @@ def getQueriesByDateRange(user):
 
         except Exception as e:
             print("Error: ", e)
-            return jsonify({'error':'Error fetching all queries'}), 400
+            return jsonify({'error':'Error fetching queries by date range'}), 400
 
     return jsonify({'error':'Invalid request type'}), 400
 
@@ -645,12 +656,179 @@ def getChartData(user):
 
     return jsonify({'error':'Invalid request type'}), 400
 
+
+
+@app.route('/faq', methods=['GET'])
+@cross_origin()
+@token_required
+def getFAQ(user):
+    if request.method == 'GET':
+        try:
+            faqs = FAQ.query.order_by(FAQ.tag).all()
+            faqs = list(map(formatFAQ, map(asdict, faqs)))
+
+            return jsonify({"FAQ": faqs})
+        except Exception as e:
+            print("Error: ", e)
+            return jsonify({'error':'Error fetching FAQ'}), 400
+
+    return jsonify({'error':'Invalid request type'}), 400
+
+
+@app.route('/faq', methods=['POST'])
+@cross_origin()
+@token_required
+def addFAQ(user):
+    if request.method == 'POST':
+        try:
+            tag = request.json['tag']
+            patterns = request.json['patterns']
+            responses = request.json['responses']
+
+            if len(list(filter(lambda p: p.find('|') != -1, patterns))) > 0 or len(list(filter(lambda r: r.find('|') != -1, responses))) > 0:
+                return jsonify({'error':'Error adding FAQ, Invalid character "|" found'}), 400
+
+            patterns = '|'.join(patterns)
+            responses = '|'.join(responses)
+
+            if len(FAQ.query.filter(FAQ.tag==tag).all()) > 0:
+                return jsonify({'error':'Error adding FAQ, Tag must be unique'}), 400
+
+            new_faq = FAQ(tag=tag, patterns=patterns, responses=responses)
+            db.session.add(new_faq)
+            db.session.commit()
+
+            faqs = FAQ.query.order_by(FAQ.tag).all()
+            faqs = list(map(formatFAQ, map(asdict,faqs)))
+            return jsonify({"FAQ": faqs})
+        except Exception as e:
+            print("Error: ", e)
+            return jsonify({'error':'Error adding FAQ'}), 400
+
+    return jsonify({'error':'Invalid request type'}), 400
+
+
+@app.route('/faq/all', methods=['POST'])
+@cross_origin()
+@token_required
+def addAllFAQ(user):
+    if request.method == 'POST':
+        try:
+            faq = request.json['faq']
+            
+            for q in faq:
+                tag = q['tag']
+                patterns = q['patterns']
+                responses = q['responses']
+
+                if len(list(filter(lambda p: p.find('|') != -1, patterns))) > 0 or len(list(filter(lambda r: r.find('|') != -1, responses))) > 0:
+                    return jsonify({'error':'Error adding FAQ, Invalid character "|" found'}), 400
+
+                patterns = '|'.join(patterns)
+                responses = '|'.join(responses)
+
+                if len(FAQ.query.filter(FAQ.tag==tag).all()) > 0:
+                    return jsonify({'error':'Error adding FAQ, Tag must be unique'}), 400
+
+                new_faq = FAQ(tag=tag, patterns=patterns, responses=responses)
+                db.session.add(new_faq)
+           
+            db.session.commit()
+            faqs = FAQ.order_by(FAQ.tag).query.all()
+            faqs = list(map(formatFAQ, map(asdict, faqs)))
+            return jsonify({"FAQ": faqs})
+        except Exception as e:
+            print("Error: ", e)
+            return jsonify({'error':'Error adding FAQ'}), 400
+
+    return jsonify({'error':'Invalid request type'}), 400
+
+@app.route('/faq', methods=['PUT'])
+@cross_origin()
+@token_required
+def updateFAQ(user):
+    if request.method == 'PUT':
+        try:
+            tag = request.json['tag']
+            patterns = request.json['patterns']
+            responses = request.json['responses']
+
+            if len(list(filter(lambda p: p.find('|') != -1, patterns))) > 0 or len(list(filter(lambda r: r.find('|') != -1, responses))) > 0:
+                return jsonify({'error':'Error adding FAQ, Invalid character "|" found'}), 400
+
+            patterns = '|'.join(patterns)
+            responses = '|'.join(responses)
+            
+            current_faq = FAQ.query.filter(FAQ.tag == tag).first()
+            current_faq.patterns = patterns
+            current_faq.responses = responses
+            db.session.commit()
+
+            faqs = FAQ.query.order_by(FAQ.tag).all()
+            faqs = list(map(formatFAQ, map(asdict, faqs)))
+
+            return jsonify({"FAQ": faqs})
+        except Exception as e:
+            print("Error: ", e)
+            return jsonify({'error':'Error updating FAQ'}), 400
+
+    return jsonify({'error':'Invalid request type'}), 400
+
+
+@app.route('/faq/<faq_id>', methods=['DELETE'])
+@cross_origin()
+@token_required
+def deleteFAQ(user, faq_id):
+    if request.method == 'DELETE':
+        try:
+            print(faq_id) 
+            faq = FAQ.query.get(faq_id)
+            
+            db.session.delete(faq)
+            db.session.commit()
+
+            faqs = FAQ.query.order_by(FAQ.tag).all()
+            faqs = list(map(formatFAQ, map(asdict, faqs)))
+
+            return jsonify({"FAQ": faqs})
+        except Exception as e:
+            print("Error: ", e)
+            return jsonify({'error':'Error deleting FAQ'}), 400
+
+    return jsonify({'error':'Invalid request type'}), 400
+
+
+@app.route('/train', methods=['GET'])
+@cross_origin()
+@token_required
+def train(user):
+    if request.method == 'GET':
+        try:
+            
+            faqs = FAQ.query.order_by(FAQ.tag).all()
+            faqs = list(map(formatFAQ, faqs))
+            train(faq)
+            return jsonify({"FAQ": faqs})
+        except Exception as e:
+            print("Error: ", e)
+            return jsonify({'error':'Error updating FAQ'}), 400
+
+    return jsonify({'error':'Invalid request type'}), 400
+
+
+
+
 def getCount(q):
     count_q = q.statement.with_only_columns([func.count()]).order_by(None)
     count = q.session.execute(count_q).scalar()
     return count
 
+def formatFAQ(faq):
+    faq['patterns'] = faq['patterns'].split('|')
+    faq['responses'] = faq['responses'].split('|')
+    return faq
 
-    return response
+
+
 if __name__ == "__main__":
     app.run()

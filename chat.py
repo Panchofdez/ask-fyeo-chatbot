@@ -5,7 +5,6 @@ from model import NeuralNet
 from nltk_utils import bag_of_words, tokenize
 
 
-
 def classify(sentence, model, all_words, tags):
     X = bag_of_words(sentence, all_words)
     X = X.reshape(1, X.shape[0])
@@ -30,12 +29,10 @@ def classify(sentence, model, all_words, tags):
 
 def chatbot(sentence, data, model,intents, userId='123', context={}, show_details=True):
     
-
+    print("INTENTS" , intents)
     sentence = tokenize(sentence)
     results = classify(sentence, model, all_words=data["all_words"], tags=data["tags"])
     print("FINAL RESULTS: ",results)
-
-    
 
     while results:
         for intent in intents["intents"]:

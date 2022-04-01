@@ -219,9 +219,14 @@ def predict():
         faqs = FAQ.query.all()
         formatted_faqs = list(map(formatFAQ, map(asdict, faqs)))
         print("AFTER faqs",formatted_faqs)
-        response = chatbot(question, data, model, {"intents": formatted_faqs})
+        tag, response = chatbot(question, data, model, {"intents": formatted_faqs})
         conversation = Conversation.query.get(conversation_id)
-        query = Query(question=question, response=response, conversation_id=conversation.id)
+        faq = FAQ.query.filter(FAQ.tag == tag).first()
+        if faq == None:
+            query = Query(question=question, response=response, conversation_id=conversation.id)
+        else:
+            query = Query(question=question, response=response, conversation_id=conversation.id, faq_id=faq.id)
+
         db.session.add(query)
         db.session.commit()
         print('RESPONSE ', response)

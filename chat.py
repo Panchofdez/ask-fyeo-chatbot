@@ -46,10 +46,10 @@ def chatbot(sentence, data, model,intents, userId='123', context={}, show_detail
                 if not 'context_filter' in intent or \
                 (userId in context and 'context_filter' in intent and intent['context_filter'] == context[userId]):
                     print("FOUND ANSWER")
-                    return f"{random.choice(intent['responses'])}"
+                    return  (intent["tag"], f"{random.choice(intent['responses'])}")
         results.pop(0) 
 
-    return "I do not understand please try again or ask another question ... "
+    return ("" , "I do not understand please try again or ask another question ... ")
 
 
 def chat():
@@ -82,7 +82,7 @@ def chat():
         if sentence == "quit":
             break
 
-        print(f"{bot_name} {chatbot(sentence, data, model, intents, context=context)}")
+        print(f"{bot_name} {chatbot(sentence, data, model, intents, context=context)[1]}")
         
             
                   

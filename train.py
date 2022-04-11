@@ -5,10 +5,12 @@ import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
 from model import NeuralNet
-
+from app import FAQ
+from helpers import formatFAQ
+from dataclasses import asdict
 
 class ChatDataset(Dataset):
-    def __init__(self):
+    def __init__(self, X_train, y_train):
         self.n_samples = len(X_train)
         self.x_data = X_train
         self.y_data = y_train
@@ -66,7 +68,7 @@ def train(intents):
     learning_rate=0.001
     num_epochs = 1000
 
-    dataset = ChatDataset()
+    dataset = ChatDataset(X_train=X_train, y_train=y_train)
     train_loader = DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True, num_workers=0)
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -114,10 +116,16 @@ def train(intents):
 
     print(f"Training complete. File saved to {FILE}")
 
-
+def getTrainingData():       
+    faqs = FAQ.query.order_by(FAQ.tag).all()
+    faqs = list(map(formatFAQ, map(asdict, faqs)))
+    print(len(faqs))
+    train({"intents" :faqs})
 
 
 # with open("intents.json", "r", encoding="utf8") as f:
 #     intents = json.load(f)
 
 # train(intents)
+
+getTrainingData()

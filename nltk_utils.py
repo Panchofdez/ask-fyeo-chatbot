@@ -21,7 +21,7 @@ def bag_of_words(tokenized_sentence, all_words):
             bag[idx] = 1.0
     return bag
 
-# a ="How do I book an advising appointment?"
+a ="How do I book an advising appointment?"
 
 # print(a)
 # a = tokenize(a)

@@ -1,5 +1,4 @@
 from flask import request, jsonify
-from chat import chatbot
 from flask_cors import cross_origin
 import functools
 from dotenv import load_dotenv
@@ -9,42 +8,14 @@ from datetime import datetime, timedelta
 from sqlalchemy.sql.functions import func
 import jwt 
 from functools import wraps
+from chatbot_interface import ChatbotInterface
 from helpers import getCount, formatFAQ, addFAQStats
 from app import app, db, Conversation, Query, Staff, FAQ
-import torch
-from model import NeuralNet
 
 
 
-model = None
-data = None
 
-
-
-def setupModel():
-    global model, data
-    #Model SETUP
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
-    # with open('intents.json', 'r', encoding="utf8") as f:
-    #     intents = json.load(f)
-
-    FILE = "data.pth"
-    data = torch.load(FILE)
-
-    input_size = data["input_size"]
-    hidden_size = data["hidden_size"]
-    output_size = data["output_size"]
-    all_words = data["all_words"]
-    tags = data["tags"]
-    model_state = data["model_state"]
-
-    model = NeuralNet(input_size, hidden_size, output_size).to(device)
-    model.load_state_dict(model_state)
-    model.eval()
-
-
-setupModel()
+chatbot = ChatbotInterface(ChatbotInterface.bert_model)
 
 
 def token_required(func):
@@ -191,10 +162,7 @@ def predict():
         conversation_id = request.json['conversation_id']
         question = request.json['question']
         print(question, conversation_id)
-        faqs = FAQ.query.all()
-        formatted_faqs = list(map(formatFAQ, map(asdict, faqs)))
-        print("AFTER faqs",formatted_faqs)
-        tag, response = chatbot(question, data, model, {"intents": formatted_faqs})
+        tag, response = chatbot.get_response(question)
         conversation = Conversation.query.get(conversation_id)
         faq = FAQ.query.filter(FAQ.tag == tag).first()
         if faq == None:

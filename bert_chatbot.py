@@ -22,7 +22,7 @@ class BERTChatbot(Chatbot):
     roberta = "roberta-base"
     bert = "bert-base-uncased"
 
-    def __init__(self, type="distilbert-base-uncased", batch_size=32, max_seq_len=30, epochs=1000):
+    def __init__(self, type="distilbert-base-uncased", batch_size=16, max_seq_len=30, epochs=1000):
         # specify GPU
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         
@@ -49,6 +49,10 @@ class BERTChatbot(Chatbot):
             return RobertaTokenizer.from_pretrained(BERTChatbot.distilbert)
         else:
             return BertTokenizerFast.from_pretrained(BERTChatbot.bert)
+            
+
+
+
 
     def get_pretrained_model(self, type):
         # Import the pretrained model
@@ -119,6 +123,8 @@ class BERTChatbot(Chatbot):
         train_data = TensorDataset(train_seq, train_mask, train_y)
         # sampler for sampling the data during training
         train_sampler = RandomSampler(train_data)
+
+        print("BATCH_SIZE: ", self.batch_size)
         # DataLoader for train set
         return DataLoader(train_data, sampler=train_sampler, batch_size=self.batch_size)
         
@@ -165,15 +171,15 @@ class BERTChatbot(Chatbot):
             total_loss = total_loss + loss.item()
             # backward pass to calculate the gradients
             loss.backward()
-            # clip the the gradients to 1.0. It helps in preventing the    exploding gradient problem
+            # clip the the gradients to 1.0. It helps in preventing the exploding gradient problem
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
             # update parameters
             optimizer.step()
             # clear calculated gradients
             optimizer.zero_grad()
         
-            # We are not using learning rate scheduler as of now
-            # lr_sch.step()
+            #apply the learning rate which controls how big of a step for an optimizer to reach the minima of the loss function
+            lr_sch.step()
 
             # model predictions are stored on GPU. So, push it to CPU
             preds=preds.detach().cpu().numpy()
@@ -222,6 +228,7 @@ class BERTChatbot(Chatbot):
         }
         FILE = "bertmodel.pth"
         torch.save(data, FILE)
+        return
 
     def get_prediction(self, str, model):
         str = re.sub(r"[^a-zA-Z ]+", "", str)
@@ -276,6 +283,8 @@ class BERTChatbot(Chatbot):
 
             print(f"{bot_name} {self.get_response(sentence, data, file)[1]}")
 
+        return
+
     def check_response(self, q, r):
         '''
         Determines the validity of the chatbot's response
@@ -288,13 +297,6 @@ class BERTChatbot(Chatbot):
         found = [ w for w in stemmed_words if re.search(w, r) != None] #check if the question has words related in the response
         print(found)
         return len(found) > 0
-
-
-# text = ["this is a distil bert model.","data is oil"]
-# # Encode the text
-# encoded_input = tokenizer(text, padding=True,truncation=True, return_tensors='pt')
-# print(encoded_input)
-
 
 
 class BERT_Arch(nn.Module):
@@ -335,12 +337,6 @@ class BERT_Arch(nn.Module):
 
 
 
-
-
-
-
-# chatbot = BERTChatbot(BERTChatbot.distilbert)
-# chatbot.chat()
 
 
 

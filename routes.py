@@ -1,21 +1,18 @@
-from flask import request, jsonify
+from flask import request, jsonify, Blueprint, current_app
 from flask_cors import cross_origin
 import functools
-from dotenv import load_dotenv
 import os
 from dataclasses import asdict
 from datetime import datetime, timedelta
 from sqlalchemy.sql.functions import func
 import jwt 
 from functools import wraps
-from chatbot_interface import ChatbotInterface
 from helpers import getCount, formatFAQ, addFAQStats
-from app import app, db, Conversation, Query, Staff, FAQ
+from database import db, Conversation, Query, Staff, FAQ
 
 
+routes = Blueprint('routes', __name__, url_prefix='')
 
-
-chatbot = ChatbotInterface(ChatbotInterface.bert_model)
 
 
 def token_required(func):
@@ -28,7 +25,7 @@ def token_required(func):
         if auth_header:
             token = auth_header.replace("Bearer ", "")
             try:
-                data = jwt.decode(token, app.config['SECRET_KEY'],  algorithms=["HS256"])
+                data = jwt.decode(token, current_app.config['SECRET_KEY'],  algorithms=["HS256"])
                 user = Staff.query.filter_by(email=data['email']).first()
                 print("User", user)
             except Exception as e:
@@ -39,13 +36,13 @@ def token_required(func):
         return func(user, *args, **kwargs)
     return inner
 
-@app.route('/')
+@routes.route('/')
 @cross_origin()
 def hello():
     return 'Hello World'
 
 
-@app.route('/login', methods=['POST'])
+@routes.route('/login', methods=['POST'])
 @cross_origin()
 def login():
     if request.method == 'POST':
@@ -60,7 +57,7 @@ def login():
 
             if password != os.environ.get('FYEO_PASSWORD'):
                 return jsonify({'error':'Invalid credentials'}), 403
-            token = jwt.encode({'email': user.email,'exp' : datetime.utcnow() + timedelta(minutes=45)},  app.config['SECRET_KEY'], algorithm="HS256")
+            token = jwt.encode({'email': user.email,'exp' : datetime.utcnow() + timedelta(minutes=45)},  current_app.config['SECRET_KEY'], algorithm="HS256")
 
             print(token)
 
@@ -72,7 +69,7 @@ def login():
     return jsonify({'error':'Invalid request type'}), 400
 
 
-@app.route('/staff', methods=['GET'])
+@routes.route('/staff', methods=['GET'])
 @cross_origin()
 @token_required
 def getStaff(user):
@@ -88,7 +85,7 @@ def getStaff(user):
 
     return jsonify({'error':'Invalid request type'}), 400
 
-@app.route('/staff', methods=['POST'])
+@routes.route('/staff', methods=['POST'])
 @cross_origin()
 @token_required
 def addStaff(user):
@@ -110,7 +107,7 @@ def addStaff(user):
     return jsonify({'error':'Invalid request type'}), 400
 
 
-@app.route('/staff/<id>', methods=['DELETE'])
+@routes.route('/staff/<id>', methods=['DELETE'])
 @cross_origin()
 @token_required
 def removeStaff(user, id):
@@ -134,7 +131,7 @@ def removeStaff(user, id):
     return jsonify({'error':'Invalid request type'}), 400
 
 
-@app.route('/chat/start', methods=['POST'])
+@routes.route('/chat/start', methods=['POST'])
 @cross_origin()
 def start():
     if request.method == 'POST':
@@ -154,31 +151,37 @@ def start():
 
     return jsonify({'error':'Invalid request type'}), 400
 
-@app.route('/chat/answer', methods=['POST'])
+@routes.route('/chat/answer', methods=['POST'])
 @cross_origin()
 def predict():
     if request.method == 'POST':
-        print("Hello")
-        conversation_id = request.json['conversation_id']
-        question = request.json['question']
-        print(question, conversation_id)
-        tag, response = chatbot.get_response(question)
-        conversation = Conversation.query.get(conversation_id)
-        faq = FAQ.query.filter(FAQ.tag == tag).first()
-        if faq == None:
-            query = Query(question=question, response=response, conversation_id=conversation.id)
-        else:
-            query = Query(question=question, response=response, conversation_id=conversation.id, faq_id=faq.id)
+        try:
+            print("Hello")
+            conversation_id = request.json['conversation_id']
+            question = request.json['question']
+            print(question, conversation_id)
+            tag, response = current_app.config["chatbot"].get_response(question)
+            print(response)
+            conversation = Conversation.query.get(conversation_id)
+            faq = FAQ.query.filter(FAQ.tag == tag).first()
+            if faq == None:
+                query = Query(question=question, response=response, conversation_id=conversation.id)
+            else:
+                query = Query(question=question, response=response, conversation_id=conversation.id, faq_id=faq.id)
 
-        db.session.add(query)
-        db.session.commit()
-        print('RESPONSE ', response)
-        return jsonify({ 'query': query })
+            db.session.add(query)
+            db.session.commit()
+            print('RESPONSE ', response)
+            return jsonify({ 'query': query})
+        except Exception as e:
+            print("Error: ", e)
+            return jsonify({'error':'Error in providing chatbot response'}), 400
+
     return jsonify({'error':'Invalid request type'}), 400
 
 
 
-@app.route('/chat/resolve', methods=['PUT'])
+@routes.route('/chat/resolve', methods=['PUT'])
 @cross_origin()
 def resolve():
     if request.method == 'PUT':
@@ -197,11 +200,11 @@ def resolve():
             return jsonify({'query': query })
         except Exception as e:
             print("Error: ", e)
-            return jsonify({'error':'Error in starting conversation'}), 400
+            return jsonify({'error':'Error in setting conversation status'}), 400
 
     return jsonify({'error':'Invalid request type'}), 400
 
-@app.route('/chat/contact', methods=['PUT'])
+@routes.route('/chat/contact', methods=['PUT'])
 @cross_origin()
 def contact():
     if request.method == 'PUT':
@@ -215,12 +218,12 @@ def contact():
             return jsonify({'conversation': conversation})
         except Exception as e:
             print("Error: ", e)
-            return jsonify({'error':'Error in starting conversation'}), 400
+            return jsonify({'error':'Error in setting contact status'}), 400
 
     return jsonify({'error':'Invalid request type'}), 400
 
 
-@app.route('/conversations', methods=['GET'])
+@routes.route('/conversations', methods=['GET'])
 @cross_origin()
 @token_required
 def getAllConversations(user):
@@ -241,7 +244,7 @@ def getAllConversations(user):
 
     return jsonify({'error':'Invalid request type'}), 400
 
-@app.route('/conversations/date', methods=['GET'])
+@routes.route('/conversations/date', methods=['GET'])
 @cross_origin()
 @token_required
 def getConversationsByDate(user):
@@ -265,12 +268,12 @@ def getConversationsByDate(user):
             return jsonify({'conversations': response})
         except Exception as e:
             print("Error: ", e)
-            return jsonify({'error':'Error in fetching all conversations'}), 400
+            return jsonify({'error':'Error in fetching conversations by date'}), 400
 
     return jsonify({'error':'Invalid request type'}), 400
 
 
-@app.route('/conversations/daterange', methods=['GET'])
+@routes.route('/conversations/daterange', methods=['GET'])
 @cross_origin()
 @token_required
 def getConversationsByDateRange(user):
@@ -298,12 +301,12 @@ def getConversationsByDateRange(user):
             return jsonify({'conversations': response})
         except Exception as e:
             print("Error: ", e)
-            return jsonify({'error':'Error in fetching all conversations'}), 400
+            return jsonify({'error':'Error in fetching conversations by date range'}), 400
 
     return jsonify({'error':'Invalid request type'}), 400
 
 
-@app.route('/conversations/<conversation_id>', methods=['GET'])
+@routes.route('/conversations/<conversation_id>', methods=['GET'])
 @cross_origin()
 @token_required
 def getConversation(user,conversation_id):
@@ -323,7 +326,7 @@ def getConversation(user,conversation_id):
     return jsonify({'error':'Invalid request type'}), 400
 
 
-@app.route('/conversation/<conversation_id>', methods=['PUT'])
+@routes.route('/conversation/<conversation_id>', methods=['PUT'])
 @cross_origin()
 @token_required
 def updateConversation(user,conversation_id):
@@ -342,7 +345,7 @@ def updateConversation(user,conversation_id):
             return jsonify({'error':'Error updating conversation'}), 400
     return jsonify({'error':'Invalid request type'}), 400
 
-@app.route('/queries', methods=['GET'])
+@routes.route('/queries', methods=['GET'])
 @cross_origin()
 @token_required
 def getQueries(user):
@@ -357,7 +360,7 @@ def getQueries(user):
 
     return jsonify({'error':'Invalid request type'}), 400
 
-@app.route('/queries/unresolved', methods=['GET'])
+@routes.route('/queries/unresolved', methods=['GET'])
 @cross_origin()
 @token_required
 def getUnresolvedQueries(user):
@@ -373,7 +376,7 @@ def getUnresolvedQueries(user):
     return jsonify({'error':'Invalid request type'}), 400
 
 
-@app.route('/queries/date', methods=['GET'])
+@routes.route('/queries/date', methods=['GET'])
 @cross_origin()
 @token_required
 def getQueriesByDate(user):
@@ -394,7 +397,7 @@ def getQueriesByDate(user):
 
     return jsonify({'error':'Invalid request type'}), 400
 
-@app.route('/queries/daterange', methods=['GET'])
+@routes.route('/queries/daterange', methods=['GET'])
 @cross_origin()
 @token_required
 def getQueriesByDateRange(user):
@@ -419,7 +422,7 @@ def getQueriesByDateRange(user):
     return jsonify({'error':'Invalid request type'}), 400
 
 
-@app.route('/stats', methods=['GET'])
+@routes.route('/stats', methods=['GET'])
 @cross_origin()
 @token_required
 def getStats(user):
@@ -463,7 +466,7 @@ def getStats(user):
     return jsonify({'error':'Invalid request type'}), 400
 
 
-@app.route('/stats/date', methods=['GET'])
+@routes.route('/stats/date', methods=['GET'])
 @cross_origin()
 @token_required
 def getStatsByDate(user):
@@ -514,7 +517,7 @@ def getStatsByDate(user):
 
     return jsonify({'error':'Invalid request type'}), 400
 
-@app.route('/stats/daterange', methods=['GET'])
+@routes.route('/stats/daterange', methods=['GET'])
 @cross_origin()
 @token_required
 def getStatsByDateRange(user):
@@ -567,7 +570,7 @@ def getStatsByDateRange(user):
 
     return jsonify({'error':'Invalid request type'}), 400
 
-@app.route('/stats/chart', methods=['GET'])
+@routes.route('/stats/chart', methods=['GET'])
 @cross_origin()
 @token_required
 def getChartData(user):
@@ -606,7 +609,7 @@ def getChartData(user):
 
 
 
-@app.route('/faq', methods=['GET'])
+@routes.route('/faq', methods=['GET'])
 @cross_origin()
 @token_required
 def getFAQ(user):
@@ -627,7 +630,7 @@ def getFAQ(user):
     return jsonify({'error':'Invalid request type'}), 400
 
 
-@app.route('/faq', methods=['POST'])
+@routes.route('/faq', methods=['POST'])
 @cross_origin()
 @token_required
 def addFAQ(user):
@@ -660,7 +663,7 @@ def addFAQ(user):
     return jsonify({'error':'Invalid request type'}), 400
 
 
-@app.route('/faq/all', methods=['POST'])
+@routes.route('/faq/all', methods=['POST'])
 @cross_origin()
 @token_required
 def addAllFAQ(user):
@@ -695,7 +698,7 @@ def addAllFAQ(user):
 
     return jsonify({'error':'Invalid request type'}), 400
 
-@app.route('/faq', methods=['PUT'])
+@routes.route('/faq', methods=['PUT'])
 @cross_origin()
 @token_required
 def updateFAQ(user):
@@ -727,7 +730,7 @@ def updateFAQ(user):
     return jsonify({'error':'Invalid request type'}), 400
 
 
-@app.route('/faq/<faq_id>', methods=['DELETE'])
+@routes.route('/faq/<faq_id>', methods=['DELETE'])
 @cross_origin()
 @token_required
 def deleteFAQ(user, faq_id):
@@ -750,7 +753,7 @@ def deleteFAQ(user, faq_id):
     return jsonify({'error':'Invalid request type'}), 400
 
 
-@app.route('/faq/<faq_id>/queries', methods=['GET'])
+@routes.route('/faq/<faq_id>/queries', methods=['GET'])
 @cross_origin()
 @token_required
 def getFAQQueries(user, faq_id):
@@ -769,7 +772,7 @@ def getFAQQueries(user, faq_id):
     return jsonify({'error':'Invalid request type'}), 400
 
 
-@app.route('/faq/<faq_id>/queries/date', methods=['GET'])
+@routes.route('/faq/<faq_id>/queries/date', methods=['GET'])
 @cross_origin()
 @token_required
 def getFAQQueriesByDate(user, faq_id):
@@ -792,7 +795,7 @@ def getFAQQueriesByDate(user, faq_id):
 
     return jsonify({'error':'Invalid request type'}), 400
 
-@app.route('/faq/<faq_id>/queries/daterange', methods=['GET'])
+@routes.route('/faq/<faq_id>/queries/daterange', methods=['GET'])
 @cross_origin()
 @token_required
 def getFAQQueriesByDateRange(user, faq_id):

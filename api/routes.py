@@ -13,8 +13,6 @@ from .database import db, Conversation, Query, Staff, FAQ
 
 routes = Blueprint('routes', __name__)
 
-
-
 def token_required(func):
     '''Decorator that acts as a middleware to check if a user is signed before accessing route'''
     @wraps(func)

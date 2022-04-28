@@ -1,7 +1,6 @@
-from bow_chatbot import BOWChatbot
-from bert_chatbot import BERTChatbot
+from .bow_chatbot import BOWChatbot
+from .bert_chatbot import BERTChatbot
 import torch
-
 
 
 
@@ -10,8 +9,8 @@ class ChatbotInterface():
     bow_model = "bow"
 
     #files that contain the saved state of our trained models
-    bert_file = "bertmodel.pth"
-    bow_file = "bowmodel.pth"
+    bert_file = "chatbot/bertmodel.pth"
+    bow_file = "chatbot/bowmodel.pth"
 
     def __init__(self, type, data, **kwargs):
         self.type = type

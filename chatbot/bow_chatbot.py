@@ -1,13 +1,12 @@
 import torch
 import torch.nn as nn
 import random
-from chatbot import Chatbot
-from nltk_utils import bag_of_words, tokenize, stem
-from nltk_utils import tokenize, stem, bag_of_words
 import numpy as np
 import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
+from .chatbot_abstract import Chatbot
+from .nltk_utils import tokenize, stem, bag_of_words
 
 
 

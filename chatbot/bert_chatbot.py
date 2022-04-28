@@ -11,8 +11,8 @@ from torchinfo import summary
 from transformers import AdamW
 from sklearn.utils.class_weight import compute_class_weight
 from torch.optim import lr_scheduler
-from chatbot import Chatbot
-from nltk_utils import tokenize, stem
+from .nltk_utils import tokenize, stem
+from .chatbot_abstract import Chatbot
 
 
 class BERTChatbot(Chatbot):
@@ -225,6 +225,7 @@ class BERTChatbot(Chatbot):
     
         data = {
             "model_state": model.state_dict(),
+            "num_classes": unique_classes
         }
         FILE = "bertmodel.pth"
         torch.save(data, FILE)
@@ -258,6 +259,7 @@ class BERTChatbot(Chatbot):
 
         #Retrieve trained model
         model_state = file["model_state"]
+        # unique_classes = file["unique_classes"]
         model = self.get_model_architecture(unique_classes)
         model.load_state_dict(model_state)
         model.eval()

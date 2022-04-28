@@ -7,11 +7,11 @@ from datetime import datetime, timedelta
 from sqlalchemy.sql.functions import func
 import jwt 
 from functools import wraps
-from helpers import getCount, formatFAQ, addFAQStats
-from database import db, Conversation, Query, Staff, FAQ
+from .helpers import getCount, formatFAQ, addFAQStats
+from .database import db, Conversation, Query, Staff, FAQ
 
 
-routes = Blueprint('routes', __name__, url_prefix='')
+routes = Blueprint('routes', __name__)
 
 
 

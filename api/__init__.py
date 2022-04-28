@@ -4,10 +4,11 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from dotenv import load_dotenv
 import os
-from database import db, FAQ
-from chatbot_interface import ChatbotInterface
-from helpers import formatFAQ
-from routes import routes
+from chatbot.chatbot_interface import ChatbotInterface
+from .database import db, FAQ
+from .helpers import formatFAQ
+from .routes import routes
+from .commands import create_tables, faq_init
 
 # app.config['CORS_HEADERS'] = 'Content-Type'
 PROD = "Prod"
@@ -37,6 +38,8 @@ def create_app(type=DEV):
 
     
     app.register_blueprint(routes, url_prefix='')
+    app.cli.add_command(create_tables)
+    app.cli.add_command(faq_init)
 
     return app 
 
@@ -58,6 +61,6 @@ def get_data():
 
 
 
-if __name__ == "__main__":
-    app = create_app(DEV)
-    app.run()
+# if __name__ == "__main__":
+#     app = create_app(DEV)
+#     app.run()

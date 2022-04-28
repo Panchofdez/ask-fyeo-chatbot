@@ -32,7 +32,7 @@ mkl-random
 mkl-service
 nltk==3.5
 numexpr==2.7.3
-numpy==1.19.2
+numpy
 packaging==21.3
 pandas==1.4.1
 Pillow==9.0.1

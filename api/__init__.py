@@ -8,13 +8,13 @@ from chatbot.chatbot_interface import ChatbotInterface
 from .database import db, FAQ
 from .helpers import formatFAQ
 from .routes import routes
-from .commands import create_tables, faq_init
+from .commands import create_tables, faq_init, train_model, chat
 
 # app.config['CORS_HEADERS'] = 'Content-Type'
 PROD = "Prod"
 DEV = "Dev"
 
-def create_app(type=DEV):
+def create_app(type=DEV, init=False):
     app = Flask(__name__)
     CORS(app)
     if type == PROD:
@@ -32,14 +32,20 @@ def create_app(type=DEV):
     migrate = Migrate(app, db)
 
     with app.app_context():
-        data = get_data()
-        chatbot = ChatbotInterface(type=ChatbotInterface.bow_model, data=data)
-        app.config["chatbot"] = chatbot
+
+        if init: 
+            db.create_all()
+        else:
+            data = get_data()
+            chatbot = ChatbotInterface(type=ChatbotInterface.bow_model, data=data)
+            app.config["chatbot"] = chatbot
 
     
     app.register_blueprint(routes, url_prefix='')
     app.cli.add_command(create_tables)
     app.cli.add_command(faq_init)
+    app.cli.add_command(train_model)
+    app.cli.add_command(chat)
 
     return app 
 

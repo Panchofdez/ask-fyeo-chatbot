@@ -32,11 +32,11 @@ def faq_init():
 
 @click.command(name='train_model')
 @with_appcontext
-def create_tables():
+def train_model():
     current_app.config['chatbot'].train()
 
 
 @click.command(name='chat')
 @with_appcontext
-def create_tables():
+def chat():
     current_app.config['chatbot'].chat()

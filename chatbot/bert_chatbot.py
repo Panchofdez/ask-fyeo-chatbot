@@ -22,7 +22,7 @@ class BERTChatbot(Chatbot):
     roberta = "roberta-base"
     bert = "bert-base-uncased"
 
-    def __init__(self, type="distilbert-base-uncased", batch_size=16, max_seq_len=30, epochs=1000):
+    def __init__(self, type="distilbert-base-uncased", batch_size=16, max_seq_len=30, epochs=500):
         # specify GPU
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         
@@ -144,19 +144,18 @@ class BERTChatbot(Chatbot):
         return weights
 
     # function to train the model
-    def train_model(self, model, optimizer, dataloader, loss_func):
+    def train_model(self, model, optimizer, dataloader, loss_func, lr_scheduler):
     
         model.train()
         total_loss = 0
         
         # empty list to save model predictions
         total_preds=[]
-        # We can also use learning rate scheduler to achieve better results
-        lr_sch = lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
+        
 
         # iterate over batches
         for step,batch in enumerate(dataloader):
-            
+            print(step, batch)
             # progress update after every 50 batches.
             if step % 50 == 0 and not step == 0:
                 print('  Batch {:>5,}  of  {:>5,}.'.format(step,len(dataloader)))
@@ -179,7 +178,7 @@ class BERTChatbot(Chatbot):
             optimizer.zero_grad()
         
             #apply the learning rate which controls how big of a step for an optimizer to reach the minima of the loss function
-            lr_sch.step()
+            lr_scheduler.step()
 
             # model predictions are stored on GPU. So, push it to CPU
             preds=preds.detach().cpu().numpy()
@@ -209,12 +208,14 @@ class BERTChatbot(Chatbot):
         # empty lists to store training and validation loss of each epoch
         train_losses=[]
 
+        # We can also use learning rate scheduler to achieve better results
+        lr_sch = lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
 
         for epoch in range(self.epochs):    
             print('\n Epoch {:} / {:}'.format(epoch + 1, self.epochs))
             
             #train model
-            train_loss, _ = self.train_model(model=model, optimizer=optimizer, dataloader=dataloader, loss_func=cross_entropy)
+            train_loss, _ = self.train_model(model=model, optimizer=optimizer, dataloader=dataloader, loss_func=cross_entropy, lr_scheduler=lr_sch)
             
             # append training and validation loss
             train_losses.append(train_loss)

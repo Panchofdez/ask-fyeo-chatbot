@@ -33,14 +33,24 @@ class ChatbotInterface():
       
 
     def get_response(self, question):
-        return self.model.get_response(question, self.data, self.file)
+        try:
+            return self.model.get_response(question, self.data, self.file)
+        except Exception as e:
+            return e
+
    
 
     def get_bertfile(self):
-        file = torch.load(ChatbotInterface.bert_file)
-        return file
+        try:
+            file = torch.load(ChatbotInterface.bert_file)
+            return file
+        except FileNotFoundError as e:
+            return None
 
     def get_bowfile(self):
-        file = torch.load(ChatbotInterface.bow_file)
-        return file
+        try:
+            file = torch.load(ChatbotInterface.bow_file)
+            return file
+        except FileNotFoundError as e:
+            return None
 

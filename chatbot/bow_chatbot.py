@@ -104,7 +104,7 @@ class BOWChatbot(Chatbot):
             "all_words": all_words,
             "tags": tags
         }
-        FILE = "bowmodel.pth"
+        FILE = "chatbot/bowmodel.pth"
         torch.save(data, FILE)
         print(f"Training complete. File saved to {FILE}")
 
@@ -128,7 +128,7 @@ class BOWChatbot(Chatbot):
 
         return return_list
 
-    def get_response(self,sentence, file, data):        
+    def get_response(self,sentence, data, file):      
         sentence = tokenize(sentence)
         model_state=file["model_state"]
         input_size=file["input_size"]
@@ -158,7 +158,7 @@ class BOWChatbot(Chatbot):
             if sentence == "quit":
                 break
 
-            print(f"{bot_name} {self.get_response(sentence, file, data)[1]}")
+            print(f"{bot_name} {self.get_response(sentence, data, file)[1]}")
 
 
 

@@ -1,5 +1,6 @@
 import click
 from flask.cli import with_appcontext
+from flask import  current_app
 
 from .database import db, FAQ
 
@@ -28,3 +29,14 @@ def faq_init():
             db.session.add(new_faq)
         
         db.session.commit()
+
+@click.command(name='train_model')
+@with_appcontext
+def create_tables():
+    current_app.config['chatbot'].train()
+
+
+@click.command(name='chat')
+@with_appcontext
+def create_tables():
+    current_app.config['chatbot'].chat()

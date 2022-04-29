@@ -33,7 +33,7 @@ def create_app(type=DEV):
 
     with app.app_context():
         data = get_data()
-        chatbot = ChatbotInterface(type=ChatbotInterface.bert_model, data=data)
+        chatbot = ChatbotInterface(type=ChatbotInterface.bow_model, data=data)
         app.config["chatbot"] = chatbot
 
     

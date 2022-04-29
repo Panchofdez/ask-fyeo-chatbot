@@ -27,9 +27,9 @@ lazy-object-proxy==1.4.3
 Mako==1.2.0
 MarkupSafe==1.1.1
 mccabe==0.6.1
-mkl-fft
-mkl-random
-mkl-service
+# mkl-fft
+# mkl-random
+# mkl-service
 nltk==3.5
 numexpr==2.7.3
 numpy

@@ -5,7 +5,7 @@ import torch
 import random
 import torch.nn as nn
 from sklearn.preprocessing import LabelEncoder
-from transformers import DistilBertTokenizer, DistilBertModel, AutoModel, BertTokenizerFast, RobertaTokenizer, RobertaModel
+from transformers import DistilBertTokenizer, DistilBertModel
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler
 from torchinfo import summary
 from transformers import AdamW
@@ -19,16 +19,16 @@ class BERTChatbot(Chatbot):
 
     #3 types of transformer models to choose from
     distilbert = "distilbert-base-uncased"
-    roberta = "roberta-base"
-    bert = "bert-base-uncased"
+    # roberta = "roberta-base"
+    # bert = "bert-base-uncased"
 
     def __init__(self, type="distilbert-base-uncased", batch_size=16, max_seq_len=30, epochs=500):
         # specify GPU
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         
         #load pretrained model and tokenizer
-        self.tokenizer = self.get_tokenizer(type)
-        self.bert = self.get_pretrained_model(type)
+        self.tokenizer = DistilBertTokenizer.from_pretrained(BERTChatbot.distilbert)
+        self.bert = DistilBertModel.from_pretrained(BERTChatbot.distilbert)
         
         # Converts the labels into encodings
         self.le = LabelEncoder()
@@ -41,27 +41,27 @@ class BERTChatbot(Chatbot):
         self.epochs = epochs
         
 
-    def get_tokenizer(self, type):
-        # Load the desired tokenizer
-        if type == BERTChatbot.distilbert:
-            return DistilBertTokenizer.from_pretrained(BERTChatbot.distilbert)
-        elif type == BERTChatbot.roberta:     
-            return RobertaTokenizer.from_pretrained(BERTChatbot.distilbert)
-        else:
-            return BertTokenizerFast.from_pretrained(BERTChatbot.bert)
+    # def get_tokenizer(self, type):
+    #     # Load the desired tokenizer
+    #     if type == BERTChatbot.distilbert:
+    #         return DistilBertTokenizer.from_pretrained(BERTChatbot.distilbert)
+    #     elif type == BERTChatbot.roberta:     
+    #         return RobertaTokenizer.from_pretrained(BERTChatbot.distilbert)
+    #     else:
+    #         return BertTokenizerFast.from_pretrained(BERTChatbot.bert)
             
 
 
 
 
-    def get_pretrained_model(self, type):
-        # Import the pretrained model
-        if type == BERTChatbot.distilbert:
-            return DistilBertModel.from_pretrained(BERTChatbot.distilbert)
-        elif type == BERTChatbot.roberta:     
-            return RobertaModel.from_pretrained(BERTChatbot.distilbert)
-        else:
-            return AutoModel.from_pretrained(BERTChatbot.bert)
+    # def get_pretrained_model(self, type):
+    #     # Import the pretrained model
+    #     if type == BERTChatbot.distilbert:
+    #         return DistilBertModel.from_pretrained(BERTChatbot.distilbert)
+    #     elif type == BERTChatbot.roberta:     
+    #         return RobertaModel.from_pretrained(BERTChatbot.distilbert)
+    #     else:
+    #         return AutoModel.from_pretrained(BERTChatbot.bert)
 
     def get_train_labels_text(self,data):
         tags = []

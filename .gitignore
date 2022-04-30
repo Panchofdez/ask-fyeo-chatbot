@@ -1,5 +1,5 @@
 #our .pth files that store our pytorch models 
-*.pth
+# *.pth
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -26,7 +26,6 @@ class ChatbotInterface():
             self.file = self.get_file(bert_url)
         else:
             self.model = BOWChatbot(**kwargs)
-            print(bow_url)
             self.file = self.get_file(bow_url)
         
      

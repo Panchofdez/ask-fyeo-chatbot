@@ -129,10 +129,8 @@ class BOWChatbot(Chatbot):
 
         return return_list
 
-    def get_response(self,sentence, data, file):
-        print("HELLO")      
+    def get_response(self,sentence, data, file):     
         tokenized_sentence = tokenize(sentence)
-        print(file)
         model_state=file["model_state"]
         input_size=file["input_size"]
         hidden_size=file["hidden_size"]
@@ -140,7 +138,6 @@ class BOWChatbot(Chatbot):
         all_words=file["all_words"]
         tags=file["tags"]
 
-        print(input_size, hidden_size)
         model = NeuralNet(input_size, hidden_size, output_size).to(self.device)
         model.load_state_dict(model_state)
         model.eval()
@@ -172,8 +169,6 @@ class BOWChatbot(Chatbot):
         Determines the validity of the chatbot's response
         '''
         q = tokenize(q)
-        print(q)
-        print(t)
 
         ignore_words = ['?', '!', '.', ',', 'are', 'you', 'can', 'and', 'you', 'let', ]
         stemmed_words  = [stem(w) for w in q if w not in ignore_words and len(w) > 2 ] # avoid punctuation or words like I , a , or 

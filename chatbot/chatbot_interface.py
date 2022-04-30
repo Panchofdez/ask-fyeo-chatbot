@@ -23,10 +23,10 @@ class ChatbotInterface():
             bow_url = "https://fyeochatbotmodels.s3.us-east-2.amazonaws.com/bowmodel.pth"
         if type == ChatbotInterface.bert_model:
             self.model = BERTChatbot(**kwargs)
-            self.file = self.get_file(bert_url)
+            self.file = self.get_file(bert_url, mode)
         else:
             self.model = BOWChatbot(**kwargs)
-            self.file = self.get_file(bow_url)
+            self.file = self.get_file(bow_url, mode)
         
      
 
@@ -48,11 +48,19 @@ class ChatbotInterface():
 
    
 
-    def get_file(self,url):
-        with smart_open(url, 'rb') as f:
-            buffer = io.BytesIO(f.read())
-            file = torch.load(buffer)
-            return file
+    def get_file(self,url, mode):
+        if mode == Mode.DEV:
+            try:
+                file = torch.load(url)
+                return file
+            except Exception as e:
+                print(e)
+                return None
+        else:
+            with smart_open(url, 'rb') as f:
+                buffer = io.BytesIO(f.read())
+                file = torch.load(buffer)
+                return file
 
 
         

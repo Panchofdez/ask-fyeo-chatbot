@@ -22,7 +22,7 @@ class BERTChatbot(Chatbot):
     roberta = "roberta-base"
     bert = "bert-base-uncased"
 
-    def __init__(self, type="distilbert-base-uncased", batch_size=16, max_seq_len=30, epochs=1000):
+    def __init__(self, type="distilbert-base-uncased", batch_size=16, max_seq_len=30, epochs=200):
         # specify GPU
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         
@@ -231,7 +231,7 @@ class BERTChatbot(Chatbot):
         print()
         data = {
             "model_state": model.state_dict(),
-            "num_classes": unique_classes
+            "unique_classes": unique_classes
         }
         FILE = "bertmodel.pth"
         torch.save(data, FILE)
@@ -262,11 +262,12 @@ class BERTChatbot(Chatbot):
     def get_response(self, message, data, file): 
         print("getting response")
         _, train_labels = self.get_train_labels_text(data)
-        unique_classes = np.unique(train_labels)
+        # unique_classes = np.unique(train_labels)
 
         #Retrieve trained model
         model_state = file["model_state"]
-        # unique_classes = file["unique_classes"]
+        unique_classes = file["unique_classes"]
+        print(unique_classes)
         model = self.get_model_architecture(unique_classes)
         model.load_state_dict(model_state)
         model.eval()

@@ -12,7 +12,8 @@ from .commands import faq_init, train_model, chat, view_intents
 from enums import Mode
 
 # app.config['CORS_HEADERS'] = 'Content-Type'
-
+migrate = Migrate()
+cors = CORS()
 
 def create_app(mode=Mode.DEV, init=False):
     app = Flask(__name__)
@@ -29,8 +30,9 @@ def create_app(mode=Mode.DEV, init=False):
     app.config['SECRET_KEY'] = os.environ.get('MY_SECRET_KEY')
 
     db.init_app(app)    
-    migrate = Migrate(app, db)
-
+    cors.init_app(app)
+    migrate.init_app(app, db)
+    
     with app.app_context():
 
         if init: 

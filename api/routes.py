@@ -647,7 +647,7 @@ def addFAQ(user):
             if len(FAQ.query.filter(FAQ.tag==tag).all()) > 0:
                 return jsonify({'error':'Error adding FAQ, Tag must be unique'}), 400
 
-            new_faq = FAQ(tag=tag, patterns=patterns, responses=responses)
+            new_faq = FAQ(tag=tag, patterns=patterns, responses=responses, last_updated=datetime.now())
             db.session.add(new_faq)
             db.session.commit()
 
@@ -683,7 +683,7 @@ def addAllFAQ(user):
                 if len(FAQ.query.filter(FAQ.tag==tag).all()) > 0:
                     return jsonify({'error':'Error adding FAQ, Tag must be unique'}), 400
 
-                new_faq = FAQ(tag=tag, patterns=patterns, responses=responses)
+                new_faq = FAQ(tag=tag, patterns=patterns, responses=responses, last_updated=datetime.now())
                 db.session.add(new_faq)
            
             db.session.commit()
@@ -711,10 +711,11 @@ def updateFAQ(user):
 
             patterns = '|'.join(patterns)
             responses = '|'.join(responses)
-            
+            print("Date", datetime.now())
             current_faq = FAQ.query.filter(FAQ.tag == tag).first()
             current_faq.patterns = patterns
             current_faq.responses = responses
+            current_faq.last_updated = datetime.now()
             db.session.commit()
 
             faqs = FAQ.query.order_by(FAQ.tag).all()

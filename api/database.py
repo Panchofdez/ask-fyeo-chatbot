@@ -63,10 +63,12 @@ class FAQ(db.Model):
     tag: str
     patterns: str
     responses: str
+    last_updated: datetime
 
     id = db.Column(db.Integer, primary_key=True)
     tag = db.Column(db.String, unique=True, nullable=False)
     patterns = db.Column(db.String, nullable=False)
     responses = db.Column(db.String, nullable=False)
+    last_updated = db.Column(db.DateTime, nullable=True, default=datetime.now)
     queries = db.relationship('Query', backref='parent', lazy=True)
     

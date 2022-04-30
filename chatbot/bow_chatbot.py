@@ -7,6 +7,7 @@ import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
 from .chatbot_abstract import Chatbot
 from .nltk_utils import tokenize, stem, bag_of_words
+import re
 
 
 
@@ -62,7 +63,7 @@ class BOWChatbot(Chatbot):
 
         input_size = len(all_words)
         output_size = len(tags) 
-        hidden_size = 8
+        hidden_size = 64
 
         dataset = ChatDataset(X_train=X_train, y_train=y_train)
         train_loader = DataLoader(dataset=dataset, batch_size=self.batch_size, shuffle=True, num_workers=0)
@@ -129,7 +130,7 @@ class BOWChatbot(Chatbot):
         return return_list
 
     def get_response(self,sentence, data, file):      
-        sentence = tokenize(sentence)
+        tokenized_sentence = tokenize(sentence)
         model_state=file["model_state"]
         input_size=file["input_size"]
         hidden_size=file["hidden_size"]
@@ -141,12 +142,14 @@ class BOWChatbot(Chatbot):
         model = NeuralNet(input_size, hidden_size, output_size).to(self.device)
         model.load_state_dict(model_state)
         model.eval()
-        results = self.classify(sentence, model, all_words, tags )
+        results = self.classify(tokenized_sentence, model, all_words, tags )
         print("FINAL RESULTS: ",results)
         while results:
             for intent in data["intents"]:
                 if results[0][0] == intent["tag"]:
-                    return  (intent["tag"], f"{random.choice(intent['responses'])}")
+                    resp = random.choice(intent['responses'])
+                    if self.check_response(sentence, resp):
+                        return  (intent["tag"], f"{resp}")
             results.pop(0) 
 
         return ("" , "I do not understand please try again or ask another question ... ")
@@ -162,7 +165,18 @@ class BOWChatbot(Chatbot):
 
             print(f"{bot_name} {self.get_response(sentence, data, file)[1]}")
 
-
+    def check_response(self, q, r):
+        '''
+        Determines the validity of the chatbot's response
+        '''
+        q = tokenize(q)
+        print(q)
+        ignore_words = ['?', '!', '.', ',', 'are', 'you', 'can', 'and', 'you', 'let', ]
+        stemmed_words  = [stem(w) for w in q if w not in ignore_words and len(w) > 2 ] # avoid punctuation or words like I , a , or 
+        print(stemmed_words)
+        found = [ w for w in stemmed_words if re.search(w, r) != None] #check if the question has words related in the response
+        print(found)
+        return len(found) > 0
 
 class NeuralNet(nn.Module):
     def __init__(self, input_size, hidden_size, num_classes):

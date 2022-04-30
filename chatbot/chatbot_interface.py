@@ -18,7 +18,7 @@ class ChatbotInterface():
             bow_file = "bowmodel.pth"
         else:
             bert_file = "https://fyeochatbotmodels.s3.us-east-2.amazonaws.com/bertmodel.pth"
-            bow_file = "bowmodel.pth"
+            bow_file = "https://fyeochatbotmodels.s3.us-east-2.amazonaws.com/bowmodel.pth"
         if type == ChatbotInterface.bert_model:
             self.model = BERTChatbot(**kwargs)
             self.file = self.get_bertfile(bert_file)

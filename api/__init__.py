@@ -37,7 +37,7 @@ def create_app(type=Mode.DEV, init=False):
             db.create_all()
         else:
             data = get_data()
-            chatbot = ChatbotInterface(type=ChatbotInterface.bert_model, data=data, mode=Mode.PROD)
+            chatbot = ChatbotInterface(type=ChatbotInterface.bow_model, data=data, mode=Mode.PROD)
             app.config["chatbot"] = chatbot
 
     

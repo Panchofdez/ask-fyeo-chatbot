@@ -9,8 +9,8 @@ class ChatbotInterface():
     bow_model = "bow"
 
     #files that contain the saved state of our trained models
-    bert_file = "app/bertmodel.pth" #bertmodel.pth (local)
-    bow_file = "app/bowmodel.pth"  #bowmodel.pth (local)
+    bert_file = "bertmodel.pth" 
+    bow_file = "bowmodel.pth"  
 
     def __init__(self, type, data, **kwargs):
         self.type = type

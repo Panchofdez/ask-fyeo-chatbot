@@ -131,6 +131,7 @@ class BOWChatbot(Chatbot):
 
     def get_response(self,sentence, data, file):      
         tokenized_sentence = tokenize(sentence)
+        print(file)
         model_state=file["model_state"]
         input_size=file["input_size"]
         hidden_size=file["hidden_size"]
@@ -148,7 +149,7 @@ class BOWChatbot(Chatbot):
             for intent in data["intents"]:
                 if results[0][0] == intent["tag"]:
                     resp = random.choice(intent['responses'])
-                    if self.check_response(sentence, resp):
+                    if self.check_response(intent["tag"], sentence, resp):
                         return  (intent["tag"], f"{resp}")
             results.pop(0) 
 
@@ -165,16 +166,18 @@ class BOWChatbot(Chatbot):
 
             print(f"{bot_name} {self.get_response(sentence, data, file)[1]}")
 
-    def check_response(self, q, r):
+    def check_response(self,t,  q, r):
         '''
         Determines the validity of the chatbot's response
         '''
         q = tokenize(q)
         print(q)
+        print(t)
+
         ignore_words = ['?', '!', '.', ',', 'are', 'you', 'can', 'and', 'you', 'let', ]
         stemmed_words  = [stem(w) for w in q if w not in ignore_words and len(w) > 2 ] # avoid punctuation or words like I , a , or 
         print(stemmed_words)
-        found = [ w for w in stemmed_words if re.search(w, r) != None] #check if the question has words related in the response
+        found = [ w for w in stemmed_words if re.search(w, r) != None or re.search(w,t.lower() ) != None] #check if the question has words related in the response
         print(found)
         return len(found) > 0
 

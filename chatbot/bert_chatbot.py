@@ -5,7 +5,7 @@ import torch
 import random
 import torch.nn as nn
 from sklearn.preprocessing import LabelEncoder
-from transformers import DistilBertTokenizer, DistilBertModel
+from transformers import DistilBertTokenizer, DistilBertModel, AutoModel, BertTokenizerFast, RobertaTokenizer, RobertaModel
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler
 from torchinfo import summary
 from transformers import AdamW
@@ -19,16 +19,16 @@ class BERTChatbot(Chatbot):
 
     #3 types of transformer models to choose from
     distilbert = "distilbert-base-uncased"
-    # roberta = "roberta-base"
-    # bert = "bert-base-uncased"
+    roberta = "roberta-base"
+    bert = "bert-base-uncased"
 
     def __init__(self, type="distilbert-base-uncased", batch_size=16, max_seq_len=30, epochs=1000):
         # specify GPU
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         
         #load pretrained model and tokenizer
-        self.tokenizer = DistilBertTokenizer.from_pretrained(BERTChatbot.distilbert)
-        self.bert = DistilBertModel.from_pretrained(BERTChatbot.distilbert)
+        self.tokenizer = self.get_tokenizer(type)
+        self.bert =  self.get_pretrained_model(type)
         
         # Converts the labels into encodings
         self.le = LabelEncoder()
@@ -41,27 +41,27 @@ class BERTChatbot(Chatbot):
         self.epochs = epochs
         
 
-    # def get_tokenizer(self, type):
-    #     # Load the desired tokenizer
-    #     if type == BERTChatbot.distilbert:
-    #         return DistilBertTokenizer.from_pretrained(BERTChatbot.distilbert)
-    #     elif type == BERTChatbot.roberta:     
-    #         return RobertaTokenizer.from_pretrained(BERTChatbot.distilbert)
-    #     else:
-    #         return BertTokenizerFast.from_pretrained(BERTChatbot.bert)
+    def get_tokenizer(self, type):
+        # Load the desired tokenizer
+        if type == BERTChatbot.distilbert:
+            return DistilBertTokenizer.from_pretrained(BERTChatbot.distilbert)
+        elif type == BERTChatbot.roberta:     
+            return RobertaTokenizer.from_pretrained(BERTChatbot.distilbert)
+        else:
+            return BertTokenizerFast.from_pretrained(BERTChatbot.bert)
             
 
 
 
 
-    # def get_pretrained_model(self, type):
-    #     # Import the pretrained model
-    #     if type == BERTChatbot.distilbert:
-    #         return DistilBertModel.from_pretrained(BERTChatbot.distilbert)
-    #     elif type == BERTChatbot.roberta:     
-    #         return RobertaModel.from_pretrained(BERTChatbot.distilbert)
-    #     else:
-    #         return AutoModel.from_pretrained(BERTChatbot.bert)
+    def get_pretrained_model(self, type):
+        # Import the pretrained model
+        if type == BERTChatbot.distilbert:
+            return DistilBertModel.from_pretrained(BERTChatbot.distilbert)
+        elif type == BERTChatbot.roberta:     
+            return RobertaModel.from_pretrained(BERTChatbot.distilbert)
+        else:
+            return AutoModel.from_pretrained(BERTChatbot.bert)
 
     def get_train_labels_text(self,data):
         tags = []
@@ -144,7 +144,7 @@ class BERTChatbot(Chatbot):
         return weights
 
     # function to train the model
-    def train_model(self, model, optimizer, dataloader, loss_func, lr_scheduler):
+    def train_model(self, model, optimizer, dataloader, loss_func):
     
         model.train()
         total_loss = 0
@@ -152,6 +152,8 @@ class BERTChatbot(Chatbot):
         # empty list to save model predictions
         total_preds=[]
         
+        # We can also use learning rate scheduler to achieve better results
+        lr_sch = lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
 
         # iterate over batches
         for step,batch in enumerate(dataloader):
@@ -177,7 +179,7 @@ class BERTChatbot(Chatbot):
             optimizer.zero_grad()
         
             #apply the learning rate which controls how big of a step for an optimizer to reach the minima of the loss function
-            lr_scheduler.step()
+            lr_sch.step()
 
             # model predictions are stored on GPU. So, push it to CPU
             preds=preds.detach().cpu().numpy()
@@ -207,14 +209,12 @@ class BERTChatbot(Chatbot):
         # empty lists to store training and validation loss of each epoch
         train_losses=[]
 
-        # We can also use learning rate scheduler to achieve better results
-        lr_sch = lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
 
         for epoch in range(self.epochs):    
             print('\n Epoch {:} / {:}'.format(epoch + 1, self.epochs))
             
             #train model
-            train_loss, _ = self.train_model(model=model, optimizer=optimizer, dataloader=dataloader, loss_func=cross_entropy, lr_scheduler=lr_sch)
+            train_loss, _ = self.train_model(model=model, optimizer=optimizer, dataloader=dataloader, loss_func=cross_entropy)
             
             # append training and validation loss
             train_losses.append(train_loss)
@@ -274,7 +274,7 @@ class BERTChatbot(Chatbot):
         intent = self.get_prediction(message, model)
         for i in data['intents']: 
             if i["tag"] == intent:
-                if not self.check_response(message, ' '.join(i["responses"]).lower()):
+                if not self.check_response(i["tag"], message, ' '.join(i["responses"]).lower()):
                     intent = ""
                 else:
                     result = random.choice(i["responses"])
@@ -293,16 +293,18 @@ class BERTChatbot(Chatbot):
 
         return
 
-    def check_response(self, q, r):
+    def check_response(self,t,  q, r):
         '''
         Determines the validity of the chatbot's response
         '''
         q = tokenize(q)
         print(q)
+        print(t)
+
         ignore_words = ['?', '!', '.', ',', 'are', 'you', 'can', 'and', 'you', 'let', ]
         stemmed_words  = [stem(w) for w in q if w not in ignore_words and len(w) > 2 ] # avoid punctuation or words like I , a , or 
         print(stemmed_words)
-        found = [ w for w in stemmed_words if re.search(w, r) != None] #check if the question has words related in the response
+        found = [ w for w in stemmed_words if re.search(w, r) != None or re.search(w,t.lower() ) != None] #check if the question has words related in the response
         print(found)
         return len(found) > 0
 

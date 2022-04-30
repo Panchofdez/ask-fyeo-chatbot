@@ -22,7 +22,7 @@ class BERTChatbot(Chatbot):
     # roberta = "roberta-base"
     # bert = "bert-base-uncased"
 
-    def __init__(self, type="distilbert-base-uncased", batch_size=16, max_seq_len=30, epochs=500):
+    def __init__(self, type="distilbert-base-uncased", batch_size=16, max_seq_len=30, epochs=1000):
         # specify GPU
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         
@@ -155,7 +155,6 @@ class BERTChatbot(Chatbot):
 
         # iterate over batches
         for step,batch in enumerate(dataloader):
-            print(step, batch)
             # progress update after every 50 batches.
             if step % 50 == 0 and not step == 0:
                 print('  Batch {:>5,}  of  {:>5,}.'.format(step,len(dataloader)))
@@ -223,7 +222,13 @@ class BERTChatbot(Chatbot):
             torch.backends.cudnn.deterministic = True
             torch.backends.cudnn.benchmark = False
             print(f'\nTraining Loss: {train_loss:.10f}')
-    
+
+        # Print model's state_dict
+        print("Model's state_dict:")
+        for param_tensor in model.state_dict():
+            print(param_tensor, "\t", model.state_dict()[param_tensor].size())
+
+        print()
         data = {
             "model_state": model.state_dict(),
             "num_classes": unique_classes

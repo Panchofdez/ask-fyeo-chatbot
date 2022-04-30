@@ -687,7 +687,7 @@ def addAllFAQ(user):
                 db.session.add(new_faq)
            
             db.session.commit()
-            faqs = FAQ.order_by(FAQ.tag).query.all()
+            faqs = FAQ.query.order_by(FAQ.tag).all()
             faqs = list(map(formatFAQ, map(asdict, faqs)))
             return jsonify({"FAQ": faqs})
         except Exception as e:

@@ -9,8 +9,8 @@ class ChatbotInterface():
     bow_model = "bow"
 
     #files that contain the saved state of our trained models
-    bert_file = "chatbot/bertmodel.pth"
-    bow_file = "chatbot/bowmodel.pth"
+    bert_file = "bertmodel.pth"
+    bow_file = "bowmodel.pth"
 
     def __init__(self, type, data, **kwargs):
         self.type = type
@@ -41,16 +41,11 @@ class ChatbotInterface():
    
 
     def get_bertfile(self):
-        try:
-            file = torch.load(ChatbotInterface.bert_file)
-            return file
-        except FileNotFoundError as e:
-            return None
+        file = torch.load(ChatbotInterface.bert_file)
+        return file
+
 
     def get_bowfile(self):
-        try:
-            file = torch.load(ChatbotInterface.bow_file)
-            return file
-        except FileNotFoundError as e:
-            return None
-
+        file = torch.load(ChatbotInterface.bow_file)
+        return file
+        

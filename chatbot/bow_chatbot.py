@@ -104,7 +104,7 @@ class BOWChatbot(Chatbot):
             "all_words": all_words,
             "tags": tags
         }
-        FILE = "chatbot/bowmodel.pth"
+        FILE = "bowmodel.pth"
         torch.save(data, FILE)
         print(f"Training complete. File saved to {FILE}")
 
@@ -136,6 +136,8 @@ class BOWChatbot(Chatbot):
         output_size=file["output_size"]
         all_words=file["all_words"]
         tags=file["tags"]
+
+        print(input_size, hidden_size)
         model = NeuralNet(input_size, hidden_size, output_size).to(self.device)
         model.load_state_dict(model_state)
         model.eval()

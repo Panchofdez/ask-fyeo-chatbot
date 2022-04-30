@@ -2,6 +2,8 @@ from .bow_chatbot import BOWChatbot
 from .bert_chatbot import BERTChatbot
 import torch
 from enums import Mode
+import io
+from smart_open import open as smart_open
 
 
 class ChatbotInterface():
@@ -14,17 +16,17 @@ class ChatbotInterface():
         self.data = data 
         #files that contain the saved state of our trained models
         if mode == Mode.DEV:
-            bert_file = "bertmodel.pth"
-            bow_file = "bowmodel.pth"
+            bert_url = "bertmodel.pth"
+            bow_url = "bowmodel.pth"
         else:
-            bert_file = "https://fyeochatbotmodels.s3.us-east-2.amazonaws.com/bertmodel.pth"
-            bow_file = "https://fyeochatbotmodels.s3.us-east-2.amazonaws.com/bowmodel.pth"
+            bert_url = "https://fyeochatbotmodels.s3.us-east-2.amazonaws.com/bertmodel.pth"
+            bow_url = "https://fyeochatbotmodels.s3.us-east-2.amazonaws.com/bowmodel.pth"
         if type == ChatbotInterface.bert_model:
             self.model = BERTChatbot(**kwargs)
-            self.file = self.get_bertfile(bert_file)
+            self.file = self.get_file(bert_url)
         else:
             self.model = BOWChatbot(**kwargs)
-            self.file = self.get_bowfile(bow_file)
+            self.file = self.get_file(bow_url)
         
      
 
@@ -44,12 +46,11 @@ class ChatbotInterface():
 
    
 
-    def get_bertfile(self,f):
-        file = torch.load(f)
-        return file
+    def get_file(self,url):
+        with smart_open(url, 'rb') as f:
+            buffer = io.BytesIO(f.read())
+            file = torch.load(buffer)
+            return file
 
 
-    def get_bowfile(self, f):
-        file = torch.load(f)
-        return file
         

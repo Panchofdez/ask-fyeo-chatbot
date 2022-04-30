@@ -1,3 +1,3 @@
 from api import create_app, PROD
 
-app = create_app(PROD, init=True)
+app = create_app(PROD)

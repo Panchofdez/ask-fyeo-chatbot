@@ -260,6 +260,7 @@ class BERTChatbot(Chatbot):
         return self.le.inverse_transform(preds)[0]
 
     def get_response(self, message, data, file): 
+        print("getting response")
         _, train_labels = self.get_train_labels_text(data)
         unique_classes = np.unique(train_labels)
 

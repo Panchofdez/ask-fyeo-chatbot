@@ -129,7 +129,8 @@ class BOWChatbot(Chatbot):
 
         return return_list
 
-    def get_response(self,sentence, data, file):      
+    def get_response(self,sentence, data, file):
+        print("HELLO")      
         tokenized_sentence = tokenize(sentence)
         print(file)
         model_state=file["model_state"]

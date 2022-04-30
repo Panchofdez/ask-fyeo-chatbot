@@ -26,6 +26,7 @@ class ChatbotInterface():
             self.file = self.get_file(bert_url)
         else:
             self.model = BOWChatbot(**kwargs)
+            print(bow_url)
             self.file = self.get_file(bow_url)
         
      
@@ -40,8 +41,10 @@ class ChatbotInterface():
 
     def get_response(self, question):
         try:
+            print(question)
             return self.model.get_response(question, self.data, self.file)
         except Exception as e:
+            print(e)
             return e
 
    
@@ -50,6 +53,7 @@ class ChatbotInterface():
         with smart_open(url, 'rb') as f:
             buffer = io.BytesIO(f.read())
             file = torch.load(buffer)
+            print(file)
             return file
 
 

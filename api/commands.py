@@ -1,20 +1,18 @@
 import click
 from flask.cli import with_appcontext
 from flask import  current_app
+import json
 
 from .database import db, FAQ
-
-@click.command(name='create_tables')
-@with_appcontext
-def create_tables():
-    db.create_all()
 
 
 @click.command(name='faq_init')
 @with_appcontext
 def faq_init():
     with open('intents.json', 'r', encoding='utf8') as f:
-        for q in f['intents']:
+        file_data = json.loads(f.read())
+        for q in file_data['intents']:
+            print(q)
             tag = q['tag']
             patterns = q['patterns']
             responses = q['responses']
@@ -40,3 +38,14 @@ def train_model():
 @with_appcontext
 def chat():
     current_app.config['chatbot'].chat()
+
+
+
+@click.command(name='view_intents')
+@with_appcontext
+def view_intents():
+    with open('intents.json', 'r', encoding='utf8') as f:
+        file_data = json.loads(f.read())
+        for q in file_data['intents']:
+            print(q)
+            

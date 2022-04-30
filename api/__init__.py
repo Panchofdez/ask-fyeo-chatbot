@@ -42,7 +42,6 @@ def create_app(type=DEV, init=False):
 
     
     app.register_blueprint(routes, url_prefix='')
-    app.cli.add_command(create_tables)
     app.cli.add_command(faq_init)
     app.cli.add_command(train_model)
     app.cli.add_command(chat)

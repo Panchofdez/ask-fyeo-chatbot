@@ -17,7 +17,6 @@ cors = CORS()
 
 def create_app(mode=Mode.DEV, init=False):
     app = Flask(__name__)
-    CORS(app)
     if mode == Mode.PROD:
     #database string needs to start with postgresql:// not postgres:// which is what heroku sets it to by default and is unchangeable
         app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
@@ -33,14 +32,14 @@ def create_app(mode=Mode.DEV, init=False):
     cors.init_app(app)
     migrate.init_app(app, db)
     
-    with app.app_context():
+    # with app.app_context():
 
-        if init: 
-            db.create_all()
-        else:
-            data = get_data()
-            chatbot = ChatbotInterface(type=ChatbotInterface.bow_model, data=data, mode=mode)
-            app.config["chatbot"] = chatbot
+    #     if init: 
+    #         db.create_all()
+    #     else:
+    #         data = get_data()
+    #         chatbot = ChatbotInterface(type=ChatbotInterface.bow_model, data=data, mode=mode)
+    #         app.config["chatbot"] = chatbot
 
     
     app.register_blueprint(routes, url_prefix='')

@@ -9,15 +9,15 @@ from .database import db, FAQ
 from .helpers import formatFAQ
 from .routes import routes
 from .commands import faq_init, train_model, chat, view_intents
+from enums import Mode
 
 # app.config['CORS_HEADERS'] = 'Content-Type'
-PROD = "Prod"
-DEV = "Dev"
 
-def create_app(type=DEV, init=False):
+
+def create_app(type=Mode.DEV, init=False):
     app = Flask(__name__)
     CORS(app)
-    if type == PROD:
+    if type == Mode.PROD:
     #database string needs to start with postgresql:// not postgres:// which is what heroku sets it to by default and is unchangeable
         app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
         app.debug = False
@@ -37,7 +37,7 @@ def create_app(type=DEV, init=False):
             db.create_all()
         else:
             data = get_data()
-            chatbot = ChatbotInterface(type=ChatbotInterface.bow_model, data=data)
+            chatbot = ChatbotInterface(type=ChatbotInterface.bert_model, data=data, mode=Mode.DEV)
             app.config["chatbot"] = chatbot
 
     

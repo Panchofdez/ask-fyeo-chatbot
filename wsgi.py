@@ -1,3 +1,4 @@
-from api import create_app, PROD
+from api import create_app
+from enums import Mode
 
-app = create_app(PROD)
+app = create_app(Mode.PROD)

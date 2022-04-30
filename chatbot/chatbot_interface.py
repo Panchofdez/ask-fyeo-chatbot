@@ -53,7 +53,6 @@ class ChatbotInterface():
         with smart_open(url, 'rb') as f:
             buffer = io.BytesIO(f.read())
             file = torch.load(buffer)
-            print(file)
             return file
 
 

@@ -8,7 +8,7 @@ from chatbot.chatbot_interface import ChatbotInterface
 from .database import db, FAQ
 from .helpers import formatFAQ
 from .routes import routes
-from .commands import create_tables, faq_init, train_model, chat, view_intents
+from .commands import faq_init, train_model, chat, view_intents
 
 # app.config['CORS_HEADERS'] = 'Content-Type'
 PROD = "Prod"

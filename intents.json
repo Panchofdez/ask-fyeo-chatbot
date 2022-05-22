@@ -1,517 +1,1223 @@
 {
-  "intents": [
-    {
-      "tag": "Academic Advising",
-      "patterns": [
-        "How do I book an advising appointment?",
-        "I need academic advice",
-        "How do I contact an academic advisor?",
-        "Who do I talk to for help with my academics?",
-        "Academic Advising",
-        "I need to talk to an advisor"
-      ],
-      "responses": [
-        "For Fall 2021, students can drop into the Zoom FYEO - Virtual Advising Room to get quick answers to their questions. The FYEO-Virtual Advising Room is open, Monday to Fridays from 10:00AM- 12:00PM.  Staff can answer their questions and If needed, we can set them up with an appointment with an academic advisor.\n"
-      ],
-      "context_set": "academic-advising"
-    },
-    {
-      "tag": "Academic Advising 2",
-      "patterns": ["Where can I find link to the VAR?", "Where can I get the link?", "Where do I find the link?"],
-      "responses": ["The zoom link for the FYEO VAR is here\n"],
-      "context_filter": "academic-advising"
-    },
-    {
-      "tag": "Medical Consideration",
-      "patterns": [
-        "What do I do if I missed class for a medical reason?",
-        "I need medical consideration",
-        "Medical Consideration"
-      ],
-      "responses": [
-        "Have a Health Care Provider fill out the Ryerson Student Health Certificate and submit it through the  Senate Online Academic Consideration portal within 3 business days of your missed academic obligation. Students must also email their instructor to inform them of their absence, as soon as possible, as this is the first step.\nStudents also have an option of submitting 1 request per term without supporting documentation (some restrictions apply, ie, final exams).\nFor more information, please visit the Meeting Academic Obligations page for details on this process.\n"
-      ]
-    },
-    {
-      "tag": "Non-Medical Consideration",
-      "patterns": [
-        "What if I missed class for a non-medical reason?",
-        "I missed class for a non-medical reason. What do I do?"
-      ],
-      "responses": [
-        "Submit the Academic Consideration Request through the Senate Online Academic Consideration portal attaching any supporting documents you might have, within 3 business days of your missed obligation. Students must also email their instructor to inform them of your absence, as soon as possible, as this is the first step.\nStudents also have an option of submitting 1 request per term without supporting documentation (some restrictions apply, ie, final exams).\nFor more information, visit the FYEO Meeting Academic Obligations page for details on this process."
-      ]
-    },
-    {
-      "tag": "Disability Consideration",
-      "patterns": ["What if I need consideration due to a disability?", "I have a disability. What do I do?"],
-      "responses": [
-        "Academic Accommodation Support (AAS) is available to students who can provide documentation of disability, both temporary and permanent. Using academic accommodations does not show up on your transcript and is a confidential process.  For more information You can learn more about how to register here and we suggest you register as soon as possible.\n"
-      ]
-    },
-    {
-      "tag": "Religious Consideration",
-      "patterns": [
-        "What if I need consideration for religious obligations?",
-        "I have to miss something due to religious reasons. What do I do?"
-      ],
-      "responses": [
-        "Ryerson provides accommodation for religious, aboriginal and spiritual obligations. Students are required to fill out the Ryerson Religious Observance Form and submit it directly to their professors within the first 2 weeks of class; if the dates aren’t known in advance, students are required to provide as much notice as possible. Religious Observance requests can be made for exams but must be done within 2 weeks from the posting of the exam schedule.\n"
-      ]
-    },
-    {
-      "tag": "Academic Standing",
-      "patterns": [
-        "What CGPA do I need to be in good academic standing?",
-        "What CPGA do I need to have a clear academic standing?",
-        "What do I need to have a good academic standing?",
-        "Standing",
-        "Academic Standing"
-      ],
-      "responses": [
-        "Effective Fall 2021, in order to maintain a CLEAR standing, as per the 2021-2022 Undergraduate Calendar for Aerospace Engineering, Biomedical Engineering, Chemical Engineering Co-Op, Civil Engineering, Computer Engineering, Electrical Engineering, Industrial Engineering, and Mechanical Engineering, a CGPA of 1.67 (or higher) AND TGPA of 1.33 (or higher) will be required. \n\nStudents taking courses under a Probation Contract will need to adhere to the specific CGPA and TGPA requirements as per their contract.\n\nFor more information, visit the Undergraduate Calendar for the specific program, admittance year and click on Academic Standing Variation and Grades, GPA and Academic Standing website.\n"
-      ],
-      "context_set": "standing"
-    },
-    {
-      "tag": "Failed Class Academic Standing",
-      "patterns": [
-        "If I fail a class, am I automatically out of good academic standing?",
-        "What happens to my standing if I fail a class?",
-        "Do I need to pass all of my classes to achieve a clear academic standing? ",
-        "What happens if I fail a class?",
-        "What if I fail a course?"
-      ],
-      "responses": [
-        "Student's Academic Standing concerns their CGPA and TGPA, so if the CPGPA is 1.67 or above and their TGPA is 1.33 and above, they are still in good standing.\n\nHowever, if a student  fail a course that is required for your program you will be required to repeat it. \nIf you fail a required course for the third time, you will be assigned an Academic Standing of Permanent Program Withdrawal.\nFor more information, visit the Grades, GPA and Academic Standing website.\n"
-      ]
-    },
-    {
-      "tag": "Low CGPA",
-      "patterns": [
-        "What if I have less than 1.67?",
-        "What if I have less than 1.33?",
-        "What do I do if my CGPA is really low?",
-        "I have a low cgpa. Does this affect my standing?",
-        "What do I do to maintain a clear academic standing?",
-        "What if my cgpa is below a 1.67?",
-        "What if my tgpa is below a 1.33",
-        "CGPA",
-        "TGPA"
-      ],
-      "responses": [
-        "Student's Academic Standing concerns their CGPA and TGPA, so if the CPGPA is 1.67 or above and their TGPA is 1.33 and above, they are still in good standing.\n\nHowever, if a student  fail a course that is required for your program you will be required to repeat it. \nIf you fail a required course for the third time, you will be assigned an Academic Standing of Permanent Program Withdrawal.\nFor more information, visit the Grades, GPA and Academic Standing website.\n"
-      ]
-    },
-    {
-      "tag": "INC/F-S",
-      "patterns": [
-        "What if I received an INC/F-S in a course?",
-        "What do I do if I get an INC grade?",
-        "What do I do if I get a F-S grade?",
-        "I have an INC for one of my courses",
-        "I have a F-S for one of my courses"
-      ],
-      "responses": [
-        "INC stands for “Incomplete”. This means that you are missing an assessment which is stopping you from receiving a final grade. \nF-S stands for redeemable failure, where the instructor is giving you the opportunity to write a “redeemable failure exam”\nFor more information, visit the Grades, GPA and Academic Standing website.\n"
-      ]
-    },
-    {
-      "tag": "Appeals",
-      "patterns": ["Can I appeal my final Grade or Standing?", "Appeal", "Appeal Grades"],
-      "responses": [
-        "Students can submit a Grade or Standing Appeal if it falls under one of the grounds for appeal identified in the Ryerson Academic Consideration Policy 167.\n\nOnce final grades are posted on RAMMS you can submit an appeal, if you believe you have grounds. Here is the link to the Ryerson Senate Appeals portal: https://www.ryerson.ca/senate/appeals/ \n\nNote: there are deadlines for Grade Appeals and Standing Appleals at the end of each semester listed on the Significant Dates Calendar.\n\nStudents are encouraged to contact the Academic Advocacy at the Ryerson Students’ Union who provide students with workshops, information and advising on appeals. \n\nThe Ryerson Ombudsperson also has resources regarding appeals on their website. \n"
-      ]
-    },
-    {
-      "tag": "Service Hub",
-      "patterns": ["How do I contact the ServiceHub?", "What is the ServiceHub?", "Service Hub"],
-      "responses": [
-        "The ServiceHub has requested that general questions are asked at ask.ryerson.ca and submitted through the ServiceHub help form. For more information, please check out the Service Hub contact page.\n"
-      ]
-    },
-    {
-      "tag": "Academic Accommodation Support",
-      "patterns": [
-        "Can I register for Academic Accommodation Support?",
-        "Accommodation Support",
-        "Register for support"
-      ],
-      "responses": [
-        "Academic Accommodation Support (AAS) is supporting students remotely, including outreach to students via email and offering drop-in support via phone. \n\nThis includes supporting new student registrations.                                                                                                                                                                                                                                                                                                                                                                                                                                                \n\nAcademic Accommodation Support Website: https://www.ryerson.ca/accommodations/\n\nGeneral Inquiries: aasadmin@ryerson.ca                                                                                                                                                                                                                                 \n\nStudent Specific Inquiries: Academic Accommodation Facilitator listed on the student’s accommodation letter\n\nService Providers (Interpreters, etc.): aasbookings@ryerson.ca \n\nRU Noted Peer Note-taking: runoted@ryerson.ca"
-      ]
-    },
-    {
-      "tag": "Test Centre",
-      "patterns": ["Is the Test Centre still open?", "I need accomadations to write my test", "test accomadations"],
-      "responses": [
-        "Students with Accomodations should connect directly with their AAS facilitator for advising. \n\nAAS-registered students should still book their accommodated tests through the Online Student Accommodations Portal, so that instructors are notified of their test accommodations. Then, the instructor will be able to apply the appropriate accommodations within the online test platform. If you are needing to do a make-up for a missed obligation, please contact your professors as they will let you know how they plan on administering the make-up."
-      ]
-    },
-    {
-      "tag": "Counselling",
-      "patterns": [
-        "Is there counselling specifically for Engineering students?",
-        "Where can I go to get counselling?",
-        "Counselling"
-      ],
-      "responses": [
-        "We have two very dedicated personal Counsellors in the Faculty of Engineering and Architectural Science; Jastej Gill and Jean Tsai. You may contact the Centre for Student Development and Counselling through phone (416-979-5195) or email (csdc@ryerson.ca) and ask to set up an appointment with one of our engineering counsellors. \n\n24/7 support can also be accessed through keep.meSAFE at 1-844-451-9700 or through the app found on the Apple Store and Google Play.\n"
-      ]
-    },
-    {
-      "tag": "Course Enrollment",
-      "patterns": [
-        "How do I enroll in classes?",
-        "How do I swap around sections?",
-        "I need help enrolling in a course",
-        "Can I have someone to help me enroll in my courses."
-      ],
-      "responses": [
-        "Use the RAMSS Shopping Cart to swap/enroll in classes. There are FYEO Youtube tutorials provided online for both Swap and Enrol into classes."
-      ]
-    },
-    {
-      "tag": "Enrollment",
-      "patterns": [
-        "What is enrollment for?",
-        "What does it mean to enroll?",
-        "What is the Enrollment process",
-        "What is enrolling for a class mean?"
-      ],
-      "responses": [
-        "Enrollment is the process of selecting your courses for the academic year and adding them to RAMSS. During the course enrollment period, you can adjust your course schedule by adding, dropping or swapping classes. All incoming engineering students have the same first-year courses. Please check the undergraduate calendar for your year of admittance.\nPlease check to make sure you are enrolled in these courses. \n\nIn addition to your 5 engineering course, you have to take 1 lower-level liberal course from Table A.\nThe FYEO does not encourage students to take their Table A in the 1st semester, the two Table A's, one Table B and one Table B from the short list, can be completed anytime before graduation and students may want to consider taking them over a Spring/Summer semester. \n You can review Table A and decide on what course interests you. From here, please refer to How to Enrol - RAMSS Support to enroll. This webpage provides a step-by-step guide on how to enrol.\n "
-      ]
-    },
-    {
-      "tag": "Engineering Specialization",
-      "patterns": ["What is an Engineering Specialization program?", "What specializations are offered?"],
-      "responses": [
-        "FEAS offers the Optional Specialization is Management Science (OSMS), a program that provides students with a competitive edge to help them become more marketable upon graduation. Click here for more information.\n"
-      ]
-    },
-    {
-      "tag": "First Year in Two Years",
-      "patterns": ["What is First Year in Two Years?"],
-      "responses": [
-        "If a student hasn't completed all required first-year core courses in your first year, the student will be considered a First-Year-in-Two-Year student. This means that the student will be take some of their first-year engineering courses they have yet to complete in the following academic year. Students can also opt to be a First-Year-in-Two-Year student by taking advantage of a reduced course load at the beginning of their first year of studies.\n"
-      ]
-    },
-    {
-      "tag": "FYEO Office",
-      "patterns": [
-        "Where is the office?",
-        "Where can I find the FYEO office?",
-        "Where is the First-Year Engineering Office",
-        "Where is the FYEO?"
-      ],
-      "responses": [
-        "The FYEO is located on the third floor of the George Vari Engineering and Computing Centre in room ENG340A.\n"
-      ],
-      "context_set": "fyeo-office"
-    },
-    {
-      "tag": "FYEO Office Hours",
-      "patterns": [
-        "What are the office hours?",
-        "What time can I go to the FYEO?",
-        "What are the hours of the First-Year Engineering Office?",
-        "When can I visit the fyeo"
-      ],
-      "responses": [
-        "The FYEO operates from Monday to Friday, 9am to 5pm, unless otherwise posted. The FYEO Drop-in Zoom Virtual Advisement Room, is Open weekdays Monday - Friday from 10am - 12pm EST.  Students can always email the FYEO at firstyeareng@ryerson.ca.\n"
-      ]
-    },
-
-    {
-      "tag": "Letter of Enrollment",
-      "patterns": [
-        "How to request a Letter of Enrollment?",
-        "Where can I request a Letter of Enrollment?",
-        "I need a letter of enrollment. How do I do this?"
-      ],
-      "responses": [
-        "Ryerson provides you with the opportunity to access your own student record information. Sometimes you need more information, or you are required to provide it by an official source. Upon request, Ryerson provides official, personalized, letters confirming enrolment status, transcript details, etc.\n\nhttps://www.ryerson.ca/RAMSSsupport/ugrad_grad/academics/request_letter"
-      ]
-    },
-    {
-      "tag": "Liberals",
-      "patterns": ["What liberals do I have to take?", "What liberals do I need?", "Liberals"],
-      "responses": [
-        "All Engineering Students must complete 2 Lower Level Liberals from Table A and 2 Upper Level Liberals, 1 from from Table B and 1 from a short list - listed on the specific calendar."
-      ],
-      "context_set": "liberals"
-    },
-    {
-      "tag": "Liberals When",
-      "patterns": ["Can I take liberals in the spring/summer?", "When should I take liberals"],
-      "responses": [
-        "When do you recommend taking your liberal studies?\nThis varies for every student. Some students decide to take it in the Fall along with the required 5 (or less courses) and some decide to do them in the spring or in upper years. **We don’t encourage a full course load (of 6 courses) especially with online learning.**\nAll Engineering students are required to complete four Liberal Studies Courses as per their graduation requirements. You do not have to take your Liberal courses in your first year of study; liberal courses just have to be completed before you apply to graduate. Many students use the Spring/Summer term to complete their liberals or complete them in their later years so they can concentrate more on their Engineering courses, especially in their first year. In total, students must take TWO (2) Table A - Lower Level Liberals, ONE (1) Table B - Upper Level Liberal, and ONE (1) Engineering Upper Level Liberal. \n\nPlease note that first-year engineering midterms are often held on Fridays from 6 p.m. - 8 p.m., so you should ensure that you do not enroll in a Liberal studies course that conflicts with this time.\n"
-      ]
-    },
-
-    {
-      "tag": "Liberals and Language Courses",
-      "patterns": [
-        "Questions about Placement Tests for Languages, Literatures and Cultures Courses",
-        "I want to take a language course for a liberal but I need a placement test?",
-        "What is the placement test for?",
-        "Can I take a language course?"
-      ],
-      "responses": [
-        "Students interested in taking a Language Course are required to take a Placement Test. \nContact the Languages, Literatures and Cultures department for more information"
-      ]
-    },
-    {
-      "tag": "Lockers",
-      "patterns": ["How can I get a locker?", "I need a locker? How can I get one?", "Where can I get a locker"],
-      "responses": [
-        "Please check with a full-time staff member for assistance. For Fall 2021, locker access is not available  Genreally, lockers are issued to first-year students in the first week of class during the Fall semester. Due to a limited number of lockers, these can only be issued on a first-come, first-serve basis. An email is issued to all first-year students in the first week of classes with further instructions.\n"
-      ]
-    },
-    {
-      "tag": "Minors",
-      "patterns": ["How can I get a minor?", "What do I need for a minor?", "What does a minor require?"],
-      "responses": [
-        "Minors require an additional 6 courses outside of your degree so it is your responsibility to speak to an advisor to manage your coursework accordingly. A list of minors offered can be found here.\n"
-      ]
-    },
-    {
-      "tag": "OSAP",
-      "patterns": ["Questions about Financial Matters", "I have a problem with OSAP", "I need help with OSAP"],
-      "responses": [
-        "The First Year Engineering Office does not advise on financial matters. Please visit the OSAP webiste or ServiceHub website to get your questions and concerns about OSAP answered.\n"
-      ]
-    },
-    {
-      "tag": "Tuition",
-      "patterns": [
-        "Where can I find more information on my Fees?",
-        "I have a problem with my tuition fees",
-        "Where can I pay for my tuition fees",
-        "How do I pay for my tuition fees?",
-        "How do I extend my application to cover my spring/summer fees?",
-        "How do I pay my fees?",
-        "RAMSS Fee Payment Issues"
-      ],
-      "responses": [
-        "The First Year Engineering Office does not advise on financial matters. For information on Fees, ask your question at ask.ryerson.ca or please visit the ServiceHub wesite or you can view the Ryerson Tuition and Fees website.\n"
-      ]
-    },
-    {
-      "tag": "Fees Opt-out",
-      "patterns": [
-        "Why can I no longer opt out of some fees, as was the case last year with the Student Choice Initiative?"
-      ],
-      "responses": [
-        "On November 21, 2019 the Ontario Divisional Court made the decision to suspend the opt-out process. As a result, students will be assessed both optional and compulsory ancillary fees effective Winter 2020. For additional information please review Ryerson Today. Taken from https://www.ryerson.ca/registrar/fees/fee-descriptions/ \n"
-      ]
-    },
-    {
-      "tag": "Tuition Fees Covid-19",
-      "patterns": [
-        "What financial assistance opportunities exist for students affected by the COVID-19 pandemic?",
-        "I have been affected by the pandemic and I need help financially",
-        "Can I get financial help for being affected by the pandemic"
-      ],
-      "responses": [
-        "Check this link out: https://www.ryerson.ca/covid-19/students/financial-assistance-awards-student-fees/ \n"
-      ]
-    },
-    {
-      "tag": "OSMS",
-      "patterns": ["Can you take OSMS courses and lower liberal courses at the same time in the Spring/Summer term?"],
-      "responses": [
-        "Students can take OSMS courses and lower liberal courses at the same time during theSpring/Summer terms.  The FYEO strongly encourages that students do not take more than 3 courses in those terms at a time due to the fast- paced nature and heavy course load in the Spring/Summer terms.\n"
-      ]
-    },
-    {
-      "tag": "Plan Change",
-      "patterns": [
-        "How can a student submit a Plan Change Request?",
-        "When is the deadline for the Plan Change Form?",
-        "When can I do a plan change?",
-        "Plan Change",
-        "What is a plan change?"
-      ],
-      "responses": [
-        "Plan Change Requests from one Engineering discipline to another can be submitted each semester for the following semester, through the Plan Change Form, there is always a due date.\n\nPlan Change requests for the Winter 2022 semester are due by December 1, 2021. \n"
-      ],
-      "context_set": "plan-change"
-    },
-    {
-      "tag": "Plan Change Denial",
-      "patterns": ["What do I do if my plan change is denied?", "What do I do if it is denied?"],
-      "responses": [
-        "Students can re-submit a Plan Change for the following semester to be re-considered.\nStudents may also want to meet with the First-Year Academic Services and Success Facilitator\n"
-      ],
-      "context_set": "plan-change"
-    },
-
-    {
-      "tag": "Plan Change Decision",
-      "patterns": [
-        "When will I hear back from my plan change?",
-        "How will I know if my plan change was approved?",
-        "I still haven't heard anything about my plan change"
-      ],
-      "responses": [
-        "All Plan Change decisions will be emailed out after final grades have been released and reviewed. Students are required to enroll in the appropriate courses themselves.\n"
-      ]
-    },
-    {
-      "tag": "Probation",
-      "patterns": [
-        "What happens if I’m on Probation?",
-        "What is Probation?",
-        "What does it mean to be on probation?",
-        "Probation?"
-      ],
-      "responses": [
-        "Students with an Academic Standing of Probationary are issued a Probationary Contract. The Probationary Contracts (which lists each student's assigned courses) are emailed to students invdividually from the firstyeareng@ryerson.ca email.\nStudents with a Probationary Standing are required to attend a MANDATORY seminar.  At the seminar, an academic advisor will provide complete instructions on how the student proceeds after seminar, along with information about any course restrictions.\nIf students with a Probationary Contract would like to drop a course, they must meet request permission from an academic advisor for approval.  Be aware of timelines and drop deadlines here when advising students. \nIf an incomplete mark leaves a student on probation, they are to meet with an academic advisor and follow with the probationary contract issued until the grade is updated.\n"
-      ]
-    },
-    {
-      "tag": "Reading Week",
-      "patterns": [
-        "When is reading week?",
-        "Do we have reading week?",
-        "Do engineering students have reading week?",
-        "Reading week?"
-      ],
-      "responses": [
-        "Engineering students DO NOT get a Fall Reading Week. However, engineering students do get a Winter Reading Week, which is from February 19, 2022 to February 25, 2022. More significant dates can be found on the Significant Dates Calendar.\n"
-      ]
-    },
-    {
-      "tag": "RSU Health and Dental",
-      "patterns": [
-        "Where can I opt out of the RSU Health and Dental coverage?",
-        "How do I opt out of the Health and Dental coverage",
-        "What will happen if I opt out of the RSU health and dental plan?"
-      ],
-      "responses": [
-        "Complete the opt-out form on the RSU website by October 1st. Refunds are applied to your student account in November. Please visit the Account Inquiry section of your Student Centre on RAMSS to confirm that the credit has been applied. Once you have successfully opted out of the RSU Members’ Health and Dental Plan, your opt out status will be carried forward in subsequent years, and you will not be assessed the RSU Members’ Health and Dental Plan fee.\n"
-      ]
-    },
-    {
-      "tag": "Required to Withdraw (RTW)",
-      "patterns": [
-        "What happens if I’m Required to Withdraw?",
-        "What does it mean to be Required to Withdraw?",
-        "What is RTW",
-        "What is Reinstatement/ Fresh Start?"
-      ],
-      "responses": [
-        "Required to Withdraw(RTW) means that students will be required to withdraw from their program and Ryerson for 12 months. Students will be expected to attend a MANDATORY Required to Withdraw seminar where specific information will be presented to students regarding their next steps as an RTW student. Some of which include ways that students may improve their chances of being reinstated back into your program. If a student is Required to Withdraw, and their CGPA is at least 1.33 or higher, the student may be eligible for the Fresh Start Program after sitting out one semester. Pending approval, the student may pursue reinstatement or transfer to another program by taking two courses for credit in their first semester back and four courses in their second semester back.\n"
-      ]
-    },
-    {
-      "tag": "Scholarships",
-      "patterns": [
-        "Scholarships?",
-        "Where can I find information on scholarships?",
-        "I want to know more about scholarships?"
-      ],
-      "responses": [
-        "Information on scholarships as well as links to a full list of non-faculty specific scholarships and awards can be found here\n\nStudents can contact the Student Awards and Scholarships office via awards@ryerson.ca \n"
-      ]
-    },
-    {
-      "tag": "Transfer Credits",
-      "patterns": ["How do I apply for transfer credits?", "Transfer credits"],
-      "responses": [
-        "A self-service application is available on RAMSS after activation of your Ryerson identity. However, some institutions outside of province or Canada require the Manual Application Upload detailed here. Before you apply, make sure to check your eligibility.\n"
-      ]
-    },
-    {
-      "tag": "Transfer Credits Issue",
-      "patterns": [
-        "My transfer credits are approved but are not being applied to my program",
-        "I have a problem with my transfer credits",
-        "Transfer credit issues",
-        "Problem with Transfer credits",
-        "My transfer credits aren't being applied"
-      ],
-      "responses": [
-        "To ensure the transfer credits are applied to a student's courses, they will need to drop the course that they recieved a transfer credit for, if  RAMSS automatically registered the student into that first year course.\n"
-      ]
-    },
-    {
-      "tag": "Transition Program",
-      "patterns": [
-        "How does the transition program work?",
-        "What courses are offered in the transition program?",
-        "What is the transition program?"
-      ],
-      "responses": [
-        "For first years, the Engineering Transition Program offers all 1st semester classes in the Fall and then again in the Winter semester (with the exception of CEN100) and all 2nd  semester courses in the Winter and then again in the Spring (with the exception of ECN801). \nSpeak to an academic advisor to help plan out your course load, and learn more about the Transition Program here.\n"
-      ],
-      "context_set": "transition"
-    },
-    {
-      "tag": "Transition Courses",
-      "patterns": [
-        "Are engineering courses being offered both in Spring and in Summer",
-        "Are transition courses being offered in spring and summer?",
-        "Transition courses"
-      ],
-      "responses": [
-        "No, Ryerson does not offer engineering transition courses both in Spring and in Summer. First-year Engineering Transition Courses are generally offered in the Spring\n"
-      ]
-    },
-
-    {
-      "tag": "Upper Year Wait List",
-      "patterns": ["Upper Year Wait List?", "I have a question about waitlists?", "Waitlists"],
-      "responses": [
-        "You need to reach out to the course’s department for waitlists. You can find department contacts here."
-      ]
-    },
-    {
-      "tag": "Writing Skills Test (WST)",
-      "patterns": [
-        "When is the Writing Skills Test offered?",
-        "When is the Writing Skills test?",
-        "Writing Skills Test"
-      ],
-      "responses": [
-        "The test is held three times a year: end of August (during orientation), November, and late April/early May. If you miss one test date, you can write it at the next. Once the details are confirmed for each test (date, time, location), an email will be sent to all students. You must pass the WST before you can enter your third year. For recent updates about the WST, students can view details on the FYEO Website here."
-      ],
-      "context_set": "wst"
-    },
-    {
-      "tag": "Writing Skills Test (WST) 2",
-      "patterns": ["When is the next writing skills test?"],
-      "responses": [
-        "The next Writing Skills Test will be held on Saturday, November 20, 2021 at 9:00 am.  Please check with a full -time staff member before shaing this update.  This information will be shared with  all students via email shortly. For recent updates about the WST, students can view details on the FYEO Website here."
-      ]
-    },
-    {
-      "tag": "Writing Skills Test (WST) 3",
-      "patterns": [
-        "What if I didn’t pass the Writing Skills Test (WST)?",
-        "What if I don't pass the test",
-        "What happens if I don't pass the writing skills test?"
-      ],
-      "responses": [
-        "If you don't pass the WST, you will receive a grade of INP (in-progress) in CEN 199, and are  encouraged to enroll in LNG 111, LNG 112, LNG 113, or LNG 121, depending on the outcome of the WST assessment. These are writing-intensive humanities and social science courses designed to give you the opportunity to strengthen your foundation in communication. They also count as lower-level liberal studies courses.\n\nIf you don't pass your second attempt at the WST, or you just want to further develop your language and writing skills after completing the LNG courses, you may benefit from Ryerson's online and/or in-class preparatory English language courses offered through the G. Raymond Chang School of Continuing Education, opens in new window.\n\nNote: You may not proceed into the third year of your engineering program without passing the WST. But if you don't pass the test during orientation, you will have more chances to write and pass the test.\n\nA reminder that students are not encouraged to take the first Table A listed in the calendar in the first Fall or Winter semester.\n"
-      ]
-    },
-    {
-      "tag": "Writing Skills Test (WST) 4",
-      "patterns": ["Can I take a Liberal before doing the WST?", "Can i take a Liberal before the writing skills test"],
-      "responses": [
-        "Yes, you can take a Liberal before completing the WST successfully. Keep in mind that Liberal courses will be writing heavy so if you didn't do well in the WST you may find the Liberal course challenging. We also encourage students to take a reduced course load in their first year, a Liberal course is one you may want to consider taking over the Spring Summer semesters. \nNeed to complete WST before moving into the 3rd year of study.  For more information and recent updates about the WST, please view the FYEO Website here.\n"
-      ]
-    },
-    {
-      "tag": "Next test",
-      "patterns": ["When is the next test?", "When is the next one?"],
-      "responses": [
-        "The next Writing Skills Test will be held on Saturday, November 20, 2021 at 9:00 am.  Please check with a full -time staff member before shaing this update.  This information will be shared with  all students via email shortly. For recent updates about the WST, students can view details on the FYEO Website here."
-      ],
-      "context_filter": "wst"
-    }
-  ]
+    "intents": [
+        {
+            "id": 13,
+            "tag": "Academic Accommodation Support",
+            "patterns": [
+                "Can I register for Academic Accommodation Support?",
+                "Accommodation Support",
+                "Register for support",
+                "i need academic accomodation support",
+                "I need accomodation"
+            ],
+            "responses": [
+                "Academic Accommodation Support (AAS) is supporting students remotely, including outreach to students via email and offering drop-in support via phone. \n\nThis includes supporting new student registrations.                                                                                                                                                                                                                                                                                                                                                                                                                                                \n\nAcademic Accommodation Support Website: https://www.ryerson.ca/accommodations/\n\nGeneral Inquiries: aasadmin@ryerson.ca                                                                                                                                                                                                                                 \n\nStudent Specific Inquiries: Academic Accommodation Facilitator listed on the student\u2019s accommodation letter\n\nService Providers (Interpreters, etc.): aasbookings@ryerson.ca \n\nRU Noted Peer Note-taking: runoted@ryerson.ca"
+            ]
+        },
+        {
+            "id": 1,
+            "tag": "Academic Advising",
+            "patterns": [
+                "How do I book an advising appointment?",
+                "I need academic advice",
+                "How do I contact an academic advisor?",
+                "Who do I talk to for help with my academics?",
+                "Academic Advising",
+                "I need to talk to an advisor",
+                "Can I book an appointment with an academic advisor?"
+            ],
+            "responses": [
+                "For Winter 2022, students can drop into the Zoom FYEO - Virtual Advising Room to get quick answers to their questions via this link https://ryerson.zoom.us/j/8053341745?status=success. The FYEO-Virtual Advising Room is open, Monday to Fridays from 10:00AM- 12:00PM.  Staff can answer their questions and If needed, we can set them up with an appointment with an academic advisor. "
+            ]
+        },
+        {
+            "id": 2,
+            "tag": "Academic Advising 2",
+            "patterns": [
+                "Where can I find link to the VAR?",
+                "Where can I get the link?",
+                "Where do I find the link?",
+                "Where can i access the link to the VAR",
+                "I need a link for the virtual advising room"
+            ],
+            "responses": [
+                "The zoom link for the FYEO VAR is here: https://ryerson.zoom.us/j/8053341745?status=success"
+            ]
+        },
+        {
+            "id": 7,
+            "tag": "Academic Standing",
+            "patterns": [
+                "What CGPA do I need to be in good academic standing?",
+                "What CPGA do I need to have a clear academic standing?",
+                "What do I need to have a good academic standing?",
+                "Standing",
+                "Academic Standing",
+                "What do i need to get a clear standing",
+                "What do i need to get a clear academic standing"
+            ],
+            "responses": [
+                "Effective Fall 2021, in order to maintain a CLEAR standing, as per the 2021-2022 Undergraduate Calendar for Aerospace Engineering, Biomedical Engineering, Chemical Engineering Co-Op, Civil Engineering, Computer Engineering, Electrical Engineering, Industrial Engineering, and Mechanical Engineering, a CGPA of 1.67 (or higher) AND TGPA of 1.33 (or higher) will be required. Students taking courses under a Probation Contract will need to adhere to the specific CGPA and TGPA requirements as per their contract. For more information, visit the Undergraduate Calendar for the specific program, admittance year and click on Academic Standing Variation and Grades, GPA and Academic Standing website via this link https://www.ryerson.ca/studentguide/grades/"
+            ]
+        },
+        {
+            "id": 84,
+            "tag": "Academic Standing Meaning",
+            "patterns": [
+                "How is my academic standing determined and what does it mean for my degree?",
+                "How is my academic standing determined ?",
+                "What does academic standing mean for my degree?",
+                "How is my academic standing calculated?"
+            ],
+            "responses": [
+                "For information on grades, GPA and academic standing, refer to the Student Guide https://www.ryerson.ca/studentguide/grades/."
+            ]
+        },
+        {
+            "id": 69,
+            "tag": "Advising Support",
+            "patterns": [
+                "How can I access advising support?",
+                "How can I access support?",
+                "How can I get advising?",
+                "How can I get advising support?",
+                "How can I get support?"
+            ],
+            "responses": [
+                "The FYEO provides drop-in, live, on-the-spot advising through the Virtual Advising Room, external link. Our Student Advising Team is available to answer questions about your first-year courses, liberals, minors, enrollment, deadline dates, or anything else, and can get you connected to other departments across campus for further support. Stop by any time, Monday \u2013 Friday, 10:00 AM \u2013 12:00 PM or 1:00 PM \u2013 3:00 PM through Zoom with meeting code: 805-334-1745.\n\nYou can always email the FYEO at firstyeareng@ryerson.ca. All email inquiries will be answered within 48 working hours, however, during peak times the response time may be longer. Please include your name and student number when contacting us."
+            ]
+        },
+        {
+            "id": 11,
+            "tag": "Appeals",
+            "patterns": [
+                "Can I appeal my final Grade or Standing?",
+                "Appeal",
+                "Appeal Grades",
+                "Can I appeal my standing",
+                "How do i appeal my grades or standing"
+            ],
+            "responses": [
+                "Students can submit a Grade or Standing Appeal if it falls under one of the grounds for appeal identified in the Ryerson Academic Consideration Policy 167. Once final grades are posted on RAMMS you can submit an appeal, if you believe you have grounds. Here is the link to the Ryerson Senate Appeals portal: https://www.ryerson.ca/senate/appeals/ Note: there are deadlines for Grade Appeals and Standing Appeals at the end of each semester listed on the Significant Dates Calendar (https://www.ryerson.ca/calendar/2021-2022/dates/) . Students are encouraged to contact the Academic Advocacy at the Ryerson Students\u2019 Union who provide students with workshops, information and advising on appeals.  The Ryerson Ombudsperson also has resources regarding appeals on their website. "
+            ]
+        },
+        {
+            "id": 95,
+            "tag": "Assignment Submission",
+            "patterns": [
+                "How do I submit an assignment?",
+                "how to hand in assignment ",
+                "submit assignment "
+            ],
+            "responses": [
+                "Links to upload documents or enter text for your assignments are generally located under the Assignment tab in the course shell unless otherwise indicated by your professor. "
+            ]
+        },
+        {
+            "id": 94,
+            "tag": "Audio and video ",
+            "patterns": [
+                "I have been prompted to test my audio and video when I entered the live session, what do I do?",
+                "prompted to start live session"
+            ],
+            "responses": [
+                "Your audio and video settings will be evaluated as you enter the session. Click \u201cok\u201d if your audio and camera are working in the test. Note: Your browser may ask you to allow it to use the computer\u2019s camera and audio. Please allow it."
+            ]
+        },
+        {
+            "id": 88,
+            "tag": "Back to back classes",
+            "patterns": [
+                "I have back to back classes on my schedule, will I have time to make it to my next class?",
+                "Back to back classes",
+                "Will back to back classes be a problem"
+            ],
+            "responses": [
+                "Ryerson University allows students and instructors 10 minutes to get to the class. If a class is scheduled for 10:00 AM, the professor will begin at 10:10 AM, unless otherwise specified in class."
+            ]
+        },
+        {
+            "id": 64,
+            "tag": "Bell Curve",
+            "patterns": [
+                "Do courses bell curve the grades?",
+                "bell curve",
+                "curve grades "
+            ],
+            "responses": [
+                "Not usually. However, the instructor might make other adjustments of the marks.\n"
+            ]
+        },
+        {
+            "id": 90,
+            "tag": "Browser",
+            "patterns": [
+                "Does it matter what browser I use?",
+                "What browser should I use?",
+                "browser"
+            ],
+            "responses": [
+                "Ryerson recommends either Google Chrome or Firefox."
+            ]
+        },
+        {
+            "id": 77,
+            "tag": "Class Schedule",
+            "patterns": [
+                "How do I make changes to my class schedule or drop a course?",
+                "How do I make changes to my class schedule?",
+                "How do I change my class schedule?",
+                "How do I drop a course?"
+            ],
+            "responses": [
+                "You may change your class schedule or drop a course through the Ryerson Administrative Management Self Service (RAMSS). Visit the RAMSS Support page for step-by-step instructions. For more general information about your first-year timetable, please refer to the Undergraduate Student Guide. https://www.ryerson.ca/studentguide/learning_experience/"
+            ]
+        },
+        {
+            "id": 87,
+            "tag": "Class Schedule Changes",
+            "patterns": [
+                "Can I make changes to my class schedule?",
+                "How do I make changes to my class schedule?",
+                "How do I change my class schedule?"
+            ],
+            "responses": [
+                "Your schedule will be made for you at the beginning of the semester, provided that you completed your course intentions. You can make changes to your schedule during your enrolment period. To make schedule changes, students may do so on RAMSS (Ryerson Administrative Management Self Serivce) or VSB (Visual Schedule builder). Students who were admitted late will need to create their own timetable.\n"
+            ]
+        },
+        {
+            "id": 15,
+            "tag": "Counselling",
+            "patterns": [
+                "Is there counselling specifically for Engineering students?",
+                "Where can I go to get counselling?",
+                "Counselling",
+                "I need counselling",
+                "Who can I talk to about counselling",
+                "I am looking for counselling"
+            ],
+            "responses": [
+                "Yes, we have two very dedicated personal Counsellors in the Faculty of Engineering and Architectural Science; Jastej Gill and Jean Tsai. You may contact the Centre for Student Development and Counselling (https://www.ryerson.ca/student-wellbeing/counselling/students/) through phone (416-979-5195) or email (csdc@ryerson.ca) and ask to set up an appointment with one of our engineering counsellors. \n\n24/7 support can also be accessed through keep.meSAFE (https://myssp.app/keepmesafe/ca/home) at 1-844-451-9700 or through the app found on the Apple Store and Google Play."
+            ]
+        },
+        {
+            "id": 16,
+            "tag": "Course Enrollment",
+            "patterns": [
+                "How do I enroll in classes?",
+                "How do I swap around sections?",
+                "I need help enrolling in a course",
+                "Can I have someone to help me enroll in my courses."
+            ],
+            "responses": [
+                "Use the RAMSS Shopping Cart to swap/enroll in classes. There are FYEO Youtube tutorials provided online for both Swap and Enrol into classes."
+            ]
+        },
+        {
+            "id": 51,
+            "tag": "Course Enrollment 2",
+            "patterns": [
+                "What is enrollment for?",
+                "What is enrollment?",
+                "What does enrollment mean ?",
+                "What is course enrollment for?"
+            ],
+            "responses": [
+                "Enrollment is the process of selecting your courses for the academic year and adding them to RAMSS. During the course enrollment period, you can adjust your course schedule by adding, dropping or swapping classes. All incoming engineering students have the same first-year courses. Please check the undergraduate calendar for your year of admittance.                                      Please check to make sure you are enrolled in these courses. \n\nIn addition to your 5 engineering course, you have to take 1 lower-level liberal course from Table A.\nThe FYEO does not encourage students to take their Table A in the 1st semester, the two Table A's, one Table B and one Table B from the short list, can be completed anytime before graduation and students may want to consider taking them over a Spring/Summer semester. \n You can review Table A and decide on what course interests you. From here, please refer to How to Enrol - RAMSS Support to enroll. This webpage provides a step-by-step guide on how to enrol https://www.ryerson.ca/admissions/undergraduate/after-applying/new-students/enrolment-and-fees/"
+            ]
+        },
+        {
+            "id": 92,
+            "tag": "Course Information",
+            "patterns": [
+                "How do I find my course information?",
+                "Where do I find my course information?"
+            ],
+            "responses": [
+                "Once you log in to my.ryerson.ca portal, your course will be listed under \u201cThe Online Courses & Organizations\u201d tab on the landing page. Click on your course name to enter the course page and access material."
+            ]
+        },
+        {
+            "id": 52,
+            "tag": "Course Intentions",
+            "patterns": [
+                "What are course intentions?",
+                "When do I fill course intentions out? ",
+                "What do course intentions mean?",
+                "What do I have to do for course intentions? ",
+                "When do I fill them out"
+            ],
+            "responses": [
+                "Enrollment is the process of selecting your courses for the academic year and adding them to RAMSS. During the course enrollment period, you can adjust your course schedule by adding, dropping or swapping classes. All incoming engineering students have the same first-year courses. Please check the undergraduate calendar for your year of admittance.                                      Please check to make sure you are enrolled in these courses. \n\nIn addition to your 5 engineering course, you have to take 1 lower-level liberal course from Table A.\nThe FYEO does not encourage students to take their Table A in the 1st semester, the two Table A's, one Table B and one Table B from the short list, can be completed anytime before graduation and students may want to consider taking them over a Spring/Summer semester. \n You can review Table A and decide on what course interests you. From here, please refer to How to Enrol - RAMSS Support page to enroll in courses. https://www.ryerson.ca/ramss-support/students/academics/how-to-enrol/"
+            ]
+        },
+        {
+            "id": 79,
+            "tag": "Course Materials",
+            "patterns": [
+                "Where can I find my course materials?",
+                "Where do I find my course materials?"
+            ],
+            "responses": [
+                "Professors often post course outlines, materials and announcements in D2L. The code for each course in which you are enrolled will appear under \u201cMy Courses.\u201d If you do not see a course code, contact your professor."
+            ]
+        },
+        {
+            "id": 68,
+            "tag": "Course Preparation Summer",
+            "patterns": [
+                "How can I prepare over the summer for my fall courses?",
+                "How can I prepare for my fall courses?",
+                "How can I prepare for my fall courses during the summer?",
+                "How do I prepare for my fall courses during the summer?"
+            ],
+            "responses": [
+                "This summer, the First-Year Engineering Office (FYEO) will be offering several optional programs such as the Ryerson Engineering Boost Program - a series of optional mini courses in math, physics, and programming designed to help you improve and reinforce fundamental topics and concepts you\u2019ll encounter later in your first year engineering subjects. These courses are at no cost to you, and you can choose to register in one or two or all three of them to keep your studies up over the summer. Registration is required.\n\nThe Pre-Orientation, Orientation, Post-Orientation (Engineering POP) programs are an opportunity to learn more about the social and academic aspects of university, get involved on campus early, meet upper-year leaders and ambassadors (FYA), gain valuable leadership skills, network and meet other students with similar interests before orientation week."
+            ]
+        },
+        {
+            "id": 71,
+            "tag": "CRD/NCR grades",
+            "patterns": [
+                "What are CRD/NCR grades?",
+                "What are CRD grades?",
+                "What are NCR grades?",
+                "What is CRD",
+                "What is NCR",
+                "What is credit no credit"
+            ],
+            "responses": [
+                "Due to the transition of courses to online and alternate forms of delivery in response to COVID-19, the university has introduced credit (CRD)/No Credit (NCR) grading options for winter 2020 undergraduate courses. For more information, please visit the Office of the Registrar website., opens in new window.  "
+            ]
+        },
+        {
+            "id": 89,
+            "tag": "D2L Access",
+            "patterns": [
+                "Where do I access D2L?"
+            ],
+            "responses": [
+                "Connect through my.ryerson.ca, https://my.ryerson.ca/ use your my.ryerson username and password to log in to my.ryerson portal. Once logged in click \u201cOnline Courses & Organizations\u201d."
+            ]
+        },
+        {
+            "id": 5,
+            "tag": "Disability Consideration",
+            "patterns": [
+                "What if I need consideration due to a disability?",
+                "Can I have academic consideration because of my disability",
+                "I need academic consideration due to my disability",
+                " I require academic accomodations for a disability. What should I do?",
+                "I need academic accomodations for a disability",
+                "I need disability accomodations"
+            ],
+            "responses": [
+                "Academic Accommodation Support (AAS) is available to students who can provide documentation of disability, both temporary and permanent. Using academic accommodations does not show up on your transcript and is a confidential process. For more information You can learn more about how to register here ( https://www.ryerson.ca/accommodations/registration/ )and we suggest you register as soon as possible."
+            ]
+        },
+        {
+            "id": 96,
+            "tag": "Discussion Board",
+            "patterns": [
+                "How do I post on the discussion board?"
+            ],
+            "responses": [
+                "Links and access to discussion boards are generally listed in the D2L course shell and/or a Discussion Board section in the navigation pane."
+            ]
+        },
+        {
+            "id": 18,
+            "tag": "Engineering Specialization",
+            "patterns": [
+                "What is an Engineering Specialization program?",
+                "What specializations are offered?",
+                "Engineering specialization "
+            ],
+            "responses": [
+                "FEAS offers the Optional Specialization is Management Science (OSMS), a program that provides students with a competitive edge to help them become more marketable upon graduation. Click here for more information https://www.ryerson.ca/engineering-architectural-science/programs/undergraduate/optional-specialization-management-sciences/ .\n"
+            ]
+        },
+        {
+            "id": 80,
+            "tag": "Exam/Final Grade Issues",
+            "patterns": [
+                "What should I do if I have an issue related to exams or final grades?",
+                "I have an issue with exams",
+                "I have an issue with final grades",
+                "What should I do if I have an issue with final grades",
+                "What should I do if I have an issue with exams"
+            ],
+            "responses": [
+                "Refer to the Undergraduate Student Guide\u2019s policies on examinations, https://www.ryerson.ca/studentguide/examinations/ and grades https://www.ryerson.ca/studentguide/grades/"
+            ]
+        },
+        {
+            "id": 59,
+            "tag": "Exam/Overall grades",
+            "patterns": [
+                " Who should I contact regarding my exam grade or overall grade?",
+                "Who do I talk to about my exam grades ?",
+                "Who do I talk to about my overall grades ?"
+            ],
+            "responses": [
+                "You should direct your questions to your course coordinator with your full name, student ID, and course section (if applicable). The email must have text with complete sentences, correct spelling, and proper grammar. Overall, it should have a professional tone."
+            ]
+        },
+        {
+            "id": 8,
+            "tag": "Failed Class Academic Standing",
+            "patterns": [
+                "If I fail a class, am I automatically out of good academic standing?",
+                "What happens to my standing if I fail a class?",
+                "Do I need to pass all of my classes to achieve a clear academic standing? ",
+                "What happens if I fail a class?",
+                "What if I fail a course?"
+            ],
+            "responses": [
+                "Student's Academic Standing concerns their CGPA and TGPA, so if the CPGPA is 1.67 or above and their TGPA is 1.33 and above, they are still in good standing.\n\nHowever, if a student  fail a course that is required for your program you will be required to repeat it. \nIf you fail a required course for the third time, you will be assigned an Academic Standing of Permanent Program Withdrawal.\nFor more information, visit the Grades, GPA and Academic Standing website https://www.ryerson.ca/studentguide/grades/"
+            ]
+        },
+        {
+            "id": 30,
+            "tag": "Fees Opt-out",
+            "patterns": [
+                "Why can I no longer opt out of some fees, as was the case last year with the Student Choice Initiative?"
+            ],
+            "responses": [
+                "On November 21, 2019 the Ontario Divisional Court made the decision to suspend the opt-out process. As a result, students will be assessed both optional and compulsory ancillary fees effective Winter 2020. For additional information please review Ryerson Today. Taken from https://www.ryerson.ca/registrar/fees/fee-descriptions/ \n"
+            ]
+        },
+        {
+            "id": 60,
+            "tag": "Final Exam ",
+            "patterns": [
+                "Can I see my final exam?\n",
+                "How can I see my final exam ?",
+                "Will i be able to see my final exam",
+                "Can I see my exam?",
+                "Can I view my exam?"
+            ],
+            "responses": [
+                "Yes. Your course coordinator will set days and times at the beginning of next semester for exam review. An announcement will be made when the dates are available. Do not contact your instructor requesting to review your exam before then. Final exams may be viewed but they are not returned.\n"
+            ]
+        },
+        {
+            "id": 63,
+            "tag": "Final Exam Passing",
+            "patterns": [
+                " Do I need to pass the final exam to pass the course? What do I need to pass the course?",
+                "Do I need to pass the final exam to pass the course?",
+                "What do I need to pass the course?",
+                "Do I have to pass the final exam grade? "
+            ],
+            "responses": [
+                "For some courses you do not need to pass the final exam in order to pass the course. However, not all courses are like this. You should consult your individual course outlines to see what rules/policies are in place for determination of a passing grade.\n"
+            ]
+        },
+        {
+            "id": 61,
+            "tag": "Final grade",
+            "patterns": [
+                "When and where can I see my final grade?",
+                "Where can I see my final grade",
+                "When can I see my final grade",
+                "When do I get my grades?"
+            ],
+            "responses": [
+                "Your overall grade for the course will not be posted on D2L. It will be posted on RAMSS. Dates for when official grades will be posted can be found at the Office of the Registrar's website"
+            ]
+        },
+        {
+            "id": 62,
+            "tag": "Final grade calculation",
+            "patterns": [
+                "Can I calculate what my final grade is?",
+                "How can I calculate what my final grade is?",
+                "How do I calculate my final grade?"
+            ],
+            "responses": [
+                "Yes, you can use the information in FYEO GPA Calculator (located in the FYEng App) and the grades posted in D2L to calculate your final grade."
+            ]
+        },
+        {
+            "id": 65,
+            "tag": "Final Grade Error",
+            "patterns": [
+                "I saw my final grade on RAMSS and I think an error was made. What should I do?",
+                "There is an error with my final grade",
+                "There is an error with my final grade on RAMSS",
+                "I think my final grade on RAMSS has an error",
+                "My final grade has an error",
+                "final grade error"
+            ],
+            "responses": [
+                "Contact your course coordinator and explain why you think an error was made. Include relevant calculations that demonstrate how you calculated your grade to make it easier for them to find any discrepancies.\n"
+            ]
+        },
+        {
+            "id": 19,
+            "tag": "First Year in Two Years",
+            "patterns": [
+                "What is First Year in Two Years?",
+                "First Year in two years"
+            ],
+            "responses": [
+                "If a student hasn't completed all required first-year core courses in first year, the student will be considered a First-Year-in-Two-Year student (https://www.ryerson.ca/first-year-engineering-office/current-students/academic-support/) . This means that the student will be taking some of their first-year engineering courses they have yet to complete in the following academic year. Students can also opt to be a First-Year-in-Two-Year student by taking advantage of a reduced course load at the beginning of their  first year of studies."
+            ]
+        },
+        {
+            "id": 53,
+            "tag": "First-year waitlists",
+            "patterns": [
+                "Are there waitlists for first-year courses?",
+                "Are there waitlists for my courses?",
+                "What does the waitlist mean?",
+                "What is the waitlist ?"
+            ],
+            "responses": [
+                "If a student is not able to enrol into a course because the course is full. \nThere is a Wait List form set up each semester for all required first year engineering courses being offered. Each semester there are also directions for upper year courses, based on the specific course. Please check with a full-time staff member. "
+            ]
+        },
+        {
+            "id": 86,
+            "tag": "FROSH",
+            "patterns": [
+                "What is FROSH week?",
+                "What is FROSH?"
+            ],
+            "responses": [
+                "Frosh week is hosted by the Ryerson Engineering Student Society (RESS) https://ress.ca/"
+            ]
+        },
+        {
+            "id": 20,
+            "tag": "FYEO Office",
+            "patterns": [
+                "Where is the office?",
+                "Where can I find the FYEO office?",
+                "Where is the First-Year Engineering Office",
+                "Where is the FYEO?"
+            ],
+            "responses": [
+                "The FYEO is located on the third floor of the George Vari Engineering and Computing Centre in room ENG340A.\n"
+            ]
+        },
+        {
+            "id": 21,
+            "tag": "FYEO Office Hours",
+            "patterns": [
+                "What are the office hours?",
+                "What time can I go to the FYEO?",
+                "What are the hours of the First-Year Engineering Office?",
+                "When can I visit the fyeo"
+            ],
+            "responses": [
+                "The FYEO operates from Monday to Friday, 9am to 5pm, unless otherwise posted. The FYEO Drop-in Zoom Virtual Advisement Room, is Open weekdays Monday - Friday from 10am - 12pm EST.  Students can always email the FYEO at firstyeareng@ryerson.ca.\n"
+            ]
+        },
+        {
+            "id": 66,
+            "tag": "Grade Bump",
+            "patterns": [
+                "I'm pretty close to passing, should I contact my instructor and ask them to bump my grade?",
+                "Can I ask my instructor to bump my grade",
+                "Can I ask my professor to bump my grade",
+                "Should I ask my professor to bump my grade",
+                "Can I bump my grade",
+                "Can I round my grade",
+                "Can I ask to round my grade",
+                "Can I ask my professor to round my grade",
+                "Can I ask my instructor to round my grade",
+                "Should I ask my instructor to round my grade"
+            ],
+            "responses": [
+                "The only reason for changing a grade would be a marking issue. First, wait until you see your grade on RAMSS. The instructor may have made some kind of adjustment that resulted in your obtaining a passing grade. Second, instructors have already considered/reviewed the overall grades before sending them to the Registrar and usually will not change their minds once a decision has been made. Grades are based on the merit of the work done in the course. "
+            ]
+        },
+        {
+            "id": 10,
+            "tag": "INC/F-S",
+            "patterns": [
+                "What if I received an INC/F-S in a course?",
+                "What do I do if I get an INC grade?",
+                "What do I do if I get a F-S grade?",
+                "I have an INC for one of my courses",
+                "I have a F-S for one of my courses",
+                "What does INC mean?",
+                "What does F-S mean?"
+            ],
+            "responses": [
+                "INC stands for \u201cIncomplete\u201d. This means that you are missing an assessment which is stopping you from receiving a final grade. \nF-S stands for redeemable failure, where the instructor is giving you the opportunity to write a \u201credeemable failure exam\u201d\nFor more information, visit the Grades, GPA and Academic Standing website https://www.ryerson.ca/studentguide/grades/."
+            ]
+        },
+        {
+            "id": 82,
+            "tag": "Laptop",
+            "patterns": [
+                "What laptop should I get?",
+                "Which laptop should I get?",
+                "What laptop do I need? ",
+                "What laptop is required?",
+                "Laptop requirment "
+            ],
+            "responses": [
+                "When looking for a laptop, it is really up to personal preference. The software programs that engineering students use for their studies can be found inside the computer labs on campus, and are available remotely through Computing and Communication Services Virtual Apps https://www.ryerson.ca/ccs/services/software/Virtual_Applications/"
+            ]
+        },
+        {
+            "id": 22,
+            "tag": "Letter of Enrollment",
+            "patterns": [
+                "How to request a Letter of Enrollment?",
+                "Where can I request a Letter of Enrollment?",
+                "I need a letter of enrollment. How do I do this?",
+                "How do I request a letter of enrollment?"
+            ],
+            "responses": [
+                "Ryerson provides you with the opportunity to access your own student record information. Sometimes you need more information, or you are required to provide it by an official source. Upon request, Ryerson provides official, personalized, letters confirming enrolment status, transcript details, etc.\n\nhttps://www.ryerson.ca/RAMSSsupport/ugrad_grad/academics/request_letter"
+            ]
+        },
+        {
+            "id": 23,
+            "tag": "Liberals",
+            "patterns": [
+                "What liberals do I have to take?",
+                "What liberals do I need?",
+                "Liberals",
+                "Which liberals should i take",
+                "which liberals do i need to do",
+                "what liberals do i need to do"
+            ],
+            "responses": [
+                "All Engineering Students must complete 2 Lower Level Liberals from Table A (https://www.ryerson.ca/calendar/2021-2022/liberal-studies/table_a/) and 2 Upper Level Liberals, 1 from from Table B (https://www.ryerson.ca/calendar/2021-2022/liberal-studies/table_b/) and 1 from a short list - listed on the specific calendar. "
+            ]
+        },
+        {
+            "id": 25,
+            "tag": "Liberals and Language Courses",
+            "patterns": [
+                "Questions about Placement Tests for Languages, Literatures and Cultures Courses",
+                "I want to take a language course for a liberal but I need a placement test?",
+                "What is the placement test for?",
+                "Can I take a language course?"
+            ],
+            "responses": [
+                "Students interested in taking a Language Course are required to take a Placement Test. \nContact the Languages, Literatures and Cultures department for more https://www.ryerson.ca/llc/contact/"
+            ]
+        },
+        {
+            "id": 24,
+            "tag": "Liberals When",
+            "patterns": [
+                "Can I take liberals in the spring/summer?",
+                "When should I take liberals",
+                "When can i take liberals?",
+                "liberal studies",
+                "What are liberal studies"
+            ],
+            "responses": [
+                "When do you recommend taking your liberal studies?\nThis varies for every student. Some students decide to take it in the Fall along with the required 5 (or less courses) and some decide to do them in the spring or in upper years. **We don\u2019t encourage a full course load (of 6 courses) especially with online learning.**\nAll Engineering students are required to complete four Liberal Studies Courses as per their graduation requirements. You do not have to take your Liberal courses in your first year of study; liberal courses just have to be completed before you apply to graduate. Many students use the Spring/Summer term to complete their liberals or complete them in their later years so they can concentrate more on their Engineering courses, especially in their first year. In total, students must take TWO (2) Table A - Lower Level Liberals, ONE (1) Table B - Upper Level Liberal, and ONE (1) Engineering Upper Level Liberal. \n\nPlease note that first-year engineering midterms are often held on Fridays from 6 p.m. - 8 p.m., so you should ensure that you do not enroll in a Liberal studies course that conflicts with this time.\n"
+            ]
+        },
+        {
+            "id": 93,
+            "tag": "Live sessions",
+            "patterns": [
+                "How do I get to the live sessions for my course?",
+                "How do I join the live sessions for my course?"
+            ],
+            "responses": [
+                "Your instructor for each course will let you know. In the D2L course shell; in the navigation pane on the left select the section your instructor has indicated for live sessions. Select the date and time for the appropriate session; click \u201cjoin session\u201d. "
+            ]
+        },
+        {
+            "id": 26,
+            "tag": "Lockers",
+            "patterns": [
+                "How can I get a locker?",
+                "I need a locker? How can I get one?",
+                "Where can I get a locker"
+            ],
+            "responses": [
+                "Please check with a full-time staff member for assistance. Generally, lockers are issued to first-year students in the first week of class during the Fall semester. Due to a limited number of lockers, these can only be issued on a first-come, first-serve basis. An email is issued to all first-year students in the first week of classes with further instructions."
+            ]
+        },
+        {
+            "id": 91,
+            "tag": "Login Issues",
+            "patterns": [
+                "Why am I having difficulty logging in?",
+                "I am having issues logging in?",
+                "Why do I have login issues"
+            ],
+            "responses": [
+                "Verify you are using the latest versions of Google Chrome or Firefox. Next, ensure you are using your Ryerson username and password to log in. If you\u2019re still having trouble logging in, contact the CCS Help Desk at help@ryerson.ca"
+            ]
+        },
+        {
+            "id": 9,
+            "tag": "Low CGPA",
+            "patterns": [
+                "What if I have less than 1.67?",
+                "What if I have less than 1.33?",
+                "What do I do if my CGPA is really low?",
+                "I have a low cgpa. Does this affect my standing?",
+                "What do I do to maintain a clear academic standing?",
+                "What if my cgpa is below a 1.67?",
+                "What if my tgpa is below a 1.33",
+                "CGPA",
+                "TGPA"
+            ],
+            "responses": [
+                "Student's Academic Standing concerns their CGPA and TGPA, so if the CPGPA is 1.67 or above and their TGPA is 1.33 and above, they are still in good standing.\n\nHowever, if a student  fail a course that is required for your program you will be required to repeat it. \nIf you fail a required course for the third time, you will be assigned an Academic Standing of Permanent Program Withdrawal.\nFor more information, visit the Grades, GPA and Academic Standing website.\n"
+            ]
+        },
+        {
+            "id": 3,
+            "tag": "Medical Consideration",
+            "patterns": [
+                "What do I do if I missed class for a medical reason?",
+                "I need medical consideration",
+                "Medical Consideration",
+                "What if I am sick for class? ",
+                "Sick ",
+                "Absent from illness",
+                "Academic consideration for illness",
+                "How do I get academic consideration for illness",
+                "Do I need a doctors note?"
+            ],
+            "responses": [
+                "Have a Health Care Provider fill out the Ryerson Student Health Certificate and submit it through the  Senate Online Academic Consideration portal within 3 business days of your missed academic obligation. Students must also email their instructor to inform them of their absence, as soon as possible, as this is the first step.\nStudents also have an option of submitting 1 request per term without supporting documentation (some restrictions apply, ie, final exams).\nFor more information, please visit the Meeting Academic Obligations page for details on this process.\n"
+            ]
+        },
+        {
+            "id": 27,
+            "tag": "Minors",
+            "patterns": [
+                "How can I get a minor?",
+                "What do I need for a minor?",
+                "What does a minor require?"
+            ],
+            "responses": [
+                "Minors require an additional 6 courses outside of your degree so it is your responsibility to speak to an advisor to manage your coursework accordingly. A list of minors offered can be found here.\n"
+            ]
+        },
+        {
+            "id": 83,
+            "tag": "Missing exam/lab/quiz",
+            "patterns": [
+                "I need to miss an exam, lab or quiz. How do I arrange for accomodations?",
+                "I need to miss an exam, lab or quiz. What should I do?",
+                "I need to miss an exam. What should I do?",
+                "I need to miss a quiz. What should I do?",
+                "I need to miss a lab. What should I do?",
+                "I need to miss something. How do I get accommodations?"
+            ],
+            "responses": [
+                "Please refer to Undergraduate Student Guide and to Senate Policy 166, or policies and instructions related to medical, non-medical and religious accommodations."
+            ]
+        },
+        {
+            "id": 50,
+            "tag": "Next test",
+            "patterns": [
+                "When is the next test?",
+                "When is the next one?"
+            ],
+            "responses": [
+                "The next Writing Skills Test will be held on Saturday, November 20, 2021 at 9:00 am.  Please check with a full -time staff member before shaing this update.  This information will be shared with  all students via email shortly. For recent updates about the WST, students can view details on the FYEO Website here."
+            ]
+        },
+        {
+            "id": 4,
+            "tag": "Non-Medical Consideration",
+            "patterns": [
+                "What if I missed class for a non-medical reason?",
+                "I missed class for a non-medical reason. What do I do?"
+            ],
+            "responses": [
+                "Submit the Academic Consideration Request through the Senate Online Academic Consideration portal attaching any supporting documents you might have, within 3 business days of your missed obligation. Students must also email their instructor to inform them of your absence, as soon as possible, as this is the first step.\nStudents also have an option of submitting 1 request per term without supporting documentation (some restrictions apply, ie, final exams).\nFor more information, visit the FYEO Meeting Academic Obligations page for details on this process."
+            ]
+        },
+        {
+            "id": 70,
+            "tag": "Offer of Admission",
+            "patterns": [
+                " I have questions about my Offer of Admission. Who can I contact?",
+                "How do I contact about my offer of admission?",
+                "Who do I talk to about my offer of admission"
+            ],
+            "responses": [
+                "As an admitted student, we understand that you may have concerns about your Offer of Admission and how you will meet any conditions stated in your offer letter. Connect with your Engineering Admissions team at askeng@ryerson.ca."
+            ]
+        },
+        {
+            "id": 72,
+            "tag": "Orientation",
+            "patterns": [
+                "Do I need to attend orientation?",
+                "Should I attention orientation?"
+            ],
+            "responses": [
+                "Academic orientation, which takes place on the Monday of orientation week, is mandatory for all incoming engineering students. You will be welcomed by your program director, hear from a motivational speaker, tour the campus and write the Writing Skills Test. Additional orientation week and frosh week, external link events are optional but encouraged.\nTo learn more about your first year in engineering, please visit the first year engineering office website."
+            ]
+        },
+        {
+            "id": 28,
+            "tag": "OSAP",
+            "patterns": [
+                "Questions about Financial Matters",
+                "I have a problem with OSAP",
+                "I need help with OSAP"
+            ],
+            "responses": [
+                "The First Year Engineering Office does not advise on financial matters. Please visit the OSAP webiste or ServiceHub website to get your questions and concerns about OSAP answered.\n"
+            ]
+        },
+        {
+            "id": 32,
+            "tag": "OSMS",
+            "patterns": [
+                "Can you take OSMS courses and lower liberal courses at the same time in the Spring/Summer term?",
+                "When can I take OSMS courses and lower liberal courses"
+            ],
+            "responses": [
+                "Students can take OSMS courses and lower liberal courses at the same time during theSpring/Summer terms.  The FYEO strongly encourages that students do not take more than 3 courses in those terms at a time due to the fast- paced nature and heavy course load in the Spring/Summer terms.\n"
+            ]
+        },
+        {
+            "id": 33,
+            "tag": "Plan Change",
+            "patterns": [
+                "How can a student submit a Plan Change Request?",
+                "When is the deadline for the Plan Change Form?",
+                "When can I do a plan change?",
+                "Plan Change",
+                "What is a plan change?",
+                "How do I change majors?",
+                "How do I change discipline?",
+                "How do I change engineering discipline?"
+            ],
+            "responses": [
+                "Plan Change Requests from one Engineering discipline to another can be submitted each semester for the following semester, through the Plan Change Form, there is always a due date.\n\nPlan Change requests for the Winter 2022 semester are due by December 1, 2021. \n"
+            ]
+        },
+        {
+            "id": 35,
+            "tag": "Plan Change Decision",
+            "patterns": [
+                "When will I hear back from my plan change?",
+                "How will I know if my plan change was approved?",
+                "I still haven't heard anything about my plan change"
+            ],
+            "responses": [
+                "All Plan Change decisions will be emailed out after final grades have been released and reviewed. Students are required to enroll in the appropriate courses themselves.\n"
+            ]
+        },
+        {
+            "id": 34,
+            "tag": "Plan Change Denial",
+            "patterns": [
+                "What do I do if my plan change is denied?",
+                "What do I do if it is denied?"
+            ],
+            "responses": [
+                "Students can re-submit a Plan Change for the following semester to be re-considered.\nStudents may also want to meet with the First-Year Academic Services and Success Facilitator\n"
+            ]
+        },
+        {
+            "id": 36,
+            "tag": "Probation",
+            "patterns": [
+                "What happens if I\u2019m on Probation?",
+                "What is Probation?",
+                "What does it mean to be on probation?",
+                "Probation?"
+            ],
+            "responses": [
+                "Students with an Academic Standing of Probationary are issued a Probationary Contract. The Probationary Contracts (which lists each student's assigned courses) are emailed to students invdividually from the firstyeareng@ryerson.ca email.\nStudents with a Probationary Standing are required to attend a MANDATORY seminar.  At the seminar, an academic advisor will provide complete instructions on how the student proceeds after seminar, along with information about any course restrictions.\nIf students with a Probationary Contract would like to drop a course, they must meet request permission from an academic advisor for approval.  Be aware of timelines and drop deadlines here when advising students. \nIf an incomplete mark leaves a student on probation, they are to meet with an academic advisor and follow with the probationary contract issued until the grade is updated.\n"
+            ]
+        },
+        {
+            "id": 85,
+            "tag": "Program Change",
+            "patterns": [
+                "How do I change engineering programs?",
+                "How do I switch engineering programs?",
+                "How do I switch programs?",
+                "How do I change programs?"
+            ],
+            "responses": [
+                "To change engineering programs, you must fill out a Plan Change Form. After you submit this form, your request will be reviewed and forwarded to enrolment services and student records for processing, if approved. https://www.ryerson.ca/content/ryerson/first-year-engineering-office/academic-support/official-forms.html"
+            ]
+        },
+        {
+            "id": 75,
+            "tag": "RAMSS",
+            "patterns": [
+                "What is RAMSS?",
+                "What is RAMSS for? ",
+                "What does RAMSS mean? "
+            ],
+            "responses": [
+                "RAMSS stands for Ryerson's Administraive Management Self Service. It is utilizes by students to view their academic, finanical and personal information at Ryerson."
+            ]
+        },
+        {
+            "id": 58,
+            "tag": "RAMSS Fee Payment Issues",
+            "patterns": [
+                "RAMSS Fee Payment Issues",
+                "I have trouble paying my fees",
+                "I have trouble paying my fees on RAMSS",
+                "I have payment issues on RAMSS",
+                "I have problems with paying my tuition fees"
+            ],
+            "responses": [
+                "Please visit the ServiceHub for any questions regarding fees, as the First Year Engineering Office does not deal with finances. Try finding the answer to your question first at ask.ryerson.ca, and if you cannot find what you're looking for, fill out the ServiceHub help form. https://docs.google.com/forms/d/e/1FAIpQLSeNvEBgjuNXuWjsI0hPan1OtYrvVIPvc9eW89iSsfe6qGQE7Q/viewform"
+            ]
+        },
+        {
+            "id": 37,
+            "tag": "Reading Week",
+            "patterns": [
+                "When is reading week?",
+                "Do we have reading week?",
+                "Do engineering students have reading week?",
+                "Reading week?"
+            ],
+            "responses": [
+                "Engineering students DO NOT get a Fall Reading Week. However, engineering students do get a Winter Reading Week, which is from February 19, 2022 to February 25, 2022. More significant dates can be found on the Significant Dates Calendar.\n"
+            ]
+        },
+        {
+            "id": 6,
+            "tag": "Religious Consideration",
+            "patterns": [
+                "What if I need consideration for religious obligations?",
+                "I have to miss something due to religious reasons. What do I do?",
+                "I need religious accommodation "
+            ],
+            "responses": [
+                "Ryerson provides accommodation for religious, aboriginal and spiritual obligations. Students are required to fill out the Ryerson Religious Observance Form and submit it directly to their professors within the first 2 weeks of class; if the dates aren\u2019t known in advance, students are required to provide as much notice as possible. Religious Observance requests can be made for exams but must be done within 2 weeks from the posting of the exam schedule.\n"
+            ]
+        },
+        {
+            "id": 76,
+            "tag": "Required Courses",
+            "patterns": [
+                "What courses are required in first year?",
+                "What courses are required?",
+                "What are my required courses?",
+                "What are my required courses for first year?"
+            ],
+            "responses": [
+                "The first semester of engineering is a common semester. Every engineering student is automatically enrolled in CEN 100, CHY 102, MTH 140, MTH 141, PCS 211. In the second semester, students will begin branching off into some disicipline specific courses with a few common courses. A list of these courses appears in the undergraduate calendar https://www.ryerson.ca/first-year-engineering-office/faq/#\n"
+            ]
+        },
+        {
+            "id": 39,
+            "tag": "Required to Withdraw (RTW)",
+            "patterns": [
+                "What happens if I\u2019m Required to Withdraw?",
+                "What does it mean to be Required to Withdraw?",
+                "What is RTW",
+                "What is Reinstatement/ Fresh Start?"
+            ],
+            "responses": [
+                "Required to Withdraw(RTW) means that students will be required to withdraw from their program and Ryerson for 12 months. Students will be expected to attend a MANDATORY Required to Withdraw seminar where specific information will be presented to students regarding their next steps as an RTW student. Some of which include ways that students may improve their chances of being reinstated back into your program. If a student is Required to Withdraw, and their CGPA is at least 1.33 or higher, the student may be eligible for the Fresh Start Program after sitting out one semester. Pending approval, the student may pursue reinstatement or transfer to another program by taking two courses for credit in their first semester back and four courses in their second semester back.\n"
+            ]
+        },
+        {
+            "id": 38,
+            "tag": "RSU Health and Dental",
+            "patterns": [
+                "Where can I opt out of the RSU Health and Dental coverage?",
+                "How do I opt out of the Health and Dental coverage",
+                "What will happen if I opt out of the RSU health and dental plan?"
+            ],
+            "responses": [
+                "Complete the opt-out form on the RSU website by October 1st. Refunds are applied to your student account in November. Please visit the Account Inquiry section of your Student Centre on RAMSS to confirm that the credit has been applied. Once you have successfully opted out of the RSU Members\u2019 Health and Dental Plan, your opt out status will be carried forward in subsequent years, and you will not be assessed the RSU Members\u2019 Health and Dental Plan fee.\n"
+            ]
+        },
+        {
+            "id": 73,
+            "tag": "RSU health and dental plan ",
+            "patterns": [
+                "What is the RSU health and dental plan?",
+                "What is the health and dental plan?",
+                "Opt out health and dental plan",
+                "Opt out dental plan"
+            ],
+            "responses": [
+                "For information on fees, coverage and opting out, please visit the Ryerson Students\u2019 Union website via this link https://www.ryerson.ca/registrar/fees/payonline/ "
+            ]
+        },
+        {
+            "id": 40,
+            "tag": "Scholarships",
+            "patterns": [
+                "Scholarships?",
+                "Where can I find information on scholarships?",
+                "I want to know more about scholarships?"
+            ],
+            "responses": [
+                "Information on scholarships as well as links to a full list of non-faculty specific scholarships and awards can be found here\n\nStudents can contact the Student Awards and Scholarships office via awards@ryerson.ca \n"
+            ]
+        },
+        {
+            "id": 12,
+            "tag": "Service Hub",
+            "patterns": [
+                "How do I contact the ServiceHub?",
+                "What is the ServiceHub?",
+                "Service Hub"
+            ],
+            "responses": [
+                "The ServiceHub has requested that general questions are asked at ask.ryerson.ca and submitted through the ServiceHub help form. For more information, please check out the Service Hub contact page.\n"
+            ]
+        },
+        {
+            "id": 74,
+            "tag": "Student Fees",
+            "patterns": [
+                "How do I review and pay student fees?",
+                "How do I pay student fees?"
+            ],
+            "responses": [
+                "To view your student fees, log in to RAMSS and look under the student fees section of the student centre. For information on paying fees, please visit the Office of the Registrar website https://www.ryerson.ca/registrar/fees/payonline/ "
+            ]
+        },
+        {
+            "id": 67,
+            "tag": "Technology Requirements",
+            "patterns": [
+                "What technology should I have to be successful in my program?",
+                "What technology do I need to be successful in my program?",
+                "What technology do I need ?",
+                "What technology should I have?",
+                "What are the technology requirements for my program?"
+            ],
+            "responses": [
+                "The Faculty of Engineering and Architectural Science (FEAS) Dean\u2019s Office is working to ensure that you can access important engineering software remotely. We do recommend that you try to have access to a computer and wireless internet access. For those whose financial circumstances prevent them from having computers or wireless internet connections, we are working on a plan for a loan-out system. More information will be provided to you through the FEAS Dean\u2019s Office, and on Ryerson COVID-19 Information and Updates."
+            ]
+        },
+        {
+            "id": 14,
+            "tag": "Test Centre",
+            "patterns": [
+                "Is the Test Centre still open?",
+                "I need accomadations to write my test",
+                " test accommodations",
+                "I need test accommodations"
+            ],
+            "responses": [
+                "Students with Accomodations should connect directly with their AAS facilitator for advising. \n\nAAS-registered students should still book their accommodated tests through the Online Student Accommodations Portal, so that instructors are notified of their test accommodations. Then, the instructor will be able to apply the appropriate accommodations within the online test platform. If you are needing to do a make-up for a missed obligation, please contact your professors as they will let you know how they plan on administering the make-up."
+            ]
+        },
+        {
+            "id": 81,
+            "tag": "Textbook/Equipment",
+            "patterns": [
+                "What textbooks and equipment will I need to purchase?",
+                "What textbooks and equipment will I need?",
+                "What textbooks and equipment do I need?",
+                "What textbooks do I need?",
+                "What textbooks will I need?"
+            ],
+            "responses": [
+                "Students should wait until they have received their course outlines and have attended their first week of classes before purchasing any textbooks or course materials. During that time, professors will specify the required edition/version.\nPermitted calculators for engineering students are the Sharp EL-546 and the Casio FX-991 models.\nBoth course materials and calculators can be purchased through the Ryerson Campus Store https://campusstore.ryerson.ca/"
+            ]
+        },
+        {
+            "id": 41,
+            "tag": "Transfer Credits",
+            "patterns": [
+                "How do I apply for transfer credits?",
+                "Transfer credits"
+            ],
+            "responses": [
+                "A self-service application is available on RAMSS after activation of your Ryerson identity. However, some institutions outside of province or Canada require the Manual Application Upload detailed here. Before you apply, make sure to check your eligibility.\n"
+            ]
+        },
+        {
+            "id": 42,
+            "tag": "Transfer Credits Issue",
+            "patterns": [
+                "My transfer credits are approved but are not being applied to my program",
+                "I have a problem with my transfer credits",
+                "Transfer credit issues",
+                "Problem with Transfer credits",
+                "My transfer credits aren't being applied"
+            ],
+            "responses": [
+                "To ensure the transfer credits are applied to a student's courses, they will need to drop the course that they recieved a transfer credit for, if  RAMSS automatically registered the student into that first year course.\n"
+            ]
+        },
+        {
+            "id": 44,
+            "tag": "Transition Courses",
+            "patterns": [
+                "Are engineering courses being offered both in Spring and in Summer",
+                "Are transition courses being offered in spring and summer?",
+                "Transition courses"
+            ],
+            "responses": [
+                "No, Ryerson does not offer engineering transition courses both in Spring and in Summer. First-year Engineering Transition Courses are generally offered in the Spring\n"
+            ]
+        },
+        {
+            "id": 43,
+            "tag": "Transition Program",
+            "patterns": [
+                "How does the transition program work?",
+                "What courses are offered in the transition program?",
+                "What is the transition program?"
+            ],
+            "responses": [
+                "For first years, the Engineering Transition Program offers all 1st semester classes in the Fall and then again in the Winter semester (with the exception of CEN100) and all 2nd  semester courses in the Winter and then again in the Spring (with the exception of ECN801). \nSpeak to an academic advisor to help plan out your course load, and learn more about the Transition Program here.\n"
+            ]
+        },
+        {
+            "id": 29,
+            "tag": "Tuition",
+            "patterns": [
+                "I have a problem with my tuition fees",
+                "Where can I pay for my tuition fees",
+                "How do I pay for my tuition fees?"
+            ],
+            "responses": [
+                "The First Year Engineering Office does not advise on financial matters. For information on Fees, ask your question at ask.ryerson.ca or please visit the ServiceHub wesite or you can view the Ryerson Tuition and Fees website.\n"
+            ]
+        },
+        {
+            "id": 54,
+            "tag": "Tuition Fees",
+            "patterns": [
+                "Where can I find more information on my Fees?",
+                "I need more information about my fees",
+                "I have a question about my fees"
+            ],
+            "responses": [
+                "For information on Fees, please visit the ServiceHub wesite https://www.ryerson.ca/registrar/servicehub/ or you can view the Fees website here https://www.ryerson.ca/admissions/tuition-fees/"
+            ]
+        },
+        {
+            "id": 56,
+            "tag": "Tuition Fees Cost",
+            "patterns": [
+                "How much do courses in the summer cost? ",
+                "How much will my tuition be for the next semester?",
+                "I want to know the cost of my tuition"
+            ],
+            "responses": [
+                "Check the Ryerson Tuition and Fees website for more information. https://www.ryerson.ca/admissions/tuition-fees/"
+            ]
+        },
+        {
+            "id": 31,
+            "tag": "Tuition Fees Covid-19",
+            "patterns": [
+                "What financial assistance opportunities exist for students affected by the COVID-19 pandemic?",
+                "I have been affected by the pandemic and I need help financially",
+                "Can I get financial help for being affected by the pandemic"
+            ],
+            "responses": [
+                "Check this link out: https://www.ryerson.ca/covid-19/students/financial-assistance-awards-student-fees/ \n"
+            ]
+        },
+        {
+            "id": 55,
+            "tag": "Tuition Fees Extension",
+            "patterns": [
+                "How do I extend my application to cover my spring/summer fees?",
+                "How do I extend my OSAP to cover my spring/summer fees?",
+                "Can I extend OSAP",
+                "Will OSAP cover my spring and summer tuition fees"
+            ],
+            "responses": [
+                "The First Year Engineering Office does not deal with finances. Contact the Service Hub for all OSAP/financial assistance questions. https://www.ryerson.ca/registrar/servicehub/"
+            ]
+        },
+        {
+            "id": 57,
+            "tag": "Tuition Fees Payment",
+            "patterns": [
+                "How do I pay my fees?",
+                "How do I pay my tuition fees?"
+            ],
+            "responses": [
+                "Payments can be made online through financial institutions. Check the How to Pay Your Fees page for more information. https://www.ryerson.ca/registrar/fees/payonline/\n"
+            ]
+        },
+        {
+            "id": 45,
+            "tag": "Upper Year Wait List",
+            "patterns": [
+                "Upper Year Wait List?",
+                "I have a question about waitlists?",
+                "Waitlists"
+            ],
+            "responses": [
+                "You need to reach out to the course\u2019s department for waitlists. You can find department contacts here."
+            ]
+        },
+        {
+            "id": 78,
+            "tag": "Writing Skills Test",
+            "patterns": [
+                "What is the Writing Skills Test",
+                "What is the WST?"
+            ],
+            "responses": [
+                "All first-year engineering students are required to complete and pass the Writing Skills Test (CEN 199). For more information, visit Writing Skills Test for Engineering Students."
+            ]
+        },
+        {
+            "id": 46,
+            "tag": "Writing Skills Test (WST)",
+            "patterns": [
+                "When is the Writing Skills Test offered?",
+                "When is the Writing Skills test?",
+                "Writing Skills Test"
+            ],
+            "responses": [
+                "The test is held three times a year: end of August (during orientation), November, and late April/early May. If you miss one test date, you can write it at the next. Once the details are confirmed for each test (date, time, location), an email will be sent to all students. You must pass the WST before you can enter your third year. For recent updates about the WST, students can view details on the FYEO Website here."
+            ]
+        },
+        {
+            "id": 47,
+            "tag": "Writing Skills Test (WST) 2",
+            "patterns": [
+                "When is the next writing skills test?"
+            ],
+            "responses": [
+                "The next Writing Skills Test will be held in November 2022. Please check with a full-time staff member before sharing this update. This information will be shared with all students via email shortly. For recent updates about the WST, students can view details on the FYEO Website here."
+            ]
+        },
+        {
+            "id": 48,
+            "tag": "Writing Skills Test (WST) 3",
+            "patterns": [
+                "What if I didn\u2019t pass the Writing Skills Test (WST)?",
+                "What if I don't pass the test",
+                "What happens if I don't pass the writing skills test?",
+                "What happens if I fail the writing skills test"
+            ],
+            "responses": [
+                "If you don't pass the WST, you will receive a grade of INP (in-progress) in CEN 199, and are  encouraged to enroll in LNG 111, LNG 112, LNG 113, or LNG 121, depending on the outcome of the WST assessment. These are writing-intensive humanities and social science courses designed to give you the opportunity to strengthen your foundation in communication. They also count as lower-level liberal studies courses.\n\nIf you don't pass your second attempt at the WST, or you just want to further develop your language and writing skills after completing the LNG courses, you may benefit from Ryerson's online and/or in-class preparatory English language courses offered through the G. Raymond Chang School of Continuing Education, opens in new window.\n\nNote: You may not proceed into the third year of your engineering program without passing the WST. But if you don't pass the test during orientation, you will have more chances to write and pass the test.\n\nA reminder that students are not encouraged to take the first Table A listed in the calendar in the first Fall or Winter semester.\n"
+            ]
+        },
+        {
+            "id": 49,
+            "tag": "Writing Skills Test (WST) 4",
+            "patterns": [
+                "Can I take a Liberal before doing the WST?",
+                "Can i take a Liberal before the writing skills test"
+            ],
+            "responses": [
+                "Yes, you can take a Liberal before completing the WST successfully. Keep in mind that Liberal courses will be writing heavy so if you didn't do well in the WST you may find the Liberal course challenging. We also encourage students to take a reduced course load in their first year, a Liberal course is one you may want to consider taking over the Spring Summer semesters. \nNeed to complete WST before moving into the 3rd year of study.  For more information and recent updates about the WST, please view the FYEO Website here.\n"
+            ]
+        }
+    ]
 }

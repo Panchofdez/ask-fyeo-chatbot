@@ -15,6 +15,7 @@ from .nltk_utils import tokenize, stem
 from .chatbot_abstract import Chatbot
 
 
+#based on this article series : https://medium.com/geekculture/simple-chatbot-using-bert-and-pytorch-part-1-2735643e0baa
 class BERTChatbot(Chatbot):
 
     #3 types of transformer models to choose from
@@ -22,7 +23,7 @@ class BERTChatbot(Chatbot):
     roberta = "roberta-base"
     bert = "bert-base-uncased"
 
-    def __init__(self, type="distilbert-base-uncased", batch_size=16, max_seq_len=30, epochs=200):
+    def __init__(self, type="distilbert-base-uncased", batch_size=32, epochs=500):
         # specify GPU
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         
@@ -35,8 +36,8 @@ class BERTChatbot(Chatbot):
 
         #define a batch size
         self.batch_size = batch_size
-        #Set the maximum sequence length for we can fine-tune this to achieve better results 
-        self.max_seq_len = max_seq_len
+        # #Set the maximum sequence length for we can fine-tune this to achieve better results 
+        # self.max_seq_len = max_seq_len
         # number of training epochs
         self.epochs = epochs
         
@@ -95,7 +96,7 @@ class BERTChatbot(Chatbot):
 
         # push the model to GPU if possible
         model = model.to(self.device)
-        summary(model)
+        # summary(model)
         return model
         
     def get_dataloader(self, train_text, train_labels):
@@ -106,8 +107,7 @@ class BERTChatbot(Chatbot):
         # tokenize and encode sequences in the training set
         tokens_train = self.tokenizer(
             train_text.tolist(),
-            max_length = self.max_seq_len,
-            pad_to_max_length=True,
+            padding='longest',
             truncation=True,
             return_token_type_ids=False
         )
@@ -144,7 +144,7 @@ class BERTChatbot(Chatbot):
         return weights
 
     # function to train the model
-    def train_model(self, model, optimizer, dataloader, loss_func):
+    def train_model(self, model, optimizer, dataloader, loss_func, lr_sch):
     
         model.train()
         total_loss = 0
@@ -153,7 +153,7 @@ class BERTChatbot(Chatbot):
         total_preds=[]
         
         # We can also use learning rate scheduler to achieve better results
-        lr_sch = lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
+        # lr_sch = lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
 
         # iterate over batches
         for step,batch in enumerate(dataloader):
@@ -209,12 +209,13 @@ class BERTChatbot(Chatbot):
         # empty lists to store training and validation loss of each epoch
         train_losses=[]
 
+        lr_sch = lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
 
         for epoch in range(self.epochs):    
             print('\n Epoch {:} / {:}'.format(epoch + 1, self.epochs))
             
             #train model
-            train_loss, _ = self.train_model(model=model, optimizer=optimizer, dataloader=dataloader, loss_func=cross_entropy)
+            train_loss, _ = self.train_model(model=model, optimizer=optimizer, dataloader=dataloader, loss_func=cross_entropy, lr_sch=lr_sch)
             
             # append training and validation loss
             train_losses.append(train_loss)
@@ -229,12 +230,12 @@ class BERTChatbot(Chatbot):
             print(param_tensor, "\t", model.state_dict()[param_tensor].size())
 
         print()
-        data = {
+        file_data = {
             "model_state": model.state_dict(),
-            "unique_classes": unique_classes
+            "data": data
         }
         FILE = "bertmodel.pth"
-        torch.save(data, FILE)
+        torch.save(file_data, FILE)
         return
 
     def get_prediction(self, str, model):
@@ -242,8 +243,7 @@ class BERTChatbot(Chatbot):
         test_text = [str]        
         tokens_test_data = self.tokenizer(
             test_text,
-            max_length = self.max_seq_len,
-            pad_to_max_length=True,
+            padding='longest',
             truncation=True,
             return_token_type_ids=False
         )
@@ -255,19 +255,19 @@ class BERTChatbot(Chatbot):
             preds = model(test_seq.to(self.device), test_mask.to(self.device))
         preds = preds.detach().cpu().numpy()
         preds = np.argmax(preds, axis = 1)
-        print("Preds 3: ", preds )
-        print("Intent Identified: ", self.le.inverse_transform(preds)[0])
+
         return self.le.inverse_transform(preds)[0]
 
     def get_response(self, message, data, file): 
-        print("getting response")
-        _, train_labels = self.get_train_labels_text(data)
-        # unique_classes = np.unique(train_labels)
-
-        #Retrieve trained model
+        #Retrieve trained model and data
         model_state = file["model_state"]
-        unique_classes = file["unique_classes"]
-        print(unique_classes)
+        prev_data = file["data"]
+
+        _, train_labels = self.get_train_labels_text(prev_data)
+        unique_classes = np.unique(train_labels)
+
+
+        # print(unique_classes)
         model = self.get_model_architecture(unique_classes)
         model.load_state_dict(model_state)
         model.eval()
@@ -281,7 +281,7 @@ class BERTChatbot(Chatbot):
                 else:
                     result = random.choice(i["responses"])
                 break
-        print("Intent: "+ intent + '\n' + "Response: " + result)
+   
         return (intent, result)
 
     def chat(self, data, file):
@@ -300,14 +300,10 @@ class BERTChatbot(Chatbot):
         Determines the validity of the chatbot's response
         '''
         q = tokenize(q)
-        print(q)
-        print(t)
-
         ignore_words = ['?', '!', '.', ',', 'are', 'you', 'can', 'and', 'you', 'let', ]
         stemmed_words  = [stem(w) for w in q if w not in ignore_words and len(w) > 2 ] # avoid punctuation or words like I , a , or 
-        print(stemmed_words)
         found = [ w for w in stemmed_words if re.search(w, r) != None or re.search(w,t.lower() ) != None] #check if the question has words related in the response
-        print(found)
+
         return len(found) > 0
 
 

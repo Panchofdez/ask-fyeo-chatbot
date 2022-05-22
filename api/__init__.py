@@ -1,14 +1,12 @@
-from dataclasses import asdict
 from flask import Flask
 from flask_cors import CORS
 from flask_migrate import Migrate
 from dotenv import load_dotenv
 import os
 from chatbot.chatbot_interface import ChatbotInterface
-from .database import db, FAQ
-from .helpers import formatFAQ
+from .database import db
 from .routes import routes
-from .commands import faq_init, train_model, chat, view_intents
+from .commands import backup_faq, faq_init, train_model, chat, view_intents, test_model, backup_faq, get_data, initialize_faq, initialize_staff_user
 from enums import Mode
 
 # app.config['CORS_HEADERS'] = 'Content-Type'
@@ -35,10 +33,13 @@ def create_app(mode=Mode.PROD, init=False):
     with app.app_context():
 
         if init: 
+            #initialize the tables in postgres
             db.create_all()
+            initialize_faq()
+            initialize_staff_user()
         else:
             data = get_data()
-            chatbot = ChatbotInterface(type=ChatbotInterface.bow_model, data=data, mode=mode)
+            chatbot = ChatbotInterface(type=ChatbotInterface.bert_model, data=data, mode=Mode.DEV)
             app.config["chatbot"] = chatbot
 
     
@@ -47,19 +48,13 @@ def create_app(mode=Mode.PROD, init=False):
     app.cli.add_command(train_model)
     app.cli.add_command(chat)
     app.cli.add_command(view_intents)
+    app.cli.add_command(test_model)
+    app.cli.add_command(backup_faq)
 
     return app 
 
 
 
 
-
-#Model Setup
-#get data to pass into chatbot model
-def get_data():
-    faqs = FAQ.query.order_by(FAQ.tag).all()
-    faqs = list(map(formatFAQ, map(asdict, faqs)))
-    print(len(faqs))
-    return {"intents":faqs}
 
 

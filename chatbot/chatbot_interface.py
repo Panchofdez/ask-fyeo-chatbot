@@ -5,7 +5,7 @@ from enums import Mode
 import io
 from smart_open import open as smart_open
 
-
+#Uses facade pattern to provide a simple interface to access all functionality of the chatbot and allows for easy switching between different chatbot models
 class ChatbotInterface():
     bert_model = "bert"
     bow_model = "bow"
@@ -40,7 +40,7 @@ class ChatbotInterface():
 
     def get_response(self, question):
         try:
-            print(question)
+            # print(question)
             return self.model.get_response(question, self.data, self.file)
         except Exception as e:
             print(e)

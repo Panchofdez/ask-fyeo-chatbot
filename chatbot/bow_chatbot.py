@@ -115,14 +115,14 @@ class BOWChatbot(Chatbot):
         X = torch.from_numpy(X)
 
         output = model(X)
-        print("output", output)
+        # print("output", output)
         _, predicted = torch.max(output, dim=1)
         tag = tags[predicted.item()]
         probs = torch.softmax(output, dim=1)
         prob = probs[0][predicted.item()]
         results = [ (i, p) for i, p in enumerate(probs.detach().numpy()[0])  if p > 0.5]
         results.sort(key=lambda x: x[1], reverse=True)
-        print(results)
+        # print(results)
         return_list = []
         for r in results:
             return_list.append((tags[r[0]], r[1]))
@@ -142,7 +142,7 @@ class BOWChatbot(Chatbot):
         model.load_state_dict(model_state)
         model.eval()
         results = self.classify(tokenized_sentence, model, all_words, tags )
-        print("FINAL RESULTS: ",results)
+        # print("FINAL RESULTS: ",results)
         while results:
             for intent in data["intents"]:
                 if results[0][0] == intent["tag"]:
@@ -172,9 +172,9 @@ class BOWChatbot(Chatbot):
 
         ignore_words = ['?', '!', '.', ',', 'are', 'you', 'can', 'and', 'you', 'let', ]
         stemmed_words  = [stem(w) for w in q if w not in ignore_words and len(w) > 2 ] # avoid punctuation or words like I , a , or 
-        print(stemmed_words)
+        # print(stemmed_words)
         found = [ w for w in stemmed_words if re.search(w, r) != None or re.search(w,t.lower() ) != None] #check if the question has words related in the response
-        print(found)
+        # print(found)
         return len(found) > 0
 
 class NeuralNet(nn.Module):

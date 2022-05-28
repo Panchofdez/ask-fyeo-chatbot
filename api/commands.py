@@ -7,11 +7,6 @@ from .helpers import formatFAQ
 from .database import db, FAQ, Staff
 
 
-@click.command(name='faq_init')
-@with_appcontext
-def faq_init():
-    initialize_faq()
-
 @click.command(name='train_model')
 @with_appcontext
 def train_model():
@@ -65,7 +60,7 @@ def backup_faq():
 
     #remove the last_updated field as json does not store datetime objects
     data["intents"] = list(map(lambda x: {key:value for key, value in x.items() if key != 'last_updated'},  data["intents"])) 
-    print(data)
+    #print(data)
     with open("intents.json", "w") as outfile:
         json.dump(data, outfile,indent=4)
 
@@ -85,7 +80,7 @@ def initialize_faq():
     with open('intents.json', 'r', encoding='utf8') as f:
         file_data = json.loads(f.read())
         for q in file_data['intents']:
-            print(q)
+            #print(q)
             tag = q['tag']
             patterns = q['patterns']
             responses = q['responses']

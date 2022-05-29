@@ -33,7 +33,7 @@ def create_app(mode=Mode.PROD):
     with app.app_context():
         try:
             data = get_data()
-            chatbot = ChatbotInterface(type=ChatbotInterface.bow_model, data=data, mode=mode)
+            chatbot = ChatbotInterface(type=ChatbotInterface.bert_model, data=data, mode=mode)
             app.config["chatbot"] = chatbot
         except:
             #initialize the tables in postgres

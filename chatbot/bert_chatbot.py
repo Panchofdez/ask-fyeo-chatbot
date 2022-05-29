@@ -144,7 +144,7 @@ class BERTChatbot(Chatbot):
         return weights
 
     # function to train the model
-    def train_model(self, model, optimizer, dataloader, loss_func, lr_sch):
+    def train_model(self, model, optimizer, dataloader, loss_func):
     
         model.train()
         total_loss = 0
@@ -153,7 +153,7 @@ class BERTChatbot(Chatbot):
         total_preds=[]
         
         # We can also use learning rate scheduler to achieve better results
-        # lr_sch = lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
+        lr_sch = lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
 
         # iterate over batches
         for step,batch in enumerate(dataloader):
@@ -209,13 +209,13 @@ class BERTChatbot(Chatbot):
         # empty lists to store training and validation loss of each epoch
         train_losses=[]
 
-        lr_sch = lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
+        # lr_sch = lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
 
         for epoch in range(self.epochs):    
             print('\n Epoch {:} / {:}'.format(epoch + 1, self.epochs))
             
             #train model
-            train_loss, _ = self.train_model(model=model, optimizer=optimizer, dataloader=dataloader, loss_func=cross_entropy, lr_sch=lr_sch)
+            train_loss, _ = self.train_model(model=model, optimizer=optimizer, dataloader=dataloader, loss_func=cross_entropy)
             
             # append training and validation loss
             train_losses.append(train_loss)

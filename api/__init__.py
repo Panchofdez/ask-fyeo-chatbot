@@ -12,16 +12,18 @@ from enums import Mode
 # app.config['CORS_HEADERS'] = 'Content-Type'
 migrate = Migrate()
 cors = CORS()
-load_dotenv() #load environment variables
+
 
 def create_app(mode=Mode.PROD):
     app = Flask(__name__)
+
     if mode == Mode.PROD:
-    #database string needs to start with postgresql:// not postgres:// which is what heroku sets it to by default and is unchangeable
-        app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') #.replace("://", "ql://", 1)
+        #database string needs to start with postgresql:// not postgres:// which is what heroku sets it to by default and is unchangeable 
+        app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://{os.environ.get('PGUSER')}:{os.environ.get('PGPASS')}@{os.environ.get('PGHOST')}:{os.environ.get('PGPORT')}/{os.environ.get('PGDB')}"
         app.debug = False
     else:
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:SpicyP#13@localhost/ask-fyeo-chatbot'
+        load_dotenv() #load environment variables
+        app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')#'postgresql://postgres:SpicyP#13@localhost/ask-fyeo-chatbot'
         app.debug = True
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SECRET_KEY'] = os.environ.get('MY_SECRET_KEY')

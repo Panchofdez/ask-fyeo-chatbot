@@ -63,7 +63,8 @@ class BOWChatbot(Chatbot):
 
         input_size = len(all_words)
         output_size = len(tags) 
-        hidden_size = 64
+        print(input_size, output_size)
+        hidden_size = 256
 
         dataset = ChatDataset(X_train=X_train, y_train=y_train)
         train_loader = DataLoader(dataset=dataset, batch_size=self.batch_size, shuffle=True, num_workers=0)
@@ -92,10 +93,10 @@ class BOWChatbot(Chatbot):
             
             if (epoch + 1) % 100 == 0:
                 
-                print(f'epoch {epoch+1}/{self.epochs}, loss={loss.item():.10f}')
+                print(f'epoch {epoch+1}/{self.epochs}, loss={loss.item():.30f}')
 
 
-        print(f'final loss: loss={loss.item():.10f}')
+        print(f'final loss: loss={loss.item():.30f}')
 
         data = {
             "model_state":model.state_dict(),
@@ -184,7 +185,8 @@ class NeuralNet(nn.Module):
         super(NeuralNet, self).__init__()
         self.l1 = nn.Linear(input_size, hidden_size)
         self.l2 = nn.Linear(hidden_size, hidden_size)
-        self.l3 = nn.Linear(hidden_size, num_classes)
+        self.l3 = nn.Linear(hidden_size, hidden_size)
+        self.l4 = nn.Linear(hidden_size, num_classes)
         self.relu = nn.ReLU()
 
     def forward(self, x):
@@ -194,6 +196,8 @@ class NeuralNet(nn.Module):
         out = self.l2(out)
         out = self.relu(out)
         out = self.l3(out)
+        out = self.relu(out)
+        out = self.l4(out)
         return out
 
 

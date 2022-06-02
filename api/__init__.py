@@ -4,22 +4,24 @@ from flask_migrate import Migrate
 from dotenv import load_dotenv
 import os
 from chatbot.chatbot_interface import ChatbotInterface
-from .database import db
+from .database import db, FAQ, Staff
 from .routes import routes
-from .commands import backup_faq, train_model, chat, view_intents, test_model, backup_faq, get_data, initialize_faq, initialize_staff_user
+from .commands import backup_faq, train_model, chat, view_intents, test_model, backup_faq, get_data
 from enums import Mode
+import json
 
 # app.config['CORS_HEADERS'] = 'Content-Type'
 migrate = Migrate()
 cors = CORS()
 
 
-def create_app(mode=Mode.PROD):
+def create_app(mode=Mode.PROD,chatbot_mode=Mode.PROD, init=False):
     app = Flask(__name__)
 
     if mode == Mode.PROD:
         #database string needs to start with postgresql:// not postgres:// which is what heroku sets it to by default and is unchangeable 
-        app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://{os.environ.get('PGUSER')}:{os.environ.get('PGPASS')}@{os.environ.get('PGHOST')}:{os.environ.get('PGPORT')}/{os.environ.get('PGDB')}"
+        app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
+        #f"postgresql://{os.environ.get('PGUSER')}:{os.environ.get('PGPASS')}@{os.environ.get('PGHOST')}:5432/{os.environ.get('PGDB')}"
         app.debug = False
     else:
         load_dotenv() #load environment variables
@@ -33,15 +35,39 @@ def create_app(mode=Mode.PROD):
     migrate.init_app(app, db)
     
     with app.app_context():
-        try:
+        if not init:
+
             data = get_data()
-            chatbot = ChatbotInterface(type=ChatbotInterface.bert_model, data=data, mode=mode)
+            chatbot = ChatbotInterface(type=ChatbotInterface.bow_model, data=data, mode=chatbot_mode)
             app.config["chatbot"] = chatbot
-        except:
+        else:
             #initialize the tables in postgres
-            db.create_all()
-            initialize_faq()
-            initialize_staff_user()
+            try:
+                db.create_all()
+                with open('intents.json', 'r', encoding='utf8') as f:
+                    file_data = json.loads(f.read())
+                    for q in file_data['intents']:
+                        #print(q)
+                        tag = q['tag']
+                        patterns = q['patterns']
+                        responses = q['responses']
+                        print(tag, patterns, responses)
+                        if len(list(filter(lambda p: p.find('|') != -1, patterns))) > 0 or len(list(filter(lambda r: r.find('|') != -1, responses))) > 0:
+                            continue
+
+                        patterns = '|'.join(patterns)
+                        responses = '|'.join(responses)
+                        
+                        new_faq = FAQ(tag=tag, patterns=patterns, responses=responses)
+                        db.session.add(new_faq)
+                        db.session.commit()
+
+                new_staff = Staff(email="pancho.fernandez@ryerson.ca")
+                db.session.add(new_staff)
+                db.session.commit()
+            except Exception as e:
+                print("ERROR", e)
+                db.drop_all()
             
 
     

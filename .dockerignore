@@ -4,3 +4,5 @@
 .gitignore
 *.pth
 chatbot-env
+models/*
+models/

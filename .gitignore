@@ -1,6 +1,8 @@
 chatbot-env
 #our .pth files that store our pytorch models 
 *.pth
+models/*
+models/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

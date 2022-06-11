@@ -15,7 +15,7 @@ migrate = Migrate()
 cors = CORS()
 
 
-def create_app(mode=Mode.PROD,chatbot_mode=Mode.PROD, init=False):
+def create_app(mode=Mode.PROD,chatbot_mode=Mode.PROD,chatbot_type=ChatbotInterface.bow_model,init=False):
     app = Flask(__name__)
 
     if mode == Mode.PROD:
@@ -24,8 +24,8 @@ def create_app(mode=Mode.PROD,chatbot_mode=Mode.PROD, init=False):
         #f"postgresql://{os.environ.get('PGUSER')}:{os.environ.get('PGPASS')}@{os.environ.get('PGHOST')}:5432/{os.environ.get('PGDB')}"
         app.debug = False
     else:
-        load_dotenv() #load environment variables
-        app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')#'postgresql://postgres:SpicyP#13@localhost/ask-fyeo-chatbot'
+        load_dotenv() #load environment variable
+        app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL_DEV')#'postgresql://postgres:SpicyP#13@localhost/ask-fyeo-chatbot'
         app.debug = True
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SECRET_KEY'] = os.environ.get('MY_SECRET_KEY')
@@ -38,7 +38,7 @@ def create_app(mode=Mode.PROD,chatbot_mode=Mode.PROD, init=False):
         if not init:
 
             data = get_data()
-            chatbot = ChatbotInterface(type=ChatbotInterface.bow_model, data=data, mode=chatbot_mode)
+            chatbot = ChatbotInterface(type=chatbot_type, data=data, mode=chatbot_mode)
             app.config["chatbot"] = chatbot
         else:
             #initialize the tables in postgres

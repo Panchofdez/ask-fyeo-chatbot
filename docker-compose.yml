@@ -6,13 +6,5 @@ services:
     image: chatbot
     restart: always
     build: .
-    environment:
-      - PGUSER=$RDS_USERNAME
-      - PGHOST=$RDS_HOSTNAME
-      - PGDB=$RDS_DB_NAME
-      - PGPASS=$RDS_PASSWORD
-      - PGPORT=$RDS_PORT
-      - MY_SECRET_KEY=$MY_SECRET_KEY
-      - FYEO_PASSWORD=$FYEO_PASSWORD
-      - FLASK_ENV=$FLASK_ENV
-      - FLASK_APP=$FLASK_APP
+    env_file:
+      - .env

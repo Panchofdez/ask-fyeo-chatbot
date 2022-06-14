@@ -15,12 +15,13 @@ import re
 based on the article: https://chatbotsmagazine.com/contextual-chat-bots-with-tensorflow-4391749d0077''' 
 class BOWChatbot(Chatbot):
 
-    def __init__(self, batch_size = 8, learning_rate=0.001, epochs=1500 ):
+    def __init__(self, batch_size = 8, learning_rate=0.001, epochs=1000, hidden_size=256 ):
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         #Hyper-parameters
         self.batch_size = batch_size
         self.learning_rate=learning_rate
         self.epochs = epochs
+        self.hidden_size=hidden_size
 
 
     def train(self,data):
@@ -64,12 +65,11 @@ class BOWChatbot(Chatbot):
         input_size = len(all_words)
         output_size = len(tags) 
         print(input_size, output_size)
-        hidden_size = 256
 
         dataset = ChatDataset(X_train=X_train, y_train=y_train)
         train_loader = DataLoader(dataset=dataset, batch_size=self.batch_size, shuffle=True, num_workers=0)
 
-        model = NeuralNet(input_size, hidden_size, output_size).to(self.device)
+        model = NeuralNet(input_size, self.hidden_size, output_size).to(self.device)
 
         #loss and optimizer
         criterion = nn.CrossEntropyLoss()
@@ -102,7 +102,7 @@ class BOWChatbot(Chatbot):
             "model_state":model.state_dict(),
             "input_size":input_size,
             "output_size": output_size,
-            "hidden_size": hidden_size,
+            "hidden_size": self.hidden_size,
             "all_words": all_words,
             "tags": tags
         }
@@ -150,8 +150,8 @@ class BOWChatbot(Chatbot):
             for intent in data["intents"]:
                 if results[0][0] == intent["tag"]:
                     resp = random.choice(intent['responses'])
-                    if self.check_response(intent["tag"], sentence, resp):
-                        return  (intent["tag"], f"{resp}")
+                    # if self.check_response(intent["tag"], sentence, resp):
+                    return  (intent["tag"], f"{resp}")
             results.pop(0) 
 
         return ("" , "I do not understand please try again or ask another question ... ")

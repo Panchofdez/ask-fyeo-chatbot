@@ -36,7 +36,6 @@ def create_app(mode=Mode.PROD,chatbot_mode=Mode.PROD,chatbot_type=ChatbotInterfa
     
     with app.app_context():
         if not init:
-
             data = get_data()
             chatbot = ChatbotInterface(type=chatbot_type, data=data, mode=chatbot_mode)
             app.config["chatbot"] = chatbot

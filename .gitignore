@@ -4,6 +4,9 @@ chatbot-env
 models/*
 models/
 
+#dump files
+*.dump
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

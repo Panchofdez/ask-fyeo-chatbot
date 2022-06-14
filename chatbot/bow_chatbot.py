@@ -15,7 +15,7 @@ import re
 based on the article: https://chatbotsmagazine.com/contextual-chat-bots-with-tensorflow-4391749d0077''' 
 class BOWChatbot(Chatbot):
 
-    def __init__(self, batch_size = 8, learning_rate=0.001, epochs=1000 ):
+    def __init__(self, batch_size = 8, learning_rate=0.001, epochs=1500 ):
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         #Hyper-parameters
         self.batch_size = batch_size
@@ -93,10 +93,10 @@ class BOWChatbot(Chatbot):
             
             if (epoch + 1) % 100 == 0:
                 
-                print(f'epoch {epoch+1}/{self.epochs}, loss={loss.item():.30f}')
+                print(f'epoch {epoch+1}/{self.epochs}, loss={loss.item():.60f}')
 
 
-        print(f'final loss: loss={loss.item():.30f}')
+        print(f'final loss: loss={loss.item():.60f}')
 
         data = {
             "model_state":model.state_dict(),
@@ -115,12 +115,14 @@ class BOWChatbot(Chatbot):
         X = X.reshape(1, X.shape[0])
         X = torch.from_numpy(X)
 
-        output = model(X)
         # print("output", output)
-        _, predicted = torch.max(output, dim=1)
-        tag = tags[predicted.item()]
+        # _, predicted = torch.max(output, dim=1)
+        # tag = tags[predicted.item()]
+                # prob = probs[0][predicted.item()]
+                
+        output = model(X)
         probs = torch.softmax(output, dim=1)
-        prob = probs[0][predicted.item()]
+
         results = [ (i, p) for i, p in enumerate(probs.detach().numpy()[0])  if p > 0.5]
         results.sort(key=lambda x: x[1], reverse=True)
         # print(results)
@@ -186,7 +188,8 @@ class NeuralNet(nn.Module):
         self.l1 = nn.Linear(input_size, hidden_size)
         self.l2 = nn.Linear(hidden_size, hidden_size)
         self.l3 = nn.Linear(hidden_size, hidden_size)
-        self.l4 = nn.Linear(hidden_size, num_classes)
+        self.l4 = nn.Linear(hidden_size, hidden_size)
+        self.l5 = nn.Linear(hidden_size, num_classes)
         self.relu = nn.ReLU()
 
     def forward(self, x):
@@ -198,6 +201,8 @@ class NeuralNet(nn.Module):
         out = self.l3(out)
         out = self.relu(out)
         out = self.l4(out)
+        out = self.relu(out)
+        out = self.l5(out)
         return out
 
 

@@ -102,7 +102,7 @@ class BERTChatbot(Chatbot):
     def get_dataloader(self, train_text, train_labels):
          # get length of all the messages in the train set
         seq_len = [len(i.split()) for i in train_text]
-        print(seq_len)
+        print("SEQUENCE LENGTHS", seq_len)
 
         # tokenize and encode sequences in the training set
         tokens_train = self.tokenizer(
@@ -117,7 +117,7 @@ class BERTChatbot(Chatbot):
         train_mask = torch.tensor(tokens_train['attention_mask'])
         train_y = torch.tensor(train_labels.tolist())
 
-        print(train_y)
+        #print(train_y)
 
         # wrap tensors
         train_data = TensorDataset(train_seq, train_mask, train_y)
@@ -132,15 +132,14 @@ class BERTChatbot(Chatbot):
     def get_weights(self, unique_classes, train_labels):
         #compute the class weights
         class_wts = compute_class_weight(class_weight="balanced", classes=unique_classes, y=train_labels)
-        print(class_wts)
-        print(len(class_wts))
+        print("CLASS WEIGHTS", class_wts)
 
         #BALANCING THE WEIGHTS WHILE CALCULATING ERROR
         # convert class weights to tensor
         weights= torch.tensor(class_wts,dtype=torch.float)
         weights = weights.to(self.device)
-        print(weights)
-        print(len(weights))
+        print("WEIGHTS TENSOR", weights)
+        #print(len(weights))
         return weights
 
     # function to train the model

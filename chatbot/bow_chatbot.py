@@ -149,9 +149,9 @@ class BOWChatbot(Chatbot):
         while results:
             for intent in data["intents"]:
                 if results[0][0] == intent["tag"]:
-                    resp = random.choice(intent['responses'])
-                    # if self.check_response(intent["tag"], sentence, resp):
-                    return  (intent["tag"], f"{resp}")
+                    resp = random.choice(intent['responses'])     
+                    if self.check_response(intent["tag"],intent['patterns'], sentence, resp ):
+                        return  (intent["tag"], f"{resp}")
             results.pop(0) 
 
         return ("" , "I do not understand please try again or ask another question ... ")
@@ -167,17 +167,20 @@ class BOWChatbot(Chatbot):
 
             print(f"{bot_name} {self.get_response(sentence, data, file)[1]}")
 
-    def check_response(self,t,  q, r):
+    def check_response(self, tag, patterns, question, response):
         '''
         Determines the validity of the chatbot's response
         '''
-        q = tokenize(q)
-
-        ignore_words = ['?', '!', '.', ',', 'are', 'you', 'can', 'and', 'you', 'let', ]
-        stemmed_words  = [stem(w) for w in q if w not in ignore_words and len(w) > 2 ] # avoid punctuation or words like I , a , or 
+        question = tokenize(question)
+        patterns = ' '.join(patterns)
+        # print("Question", question)
+        # print('Patterns',patterns)
+        # print("Response", response)
+        ignore_words = ['?', '!', '.', ',', 'are', 'you', 'can', 'and', 'let','where', 'why', 'what', 'how' , 'when', 'who', 'the' ]
+        stemmed_words  = [stem(w) for w in question if w not in ignore_words and len(w) > 2 ] # avoid punctuation or words like I , a , or 
         # print(stemmed_words)
-        found = [ w for w in stemmed_words if re.search(w, r) != None or re.search(w,t.lower() ) != None] #check if the question has words related in the response
-        # print(found)
+        found = [ w for w in stemmed_words if re.search(w, response.lower()) != None or re.search(w,tag.lower() ) != None or re.search(w, patterns.lower())] #check if the question has words related in the response
+        # print("FOUND", found)
         return len(found) > 0
 
 class NeuralNet(nn.Module):

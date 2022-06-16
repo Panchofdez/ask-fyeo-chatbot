@@ -233,6 +233,8 @@ def getAllConversations(user):
                 convoDict = asdict(convo)
                 unresolved_queries = Query.query.filter_by(conversation_id=convoDict['id'] , resolved=False).all()
                 convoDict['unresolved'] = len(unresolved_queries)
+                resolved_queries = Query.query.filter_by(conversation_id=convoDict['id'] , resolved=True).all()
+                convoDict['resolved'] = len(resolved_queries)
                 response.append(convoDict)
         
             return jsonify({'conversations': response})
@@ -261,6 +263,8 @@ def getConversationsByDate(user):
                 convoDict = asdict(convo)
                 unresolved_queries = Query.query.filter_by(conversation_id=convoDict['id'] , resolved=False).all()
                 convoDict['unresolved'] = len(unresolved_queries)
+                resolved_queries = Query.query.filter_by(conversation_id=convoDict['id'] , resolved=True).all()
+                convoDict['resolved'] = len(resolved_queries)
                 response.append(convoDict)
         
             return jsonify({'conversations': response})
@@ -294,6 +298,8 @@ def getConversationsByDateRange(user):
                 convoDict = asdict(convo)
                 unresolved_queries = Query.query.filter_by(conversation_id=convoDict['id'] , resolved=False).all()
                 convoDict['unresolved'] = len(unresolved_queries)
+                resolved_queries = Query.query.filter_by(conversation_id=convoDict['id'] , resolved=True).all()
+                convoDict['resolved'] = len(resolved_queries)
                 response.append(convoDict)
         
             return jsonify({'conversations': response})

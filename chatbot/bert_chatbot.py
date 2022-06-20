@@ -275,7 +275,7 @@ class BERTChatbot(Chatbot):
         intent = self.get_prediction(message, model)
         for i in data['intents']: 
             if i["tag"] == intent:
-                if not self.check_response(i["tag"], message, ' '.join(i["responses"]).lower()):
+                if not self.check_response(i["tag"], i['patterns'], message, ' '.join(i["responses"]).lower()):
                     intent = ""
                 else:
                     result = random.choice(i["responses"])
@@ -294,15 +294,20 @@ class BERTChatbot(Chatbot):
 
         return
 
-    def check_response(self,t,  q, r):
+    def check_response(self,tag, patterns,question, response):
         '''
         Determines the validity of the chatbot's response
         '''
-        q = tokenize(q)
-        ignore_words = ['?', '!', '.', ',', 'are', 'you', 'can', 'and', 'you', 'let', ]
-        stemmed_words  = [stem(w) for w in q if w not in ignore_words and len(w) > 2 ] # avoid punctuation or words like I , a , or 
-        found = [ w for w in stemmed_words if re.search(w, r) != None or re.search(w,t.lower() ) != None] #check if the question has words related in the response
-
+        question = tokenize(question)
+        patterns = ' '.join(patterns)
+        # print("Question", question)
+        # print('Patterns',patterns)
+        # print("Response", response)
+        ignore_words = ['?', '!', '.', ',', 'are', 'you', 'can', 'and', 'let','where', 'why', 'what', 'how' , 'when', 'who', 'the' ]
+        stemmed_words  = [stem(w) for w in question if w not in ignore_words and len(w) > 2 ] # avoid punctuation or words like I , a , or 
+        # print(stemmed_words)
+        found = [ w for w in stemmed_words if re.search(w,tag.lower() ) != None or re.search(w, patterns.lower())] #check if the question has words related in the response
+        # print("FOUND", found)
         return len(found) > 0
 
 

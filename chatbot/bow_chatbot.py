@@ -15,7 +15,7 @@ import re
 based on the article: https://chatbotsmagazine.com/contextual-chat-bots-with-tensorflow-4391749d0077''' 
 class BOWChatbot(Chatbot):
 
-    def __init__(self, batch_size = 8, learning_rate=0.001, epochs=1000, hidden_size=256 ):
+    def __init__(self, batch_size = 2, learning_rate=0.001, epochs=1000, hidden_size=256 ):
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         #Hyper-parameters
         self.batch_size = batch_size
@@ -179,7 +179,7 @@ class BOWChatbot(Chatbot):
         ignore_words = ['?', '!', '.', ',', 'are', 'you', 'can', 'and', 'let','where', 'why', 'what', 'how' , 'when', 'who', 'the' ]
         stemmed_words  = [stem(w) for w in question if w not in ignore_words and len(w) > 2 ] # avoid punctuation or words like I , a , or 
         # print(stemmed_words)
-        found = [ w for w in stemmed_words if re.search(w, response.lower()) != None or re.search(w,tag.lower() ) != None or re.search(w, patterns.lower())] #check if the question has words related in the response
+        found = [ w for w in stemmed_words if re.search(w,tag.lower() ) != None or re.search(w, patterns.lower())] #check if the question has words related in the response
         # print("FOUND", found)
         return len(found) > 0
 

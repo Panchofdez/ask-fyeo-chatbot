@@ -154,7 +154,7 @@ class BOWChatbot(Chatbot):
                         return  (intent["tag"], f"{resp}")
             results.pop(0) 
 
-        return ("" , "I do not understand please try again or ask another question ... ")
+        return ("" , "Hmm... I do not understand that question. Please try again or ask a different question")
 
 
     def chat(self, data, file):

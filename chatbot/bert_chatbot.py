@@ -271,7 +271,7 @@ class BERTChatbot(Chatbot):
         model.load_state_dict(model_state)
         model.eval()
 
-        result = "I do not understand please try again or ask another question ... "
+        result = "Hmm... I do not understand that question. Please try again or ask a different question"
         intent = self.get_prediction(message, model)
         for i in data['intents']: 
             if i["tag"] == intent:

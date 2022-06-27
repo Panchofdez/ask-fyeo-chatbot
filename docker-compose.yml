@@ -8,5 +8,9 @@ services:
     build: .
     ports:
       - "80:80"
-    env_file:
-      - .env
+    environment:
+      - FLASK_ENV=dev
+      - FLASK_APP=api
+      - MY_SECRET_KEY=05f7ece5028dd73ecbdeb0856475c1a1c90b8b02577f11f2360392c1c02ba4da
+      - FYEO_PASSWORD=FYEO1234
+      - DATABASE_URL=postgres://postgresql_symmetrical_33349_user:Hvgb6CbL40ZwWwWpkNcNMgEeD8ng7NBm@dpg-caicjbvs437md162nl4g-a.oregon-postgres.render.com/postgresql_symmetrical_33349

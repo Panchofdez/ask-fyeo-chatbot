@@ -1,8 +1,11 @@
 chatbot-env
+training-errors.txt
 #our .pth files that store our pytorch models 
 *.pth
 models/*
 models/
+
+
 
 #dump files
 *.dump

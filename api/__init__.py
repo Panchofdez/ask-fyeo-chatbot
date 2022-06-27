@@ -21,7 +21,6 @@ def create_app(mode=Mode.PROD,chatbot_mode=Mode.PROD,chatbot_type=ChatbotInterfa
     if mode == Mode.PROD:
         #database string needs to start with postgresql:// not postgres:// which is what heroku sets it to by default and is unchangeable 
         app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
-        #f"postgresql://{os.environ.get('PGUSER')}:{os.environ.get('PGPASS')}@{os.environ.get('PGHOST')}:5432/{os.environ.get('PGDB')}"
         app.debug = False
     else:
         load_dotenv() #load environment variable

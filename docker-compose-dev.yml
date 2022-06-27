@@ -21,8 +21,12 @@ services:
     build: .
     ports:
       - "80:80"
-    env_file:
-      - .env
+    environment:
+      - FLASK_ENV=dev
+      - FLASK_APP=api
+      - MY_SECRET_KEY=05f7ece5028dd73ecbdeb0856475c1a1c90b8b02577f11f2360392c1c02ba4da
+      - FYEO_PASSWORD=FYEO1234
+      - DATABASE_URL_DEV=postgresql://postgres:postgres@db:5432/postgres
     depends_on:
       - db
       
@@ -30,6 +34,7 @@ services:
 volumes:
   pgdata: {}
 
+#COMMANDS TO RUN APP IN DEV ENV
 #docker-compose -f docker-compose-dev.yml up
 #docker-compose -f docker-compose-dev.yml up --build
 #docker-compose -f docker-compose-dev.yml down

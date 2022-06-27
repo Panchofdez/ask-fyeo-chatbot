@@ -8,10 +8,16 @@
                 "enrollment for first years?",
                 "enrolment for first years?",
                 "when can i add classes?",
-                "date for adding classes"
+                "date for adding classes",
+                "when can i add courses?",
+                "when can i swap courses?",
+                "when can i add courses?",
+                "when can i enrol into classes",
+                "when can i enrol into courses",
+                "when is the enrolment date?"
             ],
             "responses": [
-                "Priority Enrolment Appointments for 1st Year Students Begins on August 9, 2022 at 6:00 a.m. Please visit the <a href = \"https://www.torontomu.ca/calendar/2022-2023/dates/\"> Significant Dates Calendar for important dates</a>. "
+                "Priority Enrolment Appointments for 1st Year Students Begins on August 9, 2022 at 6:00 a.m. You can make changes to your schedule during your enrolment period. To make schedule changes, students may do so on RAMSS (Ryerson Administrative Management Self Serivce) or VSB (Visual Schedule builder). Please visit the <a href = \"https://www.torontomu.ca/calendar/2022-2023/dates/\"> Significant Dates Calendar for important dates</a>. "
             ]
         },
         {
@@ -31,7 +37,7 @@
                 "academic accommodation support"
             ],
             "responses": [
-                "Academic Accommodation Support (AAS) is supporting students remotely, including outreach to students via email and offering drop-in support via phone. This includes supporting new student registrations on the\n<a href=\"www.torontomu.ca/accommodations/\" > Academic Accommodation Support Website </a>\n<ul><li>General Inquiries: aasadmin@ryerson.ca</li>\n<li>Student Specific Inquiries: Academic Accommodation Facilitator listed on the student\u2019s accommodation letter</li> <li>Service Providers (Interpreters, etc.): aasbookings@ryerson.ca</li>\n<li>RU Noted Peer Note-taking: runoted@ryerson.ca</li><ul>\n"
+                "Academic Accommodation Support (AAS) is supporting students remotely, including outreach to students via email and offering drop-in support via phone. This includes supporting new student registrations on the <a href=\"https://www.torontomu.ca/accommodations/\" > Academic Accommodation Support Website </a> <ul><li>General Inquiries: <a href=\"mailto: aasadmin@ryerson.ca\">aasadmin@ryerson.ca</a></li> <li>Student Specific Inquiries: Academic Accommodation Facilitator listed on the student\u2019s accommodation letter</li> <li>Service Providers (Interpreters, etc.): <a href = \"mailto:aasbookings@ryerson.ca\" >aasbookings@ryerson.ca</a></li> <li>RU Noted Peer Note-taking:<a href = \"mailto:runoted@ryerson.ca\" > runoted@ryerson.ca </a></li><ul> "
             ]
         },
         {
@@ -79,10 +85,13 @@
                 "Standing",
                 "Academic Standing",
                 "What do i need to get a clear standing",
-                "What do i need to get a clear academic standing"
+                "What do i need to get a clear academic standing",
+                "GPA",
+                "CGPA",
+                "TGPA"
             ],
             "responses": [
-                "Effective Fall 2021, in order to maintain a CLEAR standing, as per the 2022-2023 Undergraduate Calendar for Aerospace Engineering, Biomedical Engineering, Chemical Engineering Co-Op, Civil Engineering, Computer Engineering, Electrical Engineering, Industrial Engineering, and Mechanical Engineering, a CGPA of 1.67 (or higher) AND TGPA of 1.33 (or higher) will be required. Students taking courses under a Probation Contract will need to adhere to the specific CGPA and TGPA requirements as per their contract. For more information, visit the Undergraduate Calendar for the specific program, admittance year and click on Academic Standing Variation and Grades, GPA and Academic Standing website via <a href = \" https://www.torontomu.ca/studentguide/grades/\" > this link. </a>\n"
+                "Effective Fall 2021, in order to maintain a CLEAR standing, as per the 2022-2023 Undergraduate Calendar for Aerospace Engineering, Biomedical Engineering, Chemical Engineering Co-Op, Civil Engineering, Computer Engineering, Electrical Engineering, Industrial Engineering, and Mechanical Engineering, a CGPA of 1.67 (or higher) AND TGPA of 1.33 (or higher) will be required. Students taking courses under a Probation Contract will need to adhere to the specific CGPA and TGPA requirements as per their contract. For more information, visit the Undergraduate Calendar for the specific program, admittance year and refer to <a href = \" https://www.torontomu.ca/studentguide/grades/\" >Academic Standing Variation and Grades, GPA and Academic Standing.</a> "
             ]
         },
         {
@@ -95,7 +104,7 @@
                 "How is my academic standing calculated?"
             ],
             "responses": [
-                "For information on grades, GPA and academic standing, refer to the <a = href = \"https://www.torontomu.ca/studentguide/grades/\"> Student Guide. </a>\n"
+                "For information on grades, GPA and academic standing, refer to <a = href = \"https://www.torontomu.ca/studentguide/grades/\"> Grades, GPA, and Academic Standing. </a>"
             ]
         },
         {
@@ -120,7 +129,7 @@
                 "Do I need a doctors note?"
             ],
             "responses": [
-                "Please ensure your notify your professor(s) of your situation, as this is always the first step. Toronto Metropolitan University does have a process for Academic Consideration Requests (ACR), when students experience extenuating circumstances that have a significant impact on their ability to fulfill an academic requirement. In order to submit an ACR as per TMU Policy guidelines, students must complete Part 1 of the <a href =\"https://www.torontomu.ca/senate/forms/medical.pdf\"> TMU Student Health Certificate</a> and have a Health Professional complete Part 2 of the form, including the clinic's official stamp. Once the Ryerson Student Health Certificate is fully completed, the next step is to submit the ACR through the <a href =\"https://cas.ryerson.ca/login?service=https%3A%2F%2Fprod.apps.ccs.ryerson.ca%2Fsenateapps%2Fj_spring_cas_security_check&renew=true\"> Online Academic Consideration Request portal </a> attaching the TMU Student Health Certificate. This must be done within three (3) business days of the missed obligation. If the submission is able to be verified by the FYEO, you will then follow-up with your instructor regarding the next steps and arrangements for the make-up. \n\n"
+                "Please ensure your notify your professor(s) of your situation, as this is always the first step. Toronto Metropolitan University does have a process for Academic Consideration Requests (ACR), when students experience extenuating circumstances that have a significant impact on their ability to fulfill an academic requirement. In order to submit an ACR as per TMU Policy guidelines, students must complete Part 1 of the <a href =\"https://www.torontomu.ca/senate/forms/medical.pdf\"> TMU Student Health Certificate</a> and have a Health Professional complete Part 2 of the form, including the clinic's official stamp. Once the TMU Student Health Certificate is fully completed, the next step is to submit the ACR through the <a href =\"https://cas.ryerson.ca/login?service=https%3A%2F%2Fprod.apps.ccs.ryerson.ca%2Fsenateapps%2Fj_spring_cas_security_check&renew=true\"> Online Academic Consideration Request portal </a> attaching the TMU Student Health Certificate. This must be done within three (3) business days of the missed obligation. If the submission is able to be verified by the FYEO, you will then follow-up with your instructor regarding the next steps and arrangements for the make-up.\n"
             ]
         },
         {
@@ -134,7 +143,7 @@
                 "How can I get support?"
             ],
             "responses": [
-                "The FYEO provides drop-in, live, on-the-spot advising through the Virtual Advising Room, external link. Our Student Advising Team is available to answer questions about your first-year courses, liberals, minors, enrollment, deadline dates, or anything else, and can get you connected to other departments across campus for further support. Stop by any time, Monday \u2013 Friday, 10:00 AM \u2013 12:00 PM through Zoom with meeting code: 805-334-1745. You can always email the FYEO at firstyeareng@ryerson.ca. All email inquiries will be answered within 48 working hours, however, during peak times the response time may be longer. Please include your name and student number when contacting us.\n"
+                "The FYEO provides drop-in, live, on-the-spot advising through the Virtual Advising Room, external link. Our Student Advising Team is available to answer questions about your first-year courses, liberals, minors, enrollment, deadline dates, or anything else, and can get you connected to other departments across campus for further support. Stop by any time, Monday \u2013 Friday, 10:00 AM \u2013 12:00 PM through Zoom with meeting code: 805-334-1745. You can always email the FYEO at <a href = \"mailto: firstyeareng@ryerson.ca\" >firstyeareng@ryerson.ca. </a> All email inquiries will be answered within 48 working hours, however, during peak times the response time may be longer. Please include your name and student number when contacting us. "
             ]
         },
         {
@@ -146,7 +155,7 @@
                 "Aerospace engineering"
             ],
             "responses": [
-                "Aerospace Engineering: aero.eng@ryerson.ca"
+                "Aerospace Engineering:<a href = \"mailto:aero.eng@ryerson.ca\" > aero.eng@ryerson.ca </a>"
             ]
         },
         {
@@ -253,7 +262,7 @@
                 "student groups"
             ],
             "responses": [
-                "The Metropolitan University Student Engineering Society has various clubs and events which you might find interesting. You can check out their website or contact them directly for more information. The TMU Students' Union (RSU) also has various student clubs, including some for Engineering which you can also check out on their website. You can also refer to the TMU events page for any other events. Just be sure to scroll down to the bottom of the page and click on the \"Load More\" button so it keeps bringing up all the events as not everything will appear on one screen.\n"
+                "The Metropolitan University Student Engineering Society has various clubs and events which you might find interesting. You can check out their website or contact them directly for more information. The TMU Students' Union (RSU) also has various student clubs, including some for Engineering which you can also check out on their website. You can also refer to the <a href = \"https://connectru.ryerson.ca/events\">TMU events page</a> for any other events. Just be sure to scroll down to the bottom of the page and click on the \"Load More\" button so it keeps bringing up all the events as not everything will appear on one screen. "
             ]
         },
         {
@@ -262,7 +271,10 @@
             "patterns": [
                 "Where to find information on Co-op and Internships?",
                 "Do engineering programs offer co-op?",
-                "Can I sign up for co-op?"
+                "Can I sign up for co-op?",
+                "coop",
+                "internships",
+                "coop office"
             ],
             "responses": [
                 "At the Faculty of Engineering and Architectural Science (FEAS), all nine of our undergraduate programs offer paid, full-time co-operative internship opportunities. For more information on how to apply for the Co-op program, please refer to the <a href = \"https://www.torontomu.ca/engineering-architectural-science/programs/undergraduate/cooperative-internships/\" > Co-operative Internships </a> page."
@@ -280,7 +292,7 @@
                 "I am looking for counselling"
             ],
             "responses": [
-                "Yes, we have two very dedicated personal Counsellors in the Faculty of Engineering and Architectural Science; Jastej Gill and Jean Tsai. You may contact the <a href = \"https://www.torontomu.ca/student-wellbeing/counselling/students/\" > Centre for Student Development</a> and Counselling through phone (416-979-5195) or email (csdc@ryerson.ca) and ask to set up an appointment with one of our engineering counsellors. 24/7 support can also be accessed through <a href = \"https://myssp.app/keepmesafe/ca/home)\" > keep.meSAFE </a> at 1-844-451-9700 or through the app found on the Apple Store and Google Play.\n"
+                "Yes, we have two very dedicated personal Counsellors in the Faculty of Engineering and Architectural Science; Jastej Gill and Jean Tsai. You may contact the <a href = \"https://www.torontomu.ca/student-wellbeing/counselling/students/\" > Centre for Student Development</a> and Counselling through phone (416-979-5195) or email (<a href=\"mailto:csdc@ryerson.ca\">csdc@ryerson.ca</a>) and ask to set up an appointment with one of our engineering counsellors. 24/7 support can also be accessed through <a href = \"https://myssp.app/keepmesafe/ca/home)\" > keep.meSAFE </a> at 1-844-451-9700 or through the app found on the Apple Store and Google Play. "
             ]
         },
         {
@@ -293,10 +305,26 @@
                 "Can I have someone to help me enroll in my courses.",
                 " how do i register for a course",
                 "course registration",
-                "I need help registering for a course"
+                "I need help registering for a course",
+                "how to switch classes",
+                "how to switch courses",
+                "how to add courses",
+                "how to drop courses",
+                "how to add a class",
+                "how to switch a class",
+                "how to swap a class",
+                "how to drop a class",
+                "how to swap a course",
+                "how do i select courses",
+                "adding ",
+                "swapping",
+                "enrolling",
+                "enrollment",
+                "enrolment",
+                "how do i enrol"
             ],
             "responses": [
-                "Use the RAMSS Shopping Cart to swap/enroll in classes. There are FYEO <a href = \"https://www.youtube.com/c/FirstYearEngineeringOffice\" >Youtube tutorials </a> provided online for both Swap and Enrol into classes. "
+                "Use the RAMSS Shopping Cart to add, swap, and drop classes. There are FYEO <a href = \"https://www.youtube.com/c/FirstYearEngineeringOffice\" >Youtube tutorials </a> provided online for enrolling, swapping and dropping courses. "
             ]
         },
         {
@@ -309,7 +337,7 @@
                 "What is course enrollment for?"
             ],
             "responses": [
-                "Enrollment is the process of selecting your courses for the academic year and adding them to RAMSS. During the course enrollment period, you can adjust your course schedule by adding, dropping or swapping classes. All incoming engineering students have the same first-year courses. Please check the undergraduate calendar for your year of admittance. Please check to make sure you are enrolled in these courses. In addition to your 5 engineering course, you have to take 1 lower-level liberal course from Table A. The FYEO does not encourage students to take their Table A in the 1st semester, the two Table A's, one Table B and one Table B from the short list, can be completed anytime before graduation and students may want to consider taking them over a Spring/Summer semester. You can review Table A and decide on what course interests you. From here, please refer to How to Enrol - RAMSS Support to enroll. <a href =\" https://www.torontomu.ca/ramss-support/students/academics/continuing-education/how-to-enrol/\" > This webpage provides a step-by-step guide on how to enrol</a>."
+                "Enrollment is the process of selecting your courses for the academic year and adding them to RAMSS. During the course enrollment period, you can adjust your course schedule by adding, dropping or swapping classes. All incoming engineering students have the same first-year courses. Please check the undergraduate calendar for your year of admittance. Please check to make sure you are enrolled in these courses. In addition to your 5 engineering course, you have to take 1 lower-level liberal course from Table A. The FYEO does not encourage students to take their Table A in the 1st semester, the two Table A's, one Table B and one Table B from the short list, can be completed anytime before graduation and students may want to consider taking them over a Spring/Summer semester. You can review Table A and decide on what course interests you. From here, please refer to <a href =\" https://www.torontomu.ca/ramss-support/students/academics/continuing-education/how-to-enrol/\" >How to Enrol - RAMSS Support </a>to enroll.  "
             ]
         },
         {
@@ -321,7 +349,7 @@
                 "Course Information"
             ],
             "responses": [
-                "Once you log in to my.ryerson.ca portal, your course will be listed under \u201cThe Online Courses & Organizations\u201d tab on the landing page. Click on your course name to enter the course page and access material."
+                "Once you log in to <a href =\"https://cas.ryerson.ca/login?service=https%3A%2F%2Fmy.ryerson.ca%2FuPortal%2FLogin\"> my.ryerson.ca </a> portal, your course will be listed under \u201cThe Online Courses & Organizations\u201d tab on the landing page. Click on your course name to enter the course page and access material."
             ]
         },
         {
@@ -335,7 +363,7 @@
                 "When do I fill them out"
             ],
             "responses": [
-                "Course intentions is the process where returning students indicate the courses they wish to take in the upcoming academic year via RAMSS. If you are a new student, you will not need to complete this process before the start of your first term.\n<br><br>\nThe course intentions period occurs in March for the upcoming academic year. Course intention changes can be made during the course intention adjustment periods in the spring (May) and fall (August to September).\n<br><br>\nCourse intention appointments are automatically scheduled by Toronto Metropolitan University. As a student, you will be notified through your university email of your upcoming course intention appointment. Course intention appointment information can also be found in the Enrolment Dates section of your Student Centre in RAMSS.\n"
+                "Course intentions is the process where returning students indicate the courses they wish to take in the upcoming academic year via RAMSS. If you are a new student, you will not need to complete this process before the start of your first term. <br><br> The course intentions period occurs in March for the upcoming academic year. Course intention changes can be made during the course intention adjustment periods in the spring (May) and fall (August to September). <br><br> Course intention appointments are automatically scheduled by Toronto Metropolitan University. As a student, you will be notified through your university email of your upcoming course intention appointment. Course intention appointment information can also be found in the Enrolment Dates section of your Student Centre in <a href = \"https://cas.ryerson.ca/login?service=https%3A%2F%2Fmy.ryerson.ca%2FuPortal%2FLogin\" >RAMSS.</a> "
             ]
         },
         {
@@ -361,6 +389,21 @@
             ],
             "responses": [
                 "This summer, the First-Year Engineering Office (FYEO) will be offering several optional programs such as the Engineering Boost Program - a series of optional mini courses in math, physics, and programming designed to help you improve and reinforce fundamental topics and concepts you\u2019ll encounter later in your first year engineering subjects. These courses are at no cost to you, and you can choose to register in one or two or all three of them to keep your studies up over the summer. Registration is required. The Pre-Orientation, Orientation, Post-Orientation (Engineering POP) programs are an opportunity to learn more about the social and academic aspects of university, get involved on campus early, meet upper-year leaders and ambassadors (FYA), gain valuable leadership skills, network and meet other students with similar interests before orientation week.\n"
+            ]
+        },
+        {
+            "id": 117,
+            "tag": "Course Waitlist",
+            "patterns": [
+                "waitlisted for a course",
+                "waitlisted for a class",
+                "wait list courses",
+                "wait list classes",
+                "Course wait list",
+                "wait list"
+            ],
+            "responses": [
+                "The wait list functionality allows you to place yourself in line for a space in a full class. When you are in Position 1 and a space becomes available, the wait list functionality will attempt to enrol you. Notification of this enrolment transaction will be sent to your TMU (Ryerson) email account. For more information, please refer to <a href=\"https://www.torontomu.ca/current-students/course-enrolment/wait-list/\" > Course Wait List</a>."
             ]
         },
         {
@@ -403,7 +446,7 @@
                 "Missed class because of disability "
             ],
             "responses": [
-                "Academic Accommodation Support (AAS) is available to students who can provide documentation of disability, both temporary and permanent. Using academic accommodations does not show up on your transcript and is a confidential process. For more information You can learn more about how to register <a href = \"https://www.torontomu.ca/accommodations/registration/\" > here </a> and we suggest you register as soon as possible."
+                "Academic Accommodation Support (AAS) is available to students who can provide documentation of disability, both temporary and permanent. Using academic accommodations does not show up on your transcript and is a confidential process. For more information, you can learn more about how to register <a href = \"https://www.torontomu.ca/accommodations/registration/\" > here </a> and we suggest you register as soon as possible."
             ]
         },
         {
@@ -444,7 +487,7 @@
                 "ECB contact"
             ],
             "responses": [
-                "Biomedical, Computer and Electrical: frontoffice@ee.ryerson.ca"
+                "Biomedical, Computer and Electrical: <a href = \"mailto:frontoffice@ee.ryerson.ca\" >frontoffice@ee.ryerson.ca </a>"
             ]
         },
         {
@@ -472,7 +515,9 @@
             "patterns": [
                 " Who should I contact regarding my exam grade or overall grade?",
                 "Who do I talk to about my exam grades ?",
-                "Who do I talk to about my overall grades ?"
+                "Who do I talk to about my overall grades ?",
+                "Who to talk to about final grades?",
+                "who do i contact about final grades/marks?"
             ],
             "responses": [
                 "You should direct your questions to your course coordinator with your full name, student ID, and course section (if applicable). The email must have text with complete sentences, correct spelling, and proper grammar. Overall, it should have a professional tone."
@@ -496,10 +541,11 @@
             "id": 30,
             "tag": "Fees Opt-out",
             "patterns": [
-                "Why can I no longer opt out of some fees, as was the case last year with the Student Choice Initiative?"
+                "Why can I no longer opt out of some fees, as was the case last year with the Student Choice Initiative?",
+                "opt out"
             ],
             "responses": [
-                "On November 21, 2019 the Ontario Divisional Court made the decision to suspend the opt-out process. As a result, students will be assessed both optional and compulsory ancillary fees effective Winter 2020. For additional information please review TorontoMet Today. Please <a href = \"https://www.torontomu.ca/current-students/tuition-fees/ancillary-fee-descriptions/\" > click here</a> for more information.\n"
+                "On November 21, 2019 the Ontario Divisional Court made the decision to suspend the opt-out process. As a result, students will be assessed both optional and compulsory ancillary fees effective Winter 2020. For additional information please review<a href = \"https://www.torontomu.ca/current-students/tuition-fees/ancillary-fee-descriptions/\" > TorontoMet Today. </a>"
             ]
         },
         {
@@ -514,7 +560,7 @@
                 "When are my exams?"
             ],
             "responses": [
-                "Fall 2022 final exams period is December 7 \u2013 18, including Saturday and Sunday. The final exam schedule will be posted approximately one month before the final exam period. Your course coordinator will set days and times at the beginning of next semester for exam review. An announcement will be made when the dates are available. Do not contact your instructor requesting to review your exam before then. Final exams may be viewed but they are not returned.\n"
+                "Fall 2022 final exams period is December 7 \u2013 18, including Saturday and Sunday. The final exam schedule will be posted approximately one month before the final exam period. Your course coordinator will set days and times at the beginning of next semester for exam review. An announcement will be made when the dates are available. Do not contact your instructor requesting to review your exam before then. Final exams may be viewed but they are not returned. For any additional information, please visit the <a href=\"https://www.torontomu.ca/current-students/exams/\"> Exams</a> page"
             ]
         },
         {
@@ -549,10 +595,13 @@
             "patterns": [
                 "Can I calculate what my final grade is?",
                 "How can I calculate what my final grade is?",
-                "How do I calculate my final grade?"
+                "How do I calculate my final grade?",
+                "How to calculate GPA?",
+                "How to calculate CGPA?",
+                "How to calculate TGPA?"
             ],
             "responses": [
-                "Yes, you can use the information in FYEO GPA Calculator (located in the FYEng App) and the grades posted in D2L to calculate your final grade."
+                "Yes, you can use the information in <a href=\"https://ryersonfyceo.ca/gpa/ccal.php\">FYEO GPA Calculator</a> (located in the FYEng App) and the grades posted in D2L to calculate your final grade."
             ]
         },
         {
@@ -568,6 +617,19 @@
             ],
             "responses": [
                 "Contact your course coordinator and explain why you think an error was made. Include relevant calculations that demonstrate how you calculated your grade to make it easier for them to find any discrepancies.\n"
+            ]
+        },
+        {
+            "id": 116,
+            "tag": "First Year Courses",
+            "patterns": [
+                "do i need to register for my courses?",
+                "how do i add courses as a first year student?",
+                "first year courses",
+                "should i make my schedule?"
+            ],
+            "responses": [
+                "As a first-year student, you do not need to register for courses you will be enrolled automatically. Courses for the 1st semester are common to all engineering majors. To learn more about the program courses for your disciple of Engineering, please review the <a href=\"https://www.torontomu.ca/calendar/2022-2023/programs/feas/\"> 2022-2023 Undergraduate Engineering Course Calendar</a>. \n\n\n\n"
             ]
         },
         {
@@ -604,7 +666,23 @@
                 "What is FROSH?"
             ],
             "responses": [
-                "Frosh week is hosted by the <a href = \"https://ress.ca/\" > Ryerson Engineering Student Society (RESS)</a>.\n"
+                "Frosh week is hosted by the <a href = \"https://ress.ca/\" > Metropolitan Undergraduate Engineering Society (MUES)</a>.\n"
+            ]
+        },
+        {
+            "id": 115,
+            "tag": "Full time vs Part Time - OSAP",
+            "patterns": [
+                "what is full time for osap?",
+                "what is full time studies?",
+                "how many courses is considered a full time studnet?",
+                "how many courses is considered a full time student?",
+                "full time vs part time?",
+                "full-time vs part-time?",
+                "how many courses do I have to take?"
+            ],
+            "responses": [
+                "For OSAP, to be considered as a full-time student, you must be taking 60% or more of a full course load (three or more courses per term). A student who is enrolled in a post secondary institution and is taking two or fewer courses per term (one course per term for students with a permanent disability). <strong> Note: </strong> OSAP definition of part-time studies is different from how Ryerson defines part-time studies. Please visit the <a href =\"https://www.torontomu.ca/student-financial-assistance/osap/mini-dictionary/#:~:text=To%20be%20considered%20as%20a,or%20more%20courses%20per%20term).\"> Mini Dictionary webpage </a>for more information."
             ]
         },
         {
@@ -615,7 +693,10 @@
                 "CAN I SPEAK TO AN UPPER YEAR STUDENT",
                 "i need advice about my program, can i talk to an upper year student?",
                 "ambassador",
-                "student ambassador?"
+                "student ambassador?",
+                "first year ambassador",
+                "fya",
+                "can i talk to a first year ambassador"
             ],
             "responses": [
                 "Yes! We have our <a href = \"https://www.torontomu.ca/first-year-engineering-office/orientation/first-year-ambassadors/\"> First Year Ambassadors (FYAS) </a>that are dedicated to helping you make the transition to life at Toronto Metropolitan University. Campus student group, club and union leaders, they know exactly what you\u2019re going through and they\u2019re keen to share their knowledge.\n"
@@ -645,7 +726,7 @@
                 "When is the fyeo open?"
             ],
             "responses": [
-                "The FYEO operates from Monday to Friday, 9am to 5pm, unless otherwise posted. The FYEO Drop-in Zoom Virtual Advisement Room, is Open weekdays Monday - Friday from 10am - 12pm EST.  Students can always email the FYEO at firstyeareng@ryerson.ca.\n"
+                "The FYEO operates from Monday to Friday, 9am to 5pm, unless otherwise posted. The FYEO Drop-in Zoom Virtual Advisement Room, is Open weekdays Monday - Friday from 10am - 12pm EST. Students can always email the FYEO at <a href = \"mailto: firstyeareng@ryerson.ca\" >firstyeareng@ryerson.ca. </a>"
             ]
         },
         {
@@ -661,7 +742,8 @@
                 "Can I ask to round my grade",
                 "Can I ask my professor to round my grade",
                 "Can I ask my instructor to round my grade",
-                "Should I ask my instructor to round my grade"
+                "Should I ask my instructor to round my grade",
+                "Can I boost my grade"
             ],
             "responses": [
                 "The only reason for changing a grade would be a marking issue. First, wait until you see your grade on RAMSS. The instructor may have made some kind of adjustment that resulted in your obtaining a passing grade. Second, instructors have already considered/reviewed the overall grades before sending them to the Registrar and usually will not change their minds once a decision has been made. Grades are based on the merit of the work done in the course. "
@@ -706,7 +788,13 @@
                 "Last Day to Add or Swap a Fall Course",
                 "When is the Last Day to Add or Swap a Fall Course?",
                 "last day to add courses",
-                "last day to swap courses"
+                "last day to swap courses",
+                "when is the last day to add courses?",
+                "when is the last day to swap courses?",
+                "when is the last day to select courses?",
+                "when is the last day to select classes?",
+                "when is the last day to add classes?",
+                "when is the last day to swap classes?"
             ],
             "responses": [
                 "The last day to Add/Swap Fall courses is Friday, September 16, 2022. For more information about drop dates please refer to the school <a href = \"https://www.torontomu.ca/calendar/2022-2023/dates/\" > calendar. </a>"
@@ -722,7 +810,7 @@
                 "How do I request a letter of enrollment?"
             ],
             "responses": [
-                "TMU provides you with the opportunity to access your own student record information. Sometimes you need more information, or you are required to provide it by an official source. Upon request, TorontoMet provides official, and personalized letters confirming enrolment status, transcript details, etc. Click <a href = \"https://www.torontomu.ca/ramss-support/students/academics/request-letter/\" > here</a>.\n"
+                "TMU provides you with the opportunity to access your own student record information. Sometimes you need more information, or you are required to provide it by an official source. Upon request, TorontoMet provides official, and personalized letters confirming enrolment status, transcript details, etc. For more information, please refer to <a href = \"https://www.torontomu.ca/ramss-support/students/academics/request-letter/\" > How to Request a Letter</a>. "
             ]
         },
         {
@@ -750,7 +838,7 @@
                 "Can I take a language course?"
             ],
             "responses": [
-                "Students interested in taking a Language Course are required to take a Placement Test. <a href =\"https://www.torontomu.ca/llc/contact/\"> Contact the Languages, Literatures and Cultures department </a> for more information.\n"
+                "Students interested in taking a Language Course are required to take a Placement Test.Contact the<a href =\"https://www.torontomu.ca/llc/contact/\">  Languages, Literatures and Cultures department </a> for more information. "
             ]
         },
         {
@@ -802,7 +890,7 @@
                 "Why do I have login issues"
             ],
             "responses": [
-                "Verify you are using the latest versions of Google Chrome or Firefox. Next, ensure you are using your TorontoMet username and password to log in. If you\u2019re still having trouble logging in, contact the CCS Help Desk at help@ryerson.ca\n"
+                "Verify you are using the latest versions of Google Chrome or Firefox. Next, ensure you are using your TorontoMet username and password to log in. If you\u2019re still having trouble logging in, contact the CCS Help Desk at <a href = \"mailto:help@ryerson.ca\">help@ryerson.ca</a> "
             ]
         },
         {
@@ -821,7 +909,7 @@
                 "What if I have a CGPA less than 1.67?"
             ],
             "responses": [
-                "If your CGPA is between 1.00 and 1.66, or if your TGPA is under 1.33 you will recieve a Probationary Standing. If your CGPA is below 1.00, you will be Required to Withdraw (RTW) unless you are a new student to Toronto Metropolitan in your first term (Fall), in this case the student\u2019s standing is set to Probationary. For more information about Academic Standing, click <a href= \"https://www.ryerson.ca/first-year-engineering-office/academic-support/academic-standing/\" > here. <a/>"
+                "If your CGPA is between 1.00 and 1.66, or if your TGPA is under 1.33 you will recieve a Probationary Standing. If your CGPA is below 1.00, you will be Required to Withdraw (RTW) unless you are a new student to Toronto Metropolitan in your first term (Fall), in this case the student\u2019s standing is set to Probationary. For more information, refer to <a href= \"https://www.ryerson.ca/first-year-engineering-office/academic-support/academic-standing/\" >Academic Standing.<a/>"
             ]
         },
         {
@@ -872,7 +960,7 @@
                 "Who do I talk to about my offer of admission"
             ],
             "responses": [
-                "As an admitted student, we understand that you may have concerns about your Offer of Admission and how you will meet any conditions stated in your offer letter. Connect with your Engineering Admissions team at askeng@ryerson.ca."
+                "As an admitted student, we understand that you may have concerns about your Offer of Admission and how you will meet any conditions stated in your offer letter. Connect with your Engineering Admissions team at <a href = \"mailto:askeng@ryerson.ca\">askeng@ryerson.ca.</a>"
             ]
         },
         {
@@ -891,7 +979,7 @@
                 "where can i get my student card"
             ],
             "responses": [
-                "Your Student OneCard is one of the most important tools you\u2019ll need while at Ryerson. Not only is it your official student identification, it also grants you access to campus services and discounts. Once you have applied to a OneCard, you can pick up your OneCard at JOR-02, please approach the Library Building entrance on Nelson Mandela Walk and press the intercom to be connected to staff from Community Safety and Security. Please visit the <a href =\"https://www.torontomu.ca/university-business-services/onecard/student-onecard/\"> OneCard office webpage for more information</a>."
+                "Your Student OneCard is one of the most important tools you\u2019ll need while at Ryerson. Not only is it your official student identification, it also grants you access to campus services and discounts. Once you have applied to a OneCard, you can pick up your OneCard at JOR-02, please approach the Library Building entrance on Nelson Mandela Walk and press the intercom to be connected to staff from Community Safety and Security. Please visit the <a href =\"https://www.torontomu.ca/university-business-services/onecard/student-onecard/\"> OneCard Office</a> webpage for more information."
             ]
         },
         {
@@ -937,7 +1025,7 @@
                 "Engineering specialization"
             ],
             "responses": [
-                "FEAS offers the Optional Specialization is Management Science (OSMS), a program that provides students with a competitive edge to help them become more marketable upon graduation. <a href = \"https://www.torontomu.ca/engineering-architectural-science/programs/undergraduate/optional-specialization-management-sciences/\" > Click here for more information</a>. Students can take OSMS courses and lower liberal courses at the same time during the Spring/Summer terms. The FYEO strongly encourages that students do not take more than 3 courses in those terms at a time due to the fast- paced nature and heavy course load in the Spring/Summer terms."
+                "FEAS offers the Optional Specialization is Management Science (OSMS), a program that provides students with a competitive edge to help them become more marketable upon graduation. Students can take OSMS courses and lower liberal courses at the same time during the Spring/Summer terms. The FYEO strongly encourages that students do not take more than 3 courses in those terms at a time due to the fast- paced nature and heavy course load in the Spring/Summer terms. For more information, refer to the <a href = \"https://www.torontomu.ca/engineering-architectural-science/programs/undergraduate/optional-specialization-management-sciences/\" > OSMS page</a>."
             ]
         },
         {
@@ -1002,7 +1090,7 @@
                 "probation contract"
             ],
             "responses": [
-                "Students with an Academic Standing of Probationary are issued a Probationary Contract. The Probationary Contracts (which lists each student's assigned courses) are emailed to students invdividually from the firstyeareng@ryerson.ca email.\nStudents with a Probationary Standing are required to attend a MANDATORY seminar.  At the seminar, an academic advisor will provide complete instructions on how the student proceeds after seminar, along with information about any course restrictions.\nIf students with a Probationary Contract would like to drop a course, they must meet request permission from an academic advisor for approval.  Be aware of timelines and drop deadlines here when advising students. \nIf an incomplete mark leaves a student on probation, they are to meet with an academic advisor and follow with the probationary contract issued until the grade is updated.\n"
+                "Students with an Academic Standing of Probationary are issued a Probationary Contract. The Probationary Contracts (which lists each student's assigned courses) are emailed to students invdividually from the <em>firstyeareng@ryerson.ca </em>email. Students with a Probationary Standing are required to attend a MANDATORY seminar. At the seminar, an academic advisor will provide complete instructions on how the student proceeds after seminar, along with information about any course restrictions. If students with a Probationary Contract would like to drop a course, they must meet request permission from an academic advisor for approval. Be aware of timelines and drop deadlines here when advising students. If an incomplete mark leaves a student on probation, they are to meet with an academic advisor and follow with the probationary contract issued until the grade is updated. "
             ]
         },
         {
@@ -1068,7 +1156,9 @@
                 "What are my required courses?",
                 "What are my required courses for first year?",
                 "What mandatory courses do I have to take?",
-                "What are the mandatory courses?"
+                "What are the mandatory courses?",
+                "what courses do i need to take",
+                "how many courses do i take"
             ],
             "responses": [
                 "The first semester of engineering is a common semester. Every engineering student is automatically enrolled in CEN 100, CHY 102, MTH 140, MTH 141, PCS 211. In the second semester, students will begin branching off into some discipline specific courses with a few common courses. A list of these courses appears in the undergraduate calendar. Please take a look at common <a href = \"https://www.torontomu.ca/first-year-engineering-office/faq/\"> FAQ questions</a>. \n"
@@ -1113,6 +1203,18 @@
             ]
         },
         {
+            "id": 114,
+            "tag": "Ryerson's New Name ",
+            "patterns": [
+                "what is ryerson's new name?",
+                "what is ryerson now called?",
+                "what uni do i go to?"
+            ],
+            "responses": [
+                "We are now Toronto Metropolitan University!"
+            ]
+        },
+        {
             "id": 40,
             "tag": "Scholarships",
             "patterns": [
@@ -1121,7 +1223,7 @@
                 "I want to know more about scholarships?"
             ],
             "responses": [
-                "Information on scholarships as well as links to a full list of non-faculty specific scholarships and awards can be found <a href= \"https://www.torontomu.ca/admissions/scholarships-awards/\" > here. </a> Students can contact the Student Awards and Scholarships office via awards@ryerson.ca "
+                "Information on scholarships as well as links to a full list of non-faculty specific scholarships and awards can be found <a href= \"https://www.torontomu.ca/admissions/scholarships-awards/\" > here. </a> Students can contact the Student Awards and Scholarships office via <a href =\"mailto:awards@ryerson.ca\">awards@ryerson.ca </a> "
             ]
         },
         {
@@ -1205,7 +1307,7 @@
                 "Transfer credits"
             ],
             "responses": [
-                "A self-service application is available on RAMSS after activation of your Ryerson identity. However, some institutions outside of province or Canada require the Manual Application Upload detailed <a href = \" https://www.torontomu.ca/transfer-credits/apply/#undergrad\" > here. </a> Before you apply, make sure to check your eligibility."
+                "A self-service application is available on RAMSS after activation of your Ryerson identity. However, some institutions outside of province or Canada require the <a href = \" https://www.torontomu.ca/transfer-credits/apply/#undergrad\" >Manual Application Upload</a>. Before you apply, make sure to check your eligibility."
             ]
         },
         {
@@ -1216,7 +1318,8 @@
                 "I have a problem with my transfer credits",
                 "Transfer credit issues",
                 "Problem with Transfer credits",
-                "My transfer credits aren't being applied"
+                "My transfer credits aren't being applied",
+                "I have an issue with transfer credits"
             ],
             "responses": [
                 "To ensure the transfer credits are applied to a student's courses, they will need to drop the course that they recieved a transfer credit for, if  RAMSS automatically registered the student into that first year course.\n"
@@ -1247,15 +1350,15 @@
                 "Where can I pay for my tuition fees",
                 "How do I pay for my tuition fees?",
                 "How to make payments?",
-                "How do I pay my course fees?",
                 "How do I pay my school fees?",
                 "How do I view my student fees?",
                 "Where do I view my student fees?",
                 "How do I review and pay student fees?",
                 "How do I pay my fees?",
-                "How much do courses in the summer cost?",
                 "How much will my tuition be for the next semester?\n",
-                "I want to know the cost of my tuition"
+                "I want to know the cost of my tuition",
+                "cost",
+                "payment"
             ],
             "responses": [
                 "\nPayments can be made online through financial institutions. Check the <a href =\"https://www.torontomu.ca/current-students/tuition-fees/pay-fees/ \"> How to Pay Your Fees </a> page for more information. To view your student fees, log in to RAMSS and look under the student fees section of the student centre. The First Year Engineering Office does not advise on financial matters. For information on Fees, ask your question at ask.ryerson.ca or please visit the <a href =\"https://www.torontomu.ca/servicehub/\" > Service Hub </a> website or you can view <a href = \"https://www.torontomu.ca/admissions/tuition-fees/\"> Toronto Metropolitan University Tuition and Fees </a> website for more information.\n"
@@ -1280,7 +1383,9 @@
             "patterns": [
                 "What financial assistance opportunities exist for students affected by the COVID-19 pandemic?",
                 "I have been affected by the pandemic and I need help financially",
-                "Can I get financial help for being affected by the pandemic"
+                "Can I get financial help for being affected by the pandemic",
+                "Covid-19",
+                "Covid"
             ],
             "responses": [
                 "Please check <a href =\"https://www.torontomu.ca/covid-19/students/financial-assistance-awards-student-fees/\"> here </a> for more information."
@@ -1303,7 +1408,7 @@
             "patterns": [
                 "Upper Year Wait List?",
                 "I have a question about waitlists?",
-                "Waitlists"
+                "Upper year waitlist"
             ],
             "responses": [
                 "You need to reach out to the course\u2019s department for waitlists. \n"
@@ -1314,7 +1419,9 @@
             "tag": "Writing Skills Test",
             "patterns": [
                 "What is the Writing Skills Test",
-                "What is the WST?"
+                "What is the WST?",
+                "what is wst",
+                "wst"
             ],
             "responses": [
                 "All first-year engineering students are required to complete and pass the Writing Skills Test (CEN 199). For more information, visit <a href=\"https://www.torontomu.ca/first-year-engineering-office/current-students/writing-skills-test/\">  Writing Skills Test for Engineering Students</a>.\n"
@@ -1355,7 +1462,7 @@
                 "Can i take a Liberal before the writing skills test"
             ],
             "responses": [
-                "Yes, you can take a Liberal before completing the WST successfully. Keep in mind that Liberal courses will be writing heavy so if you didn't do well in the WST you may find the Liberal course challenging. We also encourage students to take a reduced course load in their first year, a Liberal course is one you may want to consider taking over the Spring Summer semesters. Need to complete WST before moving into the 3rd year of study. For more information and recent updates about the WST, please view the <a href =\"https://www.torontomu.ca/first-year-engineering-office/\"> FYEO Website</a>.\n"
+                "You can take a Liberal before completing the WST successfully. Keep in mind that Liberal courses will be writing heavy so if you didn't do well in the WST you may find the Liberal course challenging. We also encourage students to take a reduced course load in their first year, a Liberal course is one you may want to consider taking over the Spring Summer semesters. Need to complete WST before moving into the 3rd year of study. For more information and recent updates about the WST, please view the <a href =\"https://www.torontomu.ca/first-year-engineering-office/\"> FYEO Website</a>. "
             ]
         }
     ]

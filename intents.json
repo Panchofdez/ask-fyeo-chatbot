@@ -259,7 +259,9 @@
                 "How can I JOIN CLUBS?",
                 "where can i find a list of student groups or clubs?",
                 "clubs?",
-                "student groups"
+                "student groups",
+                "is there study groups?",
+                "groups"
             ],
             "responses": [
                 "The Metropolitan University Student Engineering Society has various clubs and events which you might find interesting. You can check out their website or contact them directly for more information. The TMU Students' Union (RSU) also has various student clubs, including some for Engineering which you can also check out on their website. You can also refer to the <a href = \"https://connectru.ryerson.ca/events\">TMU events page</a> for any other events. Just be sure to scroll down to the bottom of the page and click on the \"Load More\" button so it keeps bringing up all the events as not everything will appear on one screen. "
@@ -385,7 +387,8 @@
                 "How can I prepare over the summer for my fall courses?",
                 "How can I prepare for my fall courses?",
                 "How can I prepare for my fall courses during the summer?",
-                "How do I prepare for my fall courses during the summer?"
+                "How do I prepare for my fall courses during the summer?",
+                "What courses can I take to prepare for first year?"
             ],
             "responses": [
                 "This summer, the First-Year Engineering Office (FYEO) will be offering several optional programs such as the Engineering Boost Program - a series of optional mini courses in math, physics, and programming designed to help you improve and reinforce fundamental topics and concepts you\u2019ll encounter later in your first year engineering subjects. These courses are at no cost to you, and you can choose to register in one or two or all three of them to keep your studies up over the summer. Registration is required. The Pre-Orientation, Orientation, Post-Orientation (Engineering POP) programs are an opportunity to learn more about the social and academic aspects of university, get involved on campus early, meet upper-year leaders and ambassadors (FYA), gain valuable leadership skills, network and meet other students with similar interests before orientation week.\n"
@@ -583,7 +586,12 @@
                 "When and where can I see my final grade?",
                 "Where can I see my final grade",
                 "When can I see my final grade",
-                "When do I get my grades?"
+                "When do I get my grades?",
+                "When are final grades out?",
+                "When are grades released",
+                "When are grades out",
+                "When are final grades released",
+                "final grades"
             ],
             "responses": [
                 "Your overall grade for the course will not be posted on D2L. It will be posted on RAMSS. Dates for when official grades will be posted can be found at the <a href = \"https://www.torontomu.ca/registrar/grading/\" > Office of the Registrar's </a> website"
@@ -696,10 +704,12 @@
                 "student ambassador?",
                 "first year ambassador",
                 "fya",
-                "can i talk to a first year ambassador"
+                "can i talk to a first year ambassador",
+                "fyas",
+                "who are the fyas?"
             ],
             "responses": [
-                "Yes! We have our <a href = \"https://www.torontomu.ca/first-year-engineering-office/orientation/first-year-ambassadors/\"> First Year Ambassadors (FYAS) </a>that are dedicated to helping you make the transition to life at Toronto Metropolitan University. Campus student group, club and union leaders, they know exactly what you\u2019re going through and they\u2019re keen to share their knowledge.\n"
+                "We have our <a href = \"https://www.torontomu.ca/first-year-engineering-office/orientation/first-year-ambassadors/\"> First Year Ambassadors (FYAS) </a>that are dedicated to helping you make the transition to life at Toronto Metropolitan University. Campus student group, club and union leaders, they know exactly what you\u2019re going through and they\u2019re keen to share their knowledge. "
             ]
         },
         {
@@ -779,6 +789,22 @@
             ],
             "responses": [
                 "When looking for a laptop, it is really up to personal preference. The software programs that engineering students use for their studies can be found inside the computer labs on campus, and are available remotely through <a href = \"https://www.torontomu.ca/ccs/services/software/Virtual_Applications/\n\" > Computing and Communication Services Virtual Apps</a>."
+            ]
+        },
+        {
+            "id": 118,
+            "tag": "Last day of Classes",
+            "patterns": [
+                "When is the last day of classes?",
+                "When are classes done?",
+                "What day are classes finished?",
+                "When are classes finished?",
+                "when is school done?",
+                "what date are courses done?",
+                "what date are classes done?"
+            ],
+            "responses": [
+                "Classes end for undergraduate students on <i>December 5, 2022</i> for the Fall 2022 term. The final exam period will begin on December 6. The official end of term date is <i>December 18, 2022</i>. Please refer to the school <a href = \"https://www.torontomu.ca/calendar/2022-2023/dates/\">calendar</a> for more details"
             ]
         },
         {
@@ -1183,7 +1209,10 @@
             "patterns": [
                 "Where can I opt out of the RSU Health and Dental coverage?",
                 "How do I opt out of the Health and Dental coverage",
-                "What will happen if I opt out of the RSU health and dental plan?"
+                "What will happen if I opt out of the RSU health and dental plan?",
+                "dental",
+                "health plan",
+                "dentist plan"
             ],
             "responses": [
                 "Complete the opt-out form on the RSU website by October 1st. Refunds are applied to your student account in November. Please visit the Account Inquiry section of your Student Centre on RAMSS to confirm that the credit has been applied. Once you have successfully opted out of the RSU Members\u2019 Health and Dental Plan, your opt out status will be carried forward in subsequent years, and you will not be assessed the RSU Members\u2019 Health and Dental Plan fee.\n"
@@ -1388,7 +1417,7 @@
                 "Covid"
             ],
             "responses": [
-                "Please check <a href =\"https://www.torontomu.ca/covid-19/students/financial-assistance-awards-student-fees/\"> here </a> for more information."
+                "Please refer <a href = \"https://www.torontomu.ca/covid-19/updates/\"> here </a>for updates on Covid-19. Please refer <a href =\"https://www.torontomu.ca/covid-19/students/financial-assistance-awards-student-fees/\"> here </a> for more information on student fees and Covid-19 related issues. "
             ]
         },
         {
@@ -1412,6 +1441,18 @@
             ],
             "responses": [
                 "You need to reach out to the course\u2019s department for waitlists. \n"
+            ]
+        },
+        {
+            "id": 119,
+            "tag": "Winter break",
+            "patterns": [
+                "When is winter break?",
+                "when does winter break start",
+                "winter break"
+            ],
+            "responses": [
+                "Winter break takes place December 23 - January 9. Please refer to the school <a href = \"https://www.torontomu.ca/calendar/2022-2023/dates/\">calendar</a> for more information."
             ]
         },
         {

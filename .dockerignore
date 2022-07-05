@@ -1,8 +1,8 @@
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
+
 .git
 .gitignore
-*.pth
 chatbot-env
 models/*
 models/

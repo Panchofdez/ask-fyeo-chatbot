@@ -65,7 +65,6 @@ def create_app(mode=Mode.PROD,chatbot_mode=Mode.PROD,chatbot_type=ChatbotInterfa
                 db.session.commit()
             except Exception as e:
                 print("ERROR", e)
-                db.drop_all()
             
 
     

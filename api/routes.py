@@ -138,14 +138,14 @@ def start():
             lastname = request.json['lastname']
             program = request.json['program']
             email = request.json['email']
-
-            convo = Conversation(firstname=firstname, lastname=lastname, program=program, email=email)
+            student_id = request.json["student_id"]
+            convo = Conversation(firstname=firstname, lastname=lastname, program=program, email=email, student_id=student_id)
             db.session.add(convo)
             db.session.commit() 
             return jsonify({'conversation': convo})
         except Exception as e:
             print("Error: ", e)
-            return jsonify({'error':'Error in starting conversation'}), 400
+            return jsonify({'error':'Error in starting conversation, please try again'}), 400
 
     return jsonify({'error':'Invalid request type'}), 400
 
@@ -154,12 +154,9 @@ def start():
 def predict():
     if request.method == 'POST':
         try:
-            print("Hello")
             conversation_id = request.json['conversation_id']
             question = request.json['question']
-            print(question, conversation_id)
             tag, response = current_app.config["chatbot"].get_response(question)
-            print(response)
             conversation = Conversation.query.get(conversation_id)
             faq = FAQ.query.filter(FAQ.tag == tag).first()
             if faq == None:
@@ -236,7 +233,7 @@ def getAllConversations(user):
                 resolved_queries = Query.query.filter_by(conversation_id=convoDict['id'] , resolved=True).all()
                 convoDict['resolved'] = len(resolved_queries)
                 response.append(convoDict)
-        
+            
             return jsonify({'conversations': response})
         except Exception as e:
             print("Error: ", e)
@@ -265,7 +262,9 @@ def getConversationsByDate(user):
                 convoDict['unresolved'] = len(unresolved_queries)
                 resolved_queries = Query.query.filter_by(conversation_id=convoDict['id'] , resolved=True).all()
                 convoDict['resolved'] = len(resolved_queries)
+                print(convoDict)
                 response.append(convoDict)
+
         
             return jsonify({'conversations': response})
         except Exception as e:

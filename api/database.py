@@ -1,6 +1,5 @@
 from datetime import datetime
 from dataclasses import dataclass
-from email.policy import default
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -9,7 +8,7 @@ db = SQLAlchemy()
 class Conversation(db.Model):
     __tablename__ = 'conversation'
     id:int
-    student_id = str
+    student_id: str
     firstname: str
     lastname: str
     program:str

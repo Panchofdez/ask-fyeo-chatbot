@@ -151,6 +151,7 @@ class BOWChatbot(Chatbot):
                 if results[0][0] == intent["tag"]:
                     resp = random.choice(intent['responses'])     
                     if self.check_response(intent["tag"],intent['patterns'], sentence, resp ):
+                        #print("TAG", intent["tag"])
                         return  (intent["tag"], f"{resp}")
             results.pop(0) 
 
@@ -173,15 +174,16 @@ class BOWChatbot(Chatbot):
         '''
         question = tokenize(question)
         patterns = ' '.join(patterns)
-        # print("Question", question)
-        # print('Patterns',patterns)
+        #print("Question", question)
+        #print('Patterns',patterns)
         # print("Response", response)
-        ignore_words = ['?', '!', '.', ',', 'are', 'you', 'can', 'and', 'let','where', 'why', 'what', 'how' , 'when', 'who', 'the' ]
-        stemmed_words  = [stem(w) for w in question if w not in ignore_words and len(w) > 2 ] # avoid punctuation or words like I , a , or 
-        # print(stemmed_words)
-        found = [ w for w in stemmed_words if re.search(w,tag.lower() ) != None or re.search(w, patterns.lower())] #check if the question has words related in the response
-        # print("FOUND", found)
+        ignore_words = ['?', '!', '.', ',', 'are', 'you', 'can', 'and', 'let','where', 'why', 'what', 'how' , 'when', 'who', 'the' , 'need', 'for', 'have']
+        stemmed_words  = [stem(w) for w in question if w.lower() not in ignore_words and len(w) > 3 ] # avoid punctuation or words like I , a , or 
+        #print(stemmed_words)
+        found = [ w for w in stemmed_words if re.search(w.lower(),tag.lower() ) != None or re.search(w.lower(), patterns.lower())] #check if the question has words related in the response
+        #print("FOUND", found)
         return len(found) > 0
+       
 
 class NeuralNet(nn.Module):
     def __init__(self, input_size, hidden_size, num_classes):

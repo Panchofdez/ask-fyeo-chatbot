@@ -19,13 +19,11 @@ def token_required(func):
     def inner(*args, **kwargs):
         auth_header = request.headers.get('authorization')
         user= None
-        print("header", auth_header)
         if auth_header:
             token = auth_header.replace("Bearer ", "")
             try:
                 data = jwt.decode(token, current_app.config['SECRET_KEY'],  algorithms=["HS256"])
                 user = Staff.query.filter_by(email=data['email']).first()
-                print("User", user)
             except Exception as e:
                 print("ERROR in getting user: ", e)
                 return jsonify({'error':'Not Authorized'}), 403
@@ -49,7 +47,6 @@ def login():
             password = request.json['password']
             user = Staff.query.filter_by(email=email).first()
 
-            print(email)
             if user is None:
                 return jsonify({'error':'Invalid email'}), 403
 
@@ -57,7 +54,6 @@ def login():
                 return jsonify({'error':'Invalid credentials'}), 403
             token = jwt.encode({'email': user.email,'exp' : datetime.utcnow() + timedelta(minutes=45)},  current_app.config['SECRET_KEY'], algorithm="HS256")
 
-            print(token)
 
             return jsonify({'token': token})
         except Exception as e:
@@ -109,12 +105,10 @@ def addStaff(user):
 @cross_origin()
 @token_required
 def removeStaff(user, id):
-    print("hello")
     if request.method == 'DELETE':
         try:
             
             staffMember = Staff.query.get(id)
-            print(staffMember)
             if user.email == staffMember.email:
                 return jsonify({'error':"Can't remove yourself from staff access"}), 400
             
@@ -166,7 +160,6 @@ def predict():
 
             db.session.add(query)
             db.session.commit()
-            print('RESPONSE ', response)
             return jsonify({ 'query': query})
         except Exception as e:
             print("Error: ", e)
@@ -183,7 +176,6 @@ def resolve():
         try:
             query_id = request.json['query_id']
             conversation_id = request.json['conversation_id']
-            print(query_id, conversation_id)
             conversation = Conversation.query.get(conversation_id)
             query = Query.query.get(query_id)
             if query.conversation_id != conversation.id:
@@ -250,9 +242,8 @@ def getConversationsByDate(user):
             year = request.args.get('year')
             month = request.args.get('month')
             day = request.args.get('day')
-            print(year, month, day)
             startDate  = datetime(year=int(year), month = int(month), day=int(day)) # datetime day and months starts at 1, javascript months start at 0
-            print(startDate)
+
         
             conversations = Conversation.query.filter(Conversation.date >= startDate ).order_by(Conversation.date.desc())
             response = []
@@ -262,7 +253,6 @@ def getConversationsByDate(user):
                 convoDict['unresolved'] = len(unresolved_queries)
                 resolved_queries = Query.query.filter_by(conversation_id=convoDict['id'] , resolved=True).all()
                 convoDict['resolved'] = len(resolved_queries)
-                print(convoDict)
                 response.append(convoDict)
 
         
@@ -288,7 +278,6 @@ def getConversationsByDateRange(user):
             endDay = request.args.get('endDay')
             startDate  = datetime(year=int(startYear), month = int(startMonth), day=int(startDay))
             endDate = datetime(year=int(endYear), month=int(endMonth), day=int(endDay))
-            print(startDate, endDate)
         
             conversations = Conversation.query.filter(Conversation.date.between(startDate, endDate)).order_by(Conversation.date.desc()).all()
           
@@ -315,11 +304,8 @@ def getConversationsByDateRange(user):
 def getConversation(user,conversation_id):
     if request.method  == 'GET':
         try:
-            print("CONVO ID: ", conversation_id)
             conversation = Conversation.query.get(conversation_id)
             queries = Query.query.filter_by(conversation_id=conversation_id).all()
-            print('CONVO: ', conversation)
-            print('Queries: ', queries)
             return jsonify({'conversation': conversation, 'queries': queries})
 
         except Exception as e:
@@ -335,12 +321,10 @@ def getConversation(user,conversation_id):
 def updateConversation(user,conversation_id):
     if request.method == 'PUT':
         try:
-            print("CONVO ID: ", conversation_id)
             conversation = Conversation.query.get(conversation_id)
             queries = Query.query.filter_by(conversation_id=conversation_id).all()
             conversation.contact = False
             db.session.commit()
-            print("Convo: ", conversation)
             return jsonify({'conversation': conversation, 'queries': queries})
 
         except Exception as e:
@@ -388,9 +372,7 @@ def getQueriesByDate(user):
             year = request.args.get('year')
             month = request.args.get('month')
             day = request.args.get('day')
-            print(year, month, day)
             startDate  = datetime(year=int(year), month = int(month), day=int(day)) 
-            print(startDate)
             queries = Query.query.join(Conversation).filter(Conversation.date >= startDate).order_by(Conversation.date.desc()).all()
             return jsonify({'queries': queries})
 
@@ -414,7 +396,6 @@ def getQueriesByDateRange(user):
             endDay = request.args.get('endDay')
             startDate  = datetime(year=int(startYear), month = int(startMonth), day=int(startDay))
             endDate = datetime(year=int(endYear), month=int(endMonth), day=int(endDay))
-            print(startDate, endDate)
             queries = Query.query.join(Conversation).filter(Conversation.date.between(startDate, endDate)).order_by(Conversation.date.desc()).all()
             return jsonify({'queries': queries})
 
@@ -478,9 +459,7 @@ def getStatsByDate(user):
             year = request.args.get('year')
             month = request.args.get('month')
             day = request.args.get('day')
-            print(year, month, day)
             startDate  = datetime(year=int(year), month = int(month), day=int(day)) 
-            print(startDate)
             conversations = Conversation.query.filter(Conversation.date >= startDate )
             queries = Query.query.join(Conversation).filter(Conversation.date >= startDate)
             convoCount = getCount(conversations)
@@ -534,7 +513,6 @@ def getStatsByDateRange(user):
             endDay = request.args.get('endDay')
             startDate  = datetime(year=int(startYear), month = int(startMonth), day=int(startDay))
             endDate = datetime(year=int(endYear), month=int(endMonth), day=int(endDay))
-            print(startDate, endDate)
         
             conversations = Conversation.query.filter(Conversation.date.between(startDate, endDate))
             queries = Query.query.join(Conversation).filter(Conversation.date.between(startDate, endDate))
@@ -587,13 +565,10 @@ def getChartData(user):
             for i in range(1, int(currentDate) + 1):
                 dayCounts[i] = 0
             for c in conversations:
-                print(c.date)
                 dayOfMonth = c.date.strftime("%d")
-                print(dayOfMonth)
 
                 dayCounts[int(dayOfMonth)] +=1 
                 
-            print(dayCounts)
             result = []
             for (day, count) in dayCounts.items():
                 result.append({
@@ -622,7 +597,6 @@ def getFAQ(user):
             unidentified_queries = Query.query.filter(Query.faq_id == None).all()
             num_total_queries = functools.reduce(lambda acc, f: acc + len(f.queries),faqs, 0) + len(unidentified_queries)
             
-            print(num_total_queries)
             faqs = addFAQStats(faqs, unidentified_queries, num_total_queries)
           
             return jsonify({"FAQ": faqs})
@@ -716,7 +690,6 @@ def updateFAQ(user):
 
             patterns = '|'.join(patterns)
             responses = '|'.join(responses)
-            print("Date", datetime.now())
             current_faq = FAQ.query.filter(FAQ.tag == tag).first()
             current_faq.patterns = patterns
             current_faq.responses = responses
@@ -740,7 +713,6 @@ def updateFAQ(user):
 def deleteFAQ(user, faq_id):
     if request.method == 'DELETE':
         try:
-            print(faq_id) 
             faq = FAQ.query.get(faq_id)
             
             db.session.delete(faq)
@@ -787,9 +759,7 @@ def getFAQQueriesByDate(user, faq_id):
             year = request.args.get('year')
             month = request.args.get('month')
             day = request.args.get('day')
-            print(year, month, day)
             startDate  = datetime(year=int(year), month = int(month), day=int(day)) 
-            print(startDate)
             queries = Query.query.join(Conversation).filter(Query.faq_id == faq_id).filter(Conversation.date >= startDate).order_by(Conversation.date.desc()).all()
             return jsonify({'queries': queries})
 
@@ -815,7 +785,6 @@ def getFAQQueriesByDateRange(user, faq_id):
             endDay = request.args.get('endDay')
             startDate  = datetime(year=int(startYear), month = int(startMonth), day=int(startDay))
             endDate = datetime(year=int(endYear), month=int(endMonth), day=int(endDay))
-            print(startDate, endDate)
             queries = Query.query.join(Conversation).filter(Query.faq_id == faq_id).filter(Conversation.date.between(startDate, endDate)).order_by(Conversation.date.desc()).all()
             return jsonify({'queries': queries})
 

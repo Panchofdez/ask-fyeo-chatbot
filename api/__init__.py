@@ -28,6 +28,9 @@ def create_app(mode=Mode.PROD,chatbot_mode=Mode.PROD,chatbot_type=ChatbotInterfa
         app.debug = True
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SECRET_KEY'] = os.environ.get('MY_SECRET_KEY')
+    app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
+        "pool_pre_ping": True,
+    }
 
     db.init_app(app)    
     cors.init_app(app)
@@ -45,11 +48,10 @@ def create_app(mode=Mode.PROD,chatbot_mode=Mode.PROD,chatbot_type=ChatbotInterfa
                 with open('intents.json', 'r', encoding='utf8') as f:
                     file_data = json.loads(f.read())
                     for q in file_data['intents']:
-                        #print(q)
                         tag = q['tag']
                         patterns = q['patterns']
                         responses = q['responses']
-                        print(tag, patterns, responses)
+                    
                         if len(list(filter(lambda p: p.find('|') != -1, patterns))) > 0 or len(list(filter(lambda r: r.find('|') != -1, responses))) > 0:
                             continue
 

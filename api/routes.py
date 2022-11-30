@@ -150,6 +150,9 @@ def predict():
         try:
             conversation_id = request.json['conversation_id']
             question = request.json['question']
+            faqs = FAQ.query.order_by(FAQ.tag).all()
+            faqs = list(map(formatFAQ, map(asdict, faqs)))
+            current_app.config["chatbot"].data = {"intents":faqs}
             tag, response = current_app.config["chatbot"].get_response(question)
             conversation = Conversation.query.get(conversation_id)
             faq = FAQ.query.filter(FAQ.tag == tag).first()

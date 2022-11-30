@@ -18,7 +18,7 @@
                 "Can I get an earlier enrollment date?"
             ],
             "responses": [
-                "Priority Enrolment Appointments for 1st Year Students Begins on December 30, 2022 at 8:00 a.m. You can make changes to your schedule during your enrolment period. To make schedule changes, students may do so on RAMSS (Ryerson Administrative Management Self Serivce) or VSB (Visual Schedule builder). Please visit the <a href = \"https://www.torontomu.ca/calendar/2022-2023/dates/\"> Significant Dates Calendar for important dates</a>."
+                "Priority Enrolment Appointments for 1st Year Students Begin on December 30, 2022 at 8:00 a.m. You can make changes to your schedule during your enrolment period. To make schedule changes, students may do so on MyServiceHub or VSB (Visual Schedule builder). Please visit the <a href = \"https://www.torontomu.ca/calendar/2022-2023/dates/\"> Significant Dates Calendar for important dates</a>.\n"
             ]
         },
         {
@@ -81,7 +81,8 @@
                 "Course feels too heavy",
                 "Course load is too heavy",
                 "Struggling with my classes",
-                "i need help"
+                "i need help",
+                "where can I find academic help?\n"
             ],
             "responses": [
                 "We are available to answer your questions when you stop by our office (located: ENG340A) Monday to Friday from 9 am to 4 pm, or email us at firstyeareng@ryerson.ca. If your question requires you to meet with an academic advisor, you may <a href=\"https://www.torontomu.ca/first-year-engineering-office/academic-support/academic-advising/\">book a one-on-one appointment</a>. Please note that you must include your TMU email address when booking an appointment with an academic advisor. Alternatively, you can book an appointment through the FYEng Mobile app."
@@ -204,7 +205,7 @@
                 "How do students submit appeals?"
             ],
             "responses": [
-                "Students can submit a Grade or Standing Appeal if it falls under one of the grounds for appeal identified in the <a href \"https://www.torontomu.ca/content/dam/senate/policies/pol167.pdf\">TMU Academic Consideration Policy 167</a>. Once final grades are posted on RAMMS you can submit an appeal, if you believe you have grounds. Here is the link to the <a href= \"https://www.torontomu.ca/senate/appeals/\" > TMU Senate Appeals portal</a>. Note: there are deadlines for Grade Appeals and Standing Appeals at the end of each semester listed on the <a href = \"https://www.torontomu.ca/calendar/2022-2023/dates/\" > Significant Dates Calendar</a>. Students are encouraged to contact the Academic Advocacy at the <a href=\" https://yourtmsu.ca/\"> TMU Students\u2019 Union</a> who provide students with workshops, information and advising on appeals. The TMU Ombudsperson also has resources regarding appeals on their website"
+                "Students can submit a Grade or Standing Appeal if it falls under one of the grounds for appeal identified in the <a href \"https://www.torontomu.ca/content/dam/senate/policies/pol167.pdf\">TMU Academic Consideration Policy 167</a>. Once final grades are posted on <a href = \"https://www.torontomu.ca/myservicehub-support/\" > MyServiceHub </a> you can submit an appeal, if you believe you have grounds. Here is the link to the <a href= \"https://www.torontomu.ca/senate/appeals/\" > TMU Senate Appeals portal</a>. Note: there are deadlines for Grade Appeals and Standing Appeals at the end of each semester listed on the <a href = \"https://www.torontomu.ca/calendar/2022-2023/dates/\" > Significant Dates Calendar</a>. Students are encouraged to contact the Academic Advocacy at the <a href=\" https://yourtmsu.ca/\"> TMU Students\u2019 Union</a> who provide students with workshops, information and advising on appeals. The TMU Ombudsperson also has resources regarding appeals on their website"
             ]
         },
         {
@@ -214,7 +215,8 @@
                 "i want to take asl 100 but its not allowing me to enroll via RAMSS",
                 "why can't i enroll in asl 100?",
                 "i want to take asl 100 but its not allowing me to enroll via RAMSS",
-                "why can't i enroll in asl 100?"
+                "why can't i enroll in asl 100?",
+                "MyServiceHub enrolment"
             ],
             "responses": [
                 "For any assistance regarding language courses please email wcrolla@ryerson.ca or visit Languages, Literatures and Cultures website for more information.\n\nPlease also note that for enrolment into Language courses students will be required to complete a <a href=\"https://www.torontomu.ca/llc/placementspathways/placement_tests/\"> Placement Test</a>, you can find out more about the Placement Test and how to access them on the <a href=\"https://www.torontomu.ca/llc/contact/\"> Languages, Literatures and Cultures website</a>. "
@@ -334,7 +336,8 @@
                 "Chang courses in first year",
                 "Are engineering courses offered through the Chang School?",
                 "Are the drop dates for TMU courses the same as for Chang School courses?",
-                "Are the drop dates for TMU courses the same as for Chang School courses?"
+                "Are the drop dates for TMU courses the same as for Chang School courses?",
+                "When are the drop dates for Chang courses"
             ],
             "responses": [
                 "Courses through the Chang School that you can take as an engineering student are CCMN 432, CECN 801 and Liberal Studies courses.\n\nTo find out more about Chang School courses, when they are offered and the corresponding deadlines you can visit the <a href= \"https://continuing.torontomu.ca/search/publicCourseAdvancedSearch.do?method=doPaginatedSearch&showInternal=false&cspIndex=true&isPageDisplayed=true&courseSearch.courseDescriptionKeyword=&courseSearch.disciplineCode=&courseSearch.partialCourseNumber=&courseSearch.courseCategoryStringArray=0&courseSearch.sectionSemesterIdString=2341653&courseSearch.sectionDayOfWeekStringArray=0&courseSearch.sectionStartTimeStringArray=0&courseSearch.sectionStartMonthStringArray=0\"> Chang School website</a>. "
@@ -362,10 +365,13 @@
                 "dropping  a course",
                 "i need to drop a course",
                 "Can I make changes to my class schedule?",
-                "I want to drop one of my courses "
+                "I want to drop one of my courses ",
+                "changing my schedule through ramss",
+                "changing my schedule through myservicehub",
+                "Need assistance in dropping a course\n"
             ],
             "responses": [
-                "Your schedule will be made for you at the beginning of the semester, provided that you completed your course intentions. You can make changes to your schedule during your enrolment period. To make schedule changes, students may do so on RAMSS (Ryerson Administrative Management Self Serivce) or VSB (Visual Schedule builder). Students who were admitted late will need to create their own timetable. Visit the RAMSS Support page for step-by-step instructions. For more general information about your first-year timetable, please refer to the <a href = \"https://www.torontomu.ca/studentguide/learning_experience/\" > Undergraduate Student Guide</a>."
+                "Your schedule will be made for you at the beginning of the semester, provided that you completed your course intentions. You can make changes to your schedule during your enrolment period. To make schedule changes, students may do so on MyServiceHub or VSB (Visual Schedule builder). Students who were admitted late will need to create their own timetable. Visit the <a href = \"https://www.torontomu.ca/myservicehub-support/\" > MyServiceHub Support </a> page for step-by-step instructions. For more general information about your first-year timetable, please refer to the <a href = \"https://www.torontomu.ca/studentguide/learning_experience/\" > Undergraduate Student Guide</a>."
             ]
         },
         {
@@ -376,7 +382,7 @@
                 "How will I know when spots open up for classes?"
             ],
             "responses": [
-                "Unfortunately, there is no way to be notified of open spots you will need to continue to monitor RAMSS to see if a spot opens up.\n"
+                "Unfortunately, there is no way to be notified of open spots you will need to continue to monitor <a href = \"https://www.torontomu.ca/myservicehub-support/\" > MyServiceHub </a> page to see if a spot opens up.\n"
             ]
         },
         {
@@ -400,8 +406,7 @@
             "patterns": [
                 "Can I have access to computers in campus?",
                 "Do I have access to computers on campus",
-                "Do I have access to computers",
-                "What should I do if I want to access resources for first year studies?"
+                "Do I have access to computers"
             ],
             "responses": [
                 "The Library has over 250 desktop computers available for you to use. These computers are available in open areas and labs on the main (2nd), 3rd and 6th floors of the library, with a few machines on floors 5-10. Most require users to login with their my.ryerson username and password. Find more information <a href = \"https://library.torontomu.ca/services/facilities/computer/#:~:text=The%20Library%20has%20over%20250,ryerson%20username%20and%20password.\"> here</a>."
@@ -464,10 +469,13 @@
                 "enrollment",
                 "enrolment",
                 "how do i enrol",
-                "How can I swap a class?"
+                "How can I swap a class?",
+                "swapping classes via ramss or myservicehubb",
+                "swapping classes via ramss or myservicehub",
+                "Need assistance in dropping a course\n"
             ],
             "responses": [
-                "Use the RAMSS Shopping Cart to add, swap, and drop classes. There are FYEO <a href = \"https://www.youtube.com/c/FirstYearEngineeringOffice\" >Youtube tutorials </a> provided online for enrolling, swapping and dropping courses. "
+                "Use the <a href = \"https://www.torontomu.ca/myservicehub-support/\" > MyServiceHub </a>  Shopping Cart to add, swap, and drop classes. There are FYEO <a href = \"https://www.youtube.com/c/FirstYearEngineeringOffice\" >Youtube tutorials </a> provided online for enrolling, swapping and dropping courses."
             ]
         },
         {
@@ -480,7 +488,7 @@
                 "What is course enrollment for?"
             ],
             "responses": [
-                "Enrollment is the process of selecting your courses for the academic year and adding them to RAMSS. During the course enrollment period, you can adjust your course schedule by adding, dropping or swapping classes. All incoming engineering students have the same first-year courses. Please check the undergraduate calendar for your year of admittance. Please check to make sure you are enrolled in these courses. In addition to your 5 engineering course, you have to take 1 lower-level liberal course from Table A. The FYEO does not encourage students to take their Table A in the 1st semester, the two Table A's, one Table B and one Table B from the short list, can be completed anytime before graduation and students may want to consider taking them over a Spring/Summer semester. You can review Table A and decide on what course interests you. From here, please refer to <a href =\" https://www.torontomu.ca/ramss-support/students/academics/continuing-education/how-to-enrol/\" >How to Enrol - RAMSS Support </a>to enroll.  "
+                "Enrollment is the process of selecting your courses for the academic year and adding them to <a href = \"https://www.torontomu.ca/myservicehub-support/\" > MyServiceHub</a>. During the course enrollment period, you can adjust your course schedule by adding, dropping or swapping classes. All incoming engineering students have the same first-year courses. Please check the undergraduate calendar for your year of admittance. Please check to make sure you are enrolled in these courses. In addition to your 5 engineering course, you have to take 1 lower-level liberal course from Table A. The FYEO does not encourage students to take their Table A in the 1st semester, the two Table A's, one Table B and one Table B from the short list, can be completed anytime before graduation and students may want to consider taking them over a Spring/Summer semester. You can review Table A and decide on what course interests you. From here, please refer to <a href =\"https://www.torontomu.ca/myservicehub-support/students/academics/how-to-enrol/\" >How to Enrol - MyServiceHub Support </a>to enroll.\n\n\n"
             ]
         },
         {
@@ -506,7 +514,7 @@
                 "When do I fill them out"
             ],
             "responses": [
-                "Course intentions is the process where returning students indicate the courses they wish to take in the upcoming academic year via RAMSS. Please check the <a href=\"https://www.torontomu.ca/calendar/2022-2023/dates/\"> Significant Dates webpage </a> to find the dates of course intentions periods and course intentions adjustment periods, during which you can complete and edit your course intentions. For more information, please  go to the <a href=\"https://www.torontomu.ca/current-students/course-enrolment/course-intentions/\"> Course Intentions Webpage</a>.\n\nEnrollment is the process of selecting your courses for the academic year and adding them to RAMSS. During the course enrollment period, you can adjust your course schedule by adding, dropping or swapping classes. All incoming engineering students have the same first-year courses. Please check the undergraduate calendar for your year of admittance. Please check to make sure you are enrolled in these courses. \n\nIn addition to your 5 engineering course, you have to take 1 lower-level liberal course from Table A.\nThe FYEO does not encourage students to take their Table A in the 1st semester, the two Table A's, one Table B and one Table B from the short list, can be completed anytime before graduation and students may want to consider taking them over a Spring/Summer semester. \nYou can review Table A and decide on what course interests you. From here, please refer to <a href =\"https://www.torontomu.ca/ramss-support/students/academics/how-to-enrol/\"> How to Enrol - RAMSS Support page to enroll in courses</a>.  "
+                "Course intentions is the process where returning students indicate the courses they wish to take in the upcoming academic year via <a href = \"https://www.torontomu.ca/myservicehub-support/\" > MyServiceHub</a>. Please check the <a href=\"https://www.torontomu.ca/calendar/2022-2023/dates/\"> Significant Dates webpage </a> to find the dates of course intentions periods and course intentions adjustment periods, during which you can complete and edit your course intentions. For more information, please go to the <a href=\"https://www.torontomu.ca/current-students/course-enrolment/course-intentions/\"> Course Intentions Webpage</a>. Enrollment is the process of selecting your courses for the academic year and adding them to  <a href = \"https://www.torontomu.ca/myservicehub-support/\" > MyServiceHub</a>. During the course enrollment period, you can adjust your course schedule by adding, dropping or swapping classes. All incoming engineering students have the same first-year courses. Please check the undergraduate calendar for your year of admittance. Please check to make sure you are enrolled in these courses. In addition to your 5 engineering course, you have to take 1 lower-level liberal course from Table A. The FYEO does not encourage students to take their Table A in the 1st semester, the two Table A's, one Table B and one Table B from the short list, can be completed anytime before graduation and students may want to consider taking them over a Spring/Summer semester. You can review Table A and decide on what course interests you. From here, please refer to <a href =\"https://www.torontomu.ca/myservicehub-support/students/academics/how-to-enrol/\"> How to Enrol - MyServiceHub Support page to enroll in courses</a>."
             ]
         },
         {
@@ -642,18 +650,6 @@
             ],
             "responses": [
                 "The last day for Fall Course Drop (Full Refund) is Friday, September 16, 2022. The last day for Fall Course Drop (50% Refund) is October 7, 2022. The last day for Fall Course Drop (No Refund or Fees) is November 18, 2022. For more information about drop dates please refer to the school <a href = \"https://www.torontomu.ca/calendar/2022-2023/dates/\" > calendar. </a>"
-            ]
-        },
-        {
-            "id": 145,
-            "tag": "Drop Dates Chang",
-            "patterns": [
-                "Are the drop dates for TMU courses the same as for Chang School courses?",
-                "What are the drop dates for Chang School courses?",
-                "When are the drop dates for Chang courses"
-            ],
-            "responses": [
-                "TO-DO\n"
             ]
         },
         {
@@ -796,7 +792,7 @@
                 "final grades"
             ],
             "responses": [
-                "Official grades for the Fall 2022 semester are released on RAMSS on Thursday, January 12, 2023. Please refer to the <a href=\"https://www.torontomu.ca/calendar/2022-2023/dates/\"> Significant Dates calendar </a>for other relevant dates. "
+                "Official grades for the Fall 2022 semester are released on  <a href = \"https://www.torontomu.ca/myservicehub-support/\" > MyServiceHub</a>\n on Thursday, January 12, 2023. Please refer to the <a href=\"https://www.torontomu.ca/calendar/2022-2023/dates/\"> Significant Dates calendar </a>for other relevant dates.\n"
             ]
         },
         {
@@ -823,7 +819,9 @@
                 "There is an error with my final grade on RAMSS",
                 "I think my final grade on RAMSS has an error",
                 "My final grade has an error",
-                "final grade error"
+                "final grade error",
+                "myservice hub error",
+                "myservicehub error"
             ],
             "responses": [
                 "Contact your course coordinator and explain why you think an error was made. Include relevant calculations that demonstrate how you calculated your grade to make it easier for them to find any discrepancies.\n"
@@ -958,7 +956,7 @@
                 "Can I boost my grade"
             ],
             "responses": [
-                "The only reason for changing a grade would be a marking issue. First, wait until you see your grade on RAMSS. The instructor may have made some kind of adjustment that resulted in your obtaining a passing grade. Second, instructors have already considered/reviewed the overall grades before sending them to the Registrar and usually will not change their minds once a decision has been made. Grades are based on the merit of the work done in the course. "
+                "The only reason for changing a grade would be a marking issue. First, wait until you see your grade on  <a href = \"https://www.torontomu.ca/myservicehub-support/\" > MyServiceHub</a>. The instructor may have made some kind of adjustment that resulted in your obtaining a passing grade. Second, instructors have already considered/reviewed the overall grades before sending them to the Registrar and usually will not change their minds once a decision has been made. Grades are based on the merit of the work done in the course.\n\n"
             ]
         },
         {
@@ -987,17 +985,6 @@
             ],
             "responses": [
                 "If you are interested in on-campus jobs please refer to the <a href=\"https://www.torontomu.ca/student-financial-assistance/student-employment/undergrad-careers/\" target=\"_blank\">Career Boost page</a> for more information. You can also reach out to jobs@ryerson.ca for any questions regarding obtaining career boost approval."
-            ]
-        },
-        {
-            "id": 129,
-            "tag": "Kerr Hall",
-            "patterns": [
-                "How do i get to kerr hall from slc?",
-                "How do i get to kerr hall?"
-            ],
-            "responses": [
-                "TO-DO\n"
             ]
         },
         {
@@ -1115,18 +1102,6 @@
             ]
         },
         {
-            "id": 124,
-            "tag": "Liberal Search",
-            "patterns": [
-                "How do I search for a Liberal?",
-                "How do I find the available liberals",
-                "Where can I search for liberals"
-            ],
-            "responses": [
-                "TO-DO: instructions for how to search the Liberals Table A and B list, with a note to check against the Restricted List, and/or navigations for the Student Centre page -> Enroll -> Fall 2022 -> My Classes Offered, and then scroll down to the Table A and Table B section with the preselected options"
-            ]
-        },
-        {
             "id": 160,
             "tag": "Liberal Studies",
             "patterns": [
@@ -1159,10 +1134,8 @@
                 "Should I take a liberal in first year?",
                 "Can I take liberals in first year",
                 "Do I need to take liberals in first year",
-                "Do I need to complete a liberal in my first semseter?",
-                "Do I need to complete a liberal in my first semseter?",
                 "When do you recommend taking your liberal studies? ",
-                "How do I know if the course I want to take is an accepted Liberal Studies course that will count towards by degree?"
+                "Do I need to complete a liberal in my first semester?"
             ],
             "responses": [
                 "This varies for every student. Some students decide to take it in the Fall along with the required 5 (or less courses) and some decide to do them in the spring or in upper years. **We don\u2019t encourage a full course load (of 6 courses) especially with online learning.** All Engineering students are required to complete four Liberal Studies Courses as per their graduation requirements. You do not have to take your Liberal courses in your first year of study; liberal courses just have to be completed before you apply to graduate. Many students use the Spring/Summer term to complete their liberals or complete them in their later years so they can concentrate more on their Engineering courses, especially in their first year. In total, students must take TWO (2) Table A - Lower Level Liberals, ONE (1) Table B - Upper Level Liberal, and ONE (1) Engineering Upper Level Liberal. Please note that first-year engineering midterms are often held on Fridays from 6 p.m. - 8 p.m., so you should ensure that you do not enroll in a Liberal studies course that conflicts with this time.\n"
@@ -1217,10 +1190,8 @@
                 "I have a low cgpa. Does this affect my standing?",
                 "What do I do to maintain a clear academic standing?",
                 "What if my cgpa is below a 1.67?",
-                "What if my tgpa is below a 1.33",
-                "CGPA",
-                "TGPA",
-                "What if I have a CGPA less than 1.67?"
+                "What if I have a CGPA less than 1.67?",
+                "low cgpa"
             ],
             "responses": [
                 "If your CGPA is between 1.00 and 1.66, you will be put on probation. If your CGPA is below 1.00, you will be Required to Withdraw (RTW) unless you are a new student to Toronto Metropolitan University in your first term (Fall). In this case the student\u2019s standing is set to Probationary. For more information, refer to <a href= \"https://www.ryerson.ca/first-year-engineering-office/academic-support/academic-standing/\" >Academic Standing.<a/>"
@@ -1385,7 +1356,8 @@
                 "will osap cover my spring/summer tuition fees?",
                 "Will my OSAP go directly to my RAMSS account?",
                 "Do I need to pay for courses taken in the Summer",
-                "when do i pay fees"
+                "when do i pay fees",
+                "where can I get financial advice?\n"
             ],
             "responses": [
                 "The First Year Engineering Office does not deal with finances. Contact the <a href =\"https://www.torontomu.ca/servicehub/\" > Service Hub </a> for all OSAP/financial assistance questions. Please visit the OSAP website or ServiceHub website to get your questions and concerns about OSAP answered."
@@ -1401,7 +1373,8 @@
                 "Engineering Specialization",
                 "What is an Engineering Specialization program?\n",
                 "What specializations are offered?",
-                "Engineering specialization"
+                "Engineering specialization",
+                "What is OSMS"
             ],
             "responses": [
                 "FEAS offers the Optional Specialization is Management Science (OSMS), a program that provides students with a competitive edge to help them become more marketable upon graduation. Students can take OSMS courses and lower liberal courses at the same time during the Spring/Summer terms. The FYEO strongly encourages that students do not take more than 3 courses in those terms at a time due to the fast- paced nature and heavy course load in the Spring/Summer terms. For more information, refer to the <a href = \"https://www.torontomu.ca/engineering-architectural-science/programs/undergraduate/optional-specialization-management-sciences/\" > OSMS page</a>."
@@ -1413,7 +1386,10 @@
             "patterns": [
                 "Can I enroll into OSMS courses in the Fall?",
                 "When can I enroll in OSMS courses?",
-                "OSMS"
+                "when can i enroll in OSMS",
+                "OSMS courses",
+                "when are OSMS courses available",
+                "when are OSMS courses offered"
             ],
             "responses": [
                 "OSMS courses are offered in the spring term only and run from May until early July each year. The only course that will be available in the Fall semester will be ECN 801 which you can take if you have not already. It will be offered both regularly and through Chang School. You can find out more about OSMS <a href=\"https://www.torontomu.ca/engineering-architectural-science/programs/undergraduate/optional-specialization-management-sciences/\" target=\"_blank\">here</a>."
@@ -1438,7 +1414,6 @@
                 "How do I change programs?",
                 "How do I transfer to another Engineering program",
                 "How do I transfer to another program",
-                "I want to change my program out of engineering",
                 "I want to change my program",
                 "Are plan changes guaranteed"
             ],
@@ -1468,7 +1443,7 @@
                 "What do I do if my plan change is denied?",
                 "What do I do if it is denied?",
                 "What do I do if my Plan Changes is denied?",
-                "Are plan changes guaranteed?"
+                "what if my plan change is disapproved"
             ],
             "responses": [
                 "Students can re-submit a Plan Change for the following semester to be re-considered.\nStudents may also want to meet with the First-Year Academic Services and Success Facilitator\n"
@@ -1524,10 +1499,16 @@
             "patterns": [
                 "What is RAMSS?",
                 "What is RAMSS for? ",
-                "What does RAMSS mean? "
+                "What does RAMSS mean? ",
+                "what is myservicehub?",
+                "myservicehub?",
+                "what happened to rammss?",
+                "what happened to ramss?",
+                "why did ramss change to myservice hub>",
+                "why did ramss change to myservice hub?"
             ],
             "responses": [
-                "RAMSS stands for Ryerson's Administrative Management Self Service. It is utilized by students to view their academic, financial and personal information at TMU.\n"
+                " <a href = \"https://www.torontomu.ca/myservicehub-support/\" > MyServiceHub</a>, previously known as RAMSS is a one-stop shop for everything you need to do online, such as viewing your academic, financial and personal information at Toronto Metropolitan University (TMU).\n\n"
             ]
         },
         {
@@ -1538,7 +1519,9 @@
                 "I have trouble paying my fees",
                 "I have trouble paying my fees on RAMSS",
                 "I have payment issues on RAMSS",
-                "I have problems with paying my tuition fees"
+                "I have problems with paying my tuition fees",
+                "paying issue on myservicehub",
+                "payment on myservicehub"
             ],
             "responses": [
                 "Please visit the ServiceHub for any questions regarding fees, as the First Year Engineering Office does not deal with finances. Try finding the answer to your question first at ask.ryerson.ca, and if you cannot find what you're looking for, fill out the <a href = \"https://docs.google.com/forms/d/e/1FAIpQLSeNvEBgjuNXuWjsI0hPan1OtYrvVIPvc9eW89iSsfe6qGQE7Q/viewform\"> ServiceHub help form</a>. \n"
@@ -1613,10 +1596,11 @@
             "patterns": [
                 "What should I do if I want to access resources for first year studies",
                 "What should I do if I want to access resources",
-                "What resources are available for first-years"
+                "What resources are available for first-years",
+                "where can I find academic help?\n"
             ],
             "responses": [
-                "TO-DO: Library access/fyeo office/campus store for textbooks etc.\n"
+                "Please check out the website for <a href=\"https://www.torontomu.ca/first-year-engineering-office/academic-support/student-learning-support/\" > student learning resources</a> ."
             ]
         },
         {
@@ -1635,7 +1619,7 @@
                 "Health and dental plan tmsu"
             ],
             "responses": [
-                "Complete the <a href=\"https://www.google.com/url?q=https://yourtmsu.ca/health-and-dental&sa=D&source=editors&ust=1666196665423824&usg=AOvVaw3tIGYZZJBn0N_S6bh3Q86Q\"> opt-out form</a> on the RSU website by October 7th. Refunds are applied to your student account in November. Please visit the Account Inquiry section of your Student Centre on RAMSS to confirm that the credit has been applied. Once you have successfully opted out of the RSU Members\u2019 Health and Dental Plan, your opt out status will be carried forward in subsequent years, and you will not be assessed the RSU Members\u2019 Health and Dental Plan fee.\n"
+                "Complete the <a href=\"https://www.google.com/url?q=https://yourtmsu.ca/health-and-dental&sa=D&source=editors&ust=1666196665423824&usg=AOvVaw3tIGYZZJBn0N_S6bh3Q86Q\"> opt-out form</a> on the RSU website by October 7th. Refunds are applied to your student account in November. Please visit the Account Inquiry section of your Student Centre on MyServiceHub (previously known as RAMSS) to confirm that the credit has been applied. Once you have successfully opted out of the RSU Members\u2019 Health and Dental Plan, your opt out status will be carried forward in subsequent years, and you will not be assessed the RSU Members\u2019 Health and Dental Plan fee.\n"
             ]
         },
         {
@@ -1779,7 +1763,7 @@
                 "How do I contact the Service Hub? "
             ],
             "responses": [
-                "The ServiceHub has requested that general questions are asked at <a href = \"https://ryerson.intelliresponse.com/\" >ask.ryerson.ca</a> and submitted through the <a href = \"https://docs.google.com/forms/d/e/1FAIpQLSeNvEBgjuNXuWjsI0hPan1OtYrvVIPvc9eW89iSsfe6qGQE7Q/viewform\"> ServiceHub help form</a>. For more information, please check out the <a href=\"https://www.torontomu.ca/servicehub/contact/\"> Service Hub contact page </a>.\n"
+                "The ServiceHub is your front-line service centre for the Office of the Registrar, including support for undergraduate admissions, fees, financial assistance, MyServiceHub support, exams, class schedules, Chang School course enrolment, applying to graduate and more. The ServiceHub has requested that general questions are asked at <a href = \"https://ryerson.intelliresponse.com/\" >ask.ryerson.ca</a> and submitted through the <a href = \"https://docs.google.com/forms/d/e/1FAIpQLSeNvEBgjuNXuWjsI0hPan1OtYrvVIPvc9eW89iSsfe6qGQE7Q/viewform\"> ServiceHub help form</a>. For more information, please check out the <a href=\"https://www.torontomu.ca/servicehub/contact/\"> Service Hub contact page </a>.\n"
             ]
         },
         {
@@ -1827,7 +1811,11 @@
             "patterns": [
                 "I want to change my program out of engineering",
                 "switching out of engineering",
-                "changing my program"
+                "change program out of engineering",
+                "I don't want to do engineering anymore",
+                "Change to a different program not in engineering ",
+                "out of engineering",
+                "I don't want to be an engineer"
             ],
             "responses": [
                 "If you are interested in another program at the university, please contact ServiceHub and ask to meet with the Admissions Advisor for the program you are interested in. If you are interested in a program outside of TMU you will need to contact the university you are interested to find out about their process.\n\nIf you need help regarding course management and more information about switching programs, please visit the First-Year Engineering Office (located: ENG-340A) Monday - Friday between 9:00 am - 4:00 pm."
@@ -1888,10 +1876,13 @@
             "patterns": [
                 "How do I apply for transfer credits?",
                 "Transfer credits",
-                "Can I get Liberal Studies credits Liberal Studies/Elective courses I've taken before at another university?"
+                "Can I get Liberal Studies credits Liberal Studies/Elective courses I've taken before at another university?",
+                "I want to apply for transfer credits",
+                "I want to get credits for courses taken in a previous university",
+                "How can I get credits from my previous university"
             ],
             "responses": [
-                "A self-service application is available on RAMSS after activation of your Toronto Metropolitan Unviersity identity. However, some institutions outside of province or Canada require the Manual Application Upload detailed <a href=\"https://www.torontomu.ca/transfer-credits/apply/#undergrad\"> here</a>. Before you apply, make sure to check your eligibility.\n"
+                "A self-service application is available on MyServiceHub after activation of your Toronto Metropolitan University identity. However, some institutions outside of province or Canada require the Manual Application Upload detailed <a href=\"https://www.torontomu.ca/transfer-credits/apply/#undergrad\"> here</a>. Before you apply, make sure to check your eligibility.\n"
             ]
         },
         {
@@ -1906,7 +1897,7 @@
                 "I have an issue with transfer credits"
             ],
             "responses": [
-                "A self-service application is available on RAMSS after activation of your Toronto Metropolitan Unviersity identity. However, some institutions outside of province or Canada require the Manual Application Upload detailed here. Before you apply, make sure to check your eligibility.\n"
+                "A self-service application is available on MyServiceHub after activation of your Toronto Metropolitan University identity. However, some institutions outside of province or Canada require the Manual Application Upload detailed <a href=\"https://www.torontomu.ca/transfer-credits/apply/#undergrad\"> here</a>. Before you apply, make sure to check your eligibility.\n"
             ]
         },
         {
@@ -1916,10 +1907,11 @@
                 "How can I see if my transfer credit is accepted?",
                 "How can I verify if my transfer credits are accepted",
                 "How do I know if my transfer credits are accepted",
-                "Can I get Liberal Studies credits Liberal Studies/Elective courses I've taken before at another university?"
+                "How do I know when my transfer credits are approved or verified",
+                "transfer credits on myservicehub"
             ],
             "responses": [
-                "You can see if your transfer credit is accepted by going onto RAMSS and viewing your advisement report. If you scroll all the way to the bottom of advisement report you will see which credits are accepted "
+                "You can see if your transfer credit is accepted by going onto <a href = \"https://www.torontomu.ca/myservicehub-support/\" > MyServiceHub </a>  and viewing your advisement report. If you scroll all the way to the bottom of advisement report you will see which credits are accepted."
             ]
         },
         {
@@ -1939,11 +1931,10 @@
                 "How does the transition program work?",
                 "What courses are offered in the transition program?",
                 "What is the transition program?",
-                "Are engineering courses being offered both in Spring and in Summer?",
                 "How can I take engineering courses in the summer semester?",
                 "Are transition courses being offered?",
                 "transition courses",
-                "are engineering courses being offered in the spring or summer"
+                "transition program or course"
             ],
             "responses": [
                 "For first years, the Engineering Transition Program offers all 1st semester classes in the Fall and then again in the Winter semester (with the exception of CEN100) and all 2nd semester courses in the Winter and then again in the Spring (with the exception of ECN801). TMU does not offer engineering transition courses both in Spring and in Summer. First-year Engineering Transition Courses are generally offered in the Spring Speak to an academic advisor to help plan out your course load, and learn more about the <a href =\"https://www.torontomu.ca/engineering-architectural-science/current-undergraduate/transition-program/ \">Transition Program</a>. "
@@ -1963,21 +1954,11 @@
                 "How do I pay my fees?",
                 "How much will my tuition be for the next semester?\n",
                 "I want to know the cost of my tuition",
-                "cost"
+                "cost",
+                "How much do courses in the summer cost? "
             ],
             "responses": [
-                "\nPayments can be made online through financial institutions. Check the <a href =\"https://www.torontomu.ca/current-students/tuition-fees/pay-fees/ \"> How to Pay Your Fees </a> page for more information. To view your student fees, log in to RAMSS and look under the student fees section of the student centre. The First Year Engineering Office does not advise on financial matters. For information on Fees, ask your question at ask.ryerson.ca or please visit the <a href =\"https://www.torontomu.ca/servicehub/\" > Service Hub </a> website or you can view <a href = \"https://www.torontomu.ca/admissions/tuition-fees/\"> Toronto Metropolitan University Tuition and Fees </a> website for more information.\n"
-            ]
-        },
-        {
-            "id": 164,
-            "tag": "Tuition 1",
-            "patterns": [
-                "How much do courses in the summer cost? How much will my tuition be for the next semester?",
-                "How much will my tuition be for the next semester?"
-            ],
-            "responses": [
-                "Check the <a href=\"https://www.torontomu.ca/admissions/tuition-fees/\">Toronto Metropolitan Tuition and Fees website </a>for more information."
+                "To view your student fees, log in to <a href = \"https://www.torontomu.ca/myservicehub-support/\" > MyServiceHub </a> and look under the student fees section of the student centre. The First Year Engineering Office does not advise on financial matters. For information on Fees, ask your question at ask.ryerson.ca or please visit the <a href =\"https://www.torontomu.ca/servicehub/\" > Service Hub </a> website or you can view <a href = \"https://www.torontomu.ca/admissions/tuition-fees/\"> Toronto Metropolitan University Tuition and Fees </a> website for more information. Payments can be made online through financial institutions. Check the <a href =\"https://www.torontomu.ca/current-students/tuition-fees/pay-fees/ \"> How to Pay Your Fees </a> page for more information.\n"
             ]
         },
         {
@@ -2002,8 +1983,8 @@
                 "What financial assistance opportunities exist for students affected by the COVID-19 pandemic?",
                 "I have been affected by the pandemic and I need help financially",
                 "Can I get financial help for being affected by the pandemic",
-                "Covid-19",
-                "Covid"
+                "financial help with covid 19",
+                "tuition fees help assistance with covid 19"
             ],
             "responses": [
                 "Please refer <a href = \"https://www.torontomu.ca/covid-19/updates/\"> here </a>for updates on Covid-19. Please refer <a href =\"https://www.torontomu.ca/covid-19/students/financial-assistance-awards-student-fees/\"> here </a> for more information on student fees and Covid-19 related issues. "

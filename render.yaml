@@ -8,7 +8,6 @@ services:
     dockerfilePath: Dockerfile.render
     plan: free # optional; defaults to starter
     numInstances: 1
-    autoDeploy: false # optional
     envVars:
       - key: AWS_DEFAULT_REGION # Imported from Heroku app
         value: US East (Ohio) us-east-2
@@ -27,6 +26,7 @@ services:
     
 databases: # Render PostgreSQL database
   - name: postgresql-chatbot
+    postgresMajorVersion: 13
     ipAllowList: 
       - source: 0.0.0.0/0
         description: everywhere

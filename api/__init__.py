@@ -15,7 +15,7 @@ migrate = Migrate()
 cors = CORS()
 
 
-def create_app(mode=Mode.PROD,chatbot_mode=Mode.PROD,chatbot_type=ChatbotInterface.bow_model,init=False):
+def create_app(mode=Mode.PROD,chatbot_mode=Mode.PROD,chatbot_type=ChatbotInterface.st_model,init=False):
     app = Flask(__name__)
 
     if mode == Mode.PROD:

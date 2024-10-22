@@ -3,6 +3,8 @@ import re
 import random
 from .chatbot_abstract import Chatbot
 from sentence_transformers.cross_encoder import CrossEncoder
+from sentence_transformers import SentenceTransformer, util
+
 from .nltk_utils import remove_punc, tokenize, stem
 
 
@@ -10,13 +12,13 @@ from .nltk_utils import remove_punc, tokenize, stem
 class STChatbot(Chatbot):
     
     def __init__(self):
-        self.sentence_transformer_model = CrossEncoder("cross-encoder/stsb-distilroberta-base")
+        # self.sentence_transformer_model = CrossEncoder("cross-encoder/stsb-distilroberta-base")
+        self.sentence_transformer_model = SentenceTransformer("multi-qa-mpnet-base-cos-v1")
     
-    def train(self):
+    def train(self, data):
         return
     
     def get_response(self, query, data, file=None): 
-
         default_answer = ("", "Hmm... I do not understand that question. Please try again or ask a different question")
         sentence_tag_map = {}
         all_sentences = []
@@ -29,30 +31,37 @@ class STChatbot(Chatbot):
                 clean_sent = remove_punc(sent.lower())
                 sentence_tag_map[clean_sent] = tag
                 all_sentences.append(clean_sent)
-                   
-        ranks = self.sentence_transformer_model.rank(remove_punc(query.lower()), all_sentences)
+                
+        query_embedding = self.sentence_transformer_model.encode(query)
+        pattern_embeddings = self.sentence_transformer_model.encode(all_sentences)
 
-        high_score = None
-        high_scores = []
-        for rank in ranks:
-            # print(f"{rank['score']:.2f}\t{sentences[rank['corpus_id']]}")
-            if high_score is None or (rank['score'] > high_score and rank['score'] > 0.5):
-                high_score = rank['score']
-                target_tag = sentence_tag_map[all_sentences[rank['corpus_id']]]
-                high_scores.append((target_tag, high_score))
+        # similarity = self.sentence_transformer_model.similarity(query_embedding, pattern_embeddings)
+        # print("SIMILARITY", similarity)
+        scores = util.dot_score(query_embedding, pattern_embeddings)[0].cpu().tolist()
+        
+        pattern_score_pairs = list(zip(all_sentences, scores))
+        
+        #Sort by decreasing score
+        pattern_score_pairs = sorted(pattern_score_pairs, key=lambda x: x[1], reverse=True)
 
-        print("MAX_SCORE", high_score, target_tag)
-        score_result = (target_tag, high_score)
-
-        print("HIGH SCORES", high_scores[-5:])    
-        print("FINAL RESULT", score_result)        
+        # #Output passages & scores
+        # print("DOT SCORE")
+        # for pattern, score in pattern_score_pairs[:20]:
+        #     print(score, pattern)
+            
+        target_pattern, target_score = pattern_score_pairs[0]
+        target_tag = sentence_tag_map[target_pattern]
+        result = (target_tag, target_pattern, target_score)
+        print("FINAL ANSWER", result)
+        
         for intent in data["intents"]:
-            if score_result[0] == intent["tag"]:
+            if target_tag == intent["tag"]:
                 resp = random.choice(intent['responses'])     
                 if self.check_response(intent["tag"], intent['patterns'], query, resp):
-                    return  (score_result[0], f"{resp}")
-   
+                    return  (target_tag, f"{resp}")
+            
         return default_answer
+    
 
     
     def chat(self, data, file=None):

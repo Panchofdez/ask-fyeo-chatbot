@@ -9,6 +9,9 @@ from .routes import routes
 from .commands import backup_faq, train_model, chat, view_intents, test_model, backup_faq, get_data
 from enums import Mode
 import json
+from flask_apscheduler import APScheduler
+from github import Github, Auth
+import datetime
 
 # app.config['CORS_HEADERS'] = 'Content-Type'
 migrate = Migrate()
@@ -35,6 +38,31 @@ def create_app(mode=Mode.PROD,chatbot_mode=Mode.PROD,chatbot_type=ChatbotInterfa
     db.init_app(app)    
     cors.init_app(app)
     migrate.init_app(app, db)
+    
+    # initialize scheduler
+    scheduler = APScheduler()
+    scheduler.api_enabled = True
+    scheduler.init_app(app)
+
+    @scheduler.task("interval", id="update_streamlit_repo", days=1)
+    def update_streamlit_repo():
+        print("Updating README of chatbot streamlit repo")
+        auth = Auth.Token(os.environ.get('GIT_TOKEN'))
+        g = Github(auth=auth)
+        repo = g.get_repo("Panchofdez/ask-fyeo-chatbot-streamlit")    
+        readme = repo.get_contents("README.md")
+        contents = readme.decoded_content.decode()
+        if contents.find("UPDATED:") == -1:
+            contents += f"\nUPDATED: {datetime.datetime.now()}"
+        else:
+            contents = contents.split("UPDATED:")[0] + f"\nUPDATED: {datetime.datetime.now()}"
+    
+        print(contents)    
+ 
+        repo.update_file(readme.path, "Update Repo README", contents, readme.sha, branch="main")
+        g.close()
+     
+    scheduler.start()
     
     with app.app_context():
         if not init:

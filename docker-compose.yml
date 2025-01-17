@@ -9,8 +9,11 @@ services:
     ports:
       - "80:80"
     environment:
-      - FLASK_ENV=dev
-      - FLASK_APP=api
-      - MY_SECRET_KEY=05f7ece5028dd73ecbdeb0856475c1a1c90b8b02577f11f2360392c1c02ba4da
-      - FYEO_PASSWORD=FYEO1234
-      - DATABASE_URL=postgres://postgresql_symmetrical_33349_user:Hvgb6CbL40ZwWwWpkNcNMgEeD8ng7NBm@dpg-caicjbvs437md162nl4g-a.oregon-postgres.render.com/postgresql_symmetrical_33349
+      - FLASK_ENV=${FLASK_ENV}
+      - FLASK_APP=${FLASK_APP}
+      - MY_SECRET_KEY=${MY_SECRET_KEY}
+      - FYEO_PASSWORD=${FYEO_PASSWORD}
+      - DATABASE_URL=${DATABASE_URL}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - GIT_TOKEN=${GIT_TOKEN}

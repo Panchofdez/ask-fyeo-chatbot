@@ -44,7 +44,7 @@ def create_app(mode=Mode.PROD,chatbot_mode=Mode.PROD,chatbot_type=ChatbotInterfa
     scheduler.api_enabled = True
     scheduler.init_app(app)
 
-    @scheduler.task("interval", id="update_streamlit_repo", days=1)
+    @scheduler.task("interval", id="update_streamlit_repo", days=1, misfire_grace_time=3600)
     def update_streamlit_repo():
         print("Updating README of chatbot streamlit repo")
         auth = Auth.Token(os.environ.get('GIT_TOKEN'))
@@ -53,9 +53,9 @@ def create_app(mode=Mode.PROD,chatbot_mode=Mode.PROD,chatbot_type=ChatbotInterfa
         readme = repo.get_contents("README.md")
         contents = readme.decoded_content.decode()
         if contents.find("UPDATED:") == -1:
-            contents += f"\nUPDATED: {datetime.datetime.now()}"
+            contents += f"\nUPDATED:{datetime.datetime.now()}"
         else:
-            contents = contents.split("UPDATED:")[0] + f"\nUPDATED: {datetime.datetime.now()}"
+            contents = contents.split("UPDATED:")[0] + f"UPDATED:{datetime.datetime.now()}"
     
         print(contents)    
  
@@ -63,6 +63,8 @@ def create_app(mode=Mode.PROD,chatbot_mode=Mode.PROD,chatbot_type=ChatbotInterfa
         g.close()
      
     scheduler.start()
+    
+    update_streamlit_repo()
     
     with app.app_context():
         if not init:

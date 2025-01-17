@@ -22,11 +22,12 @@ services:
     ports:
       - "80:80"
     environment:
-      - FLASK_ENV=dev
-      - FLASK_APP=api
-      - MY_SECRET_KEY=05f7ece5028dd73ecbdeb0856475c1a1c90b8b02577f11f2360392c1c02ba4da
-      - FYEO_PASSWORD=FYEO1234
-      - DATABASE_URL_DEV=postgresql://postgres:postgres@db:5432/postgres
+      - FLASK_ENV=${FLASK_ENV}
+      - FLASK_APP=${FLASK_APP}
+      - MY_SECRET_KEY=${MY_SECRET_KEY}
+      - FYEO_PASSWORD=${FYEO_PASSWORD}
+      - DATABASE_URL_DEV=${DATABASE_URL_DEV}
+      - GIT_TOKEN=${GIT_TOKEN}
     depends_on:
       - db
       

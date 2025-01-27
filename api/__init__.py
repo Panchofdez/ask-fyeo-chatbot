@@ -11,11 +11,47 @@ from enums import Mode
 import json
 from flask_apscheduler import APScheduler
 from github import Github, Auth
-import datetime
 
 # app.config['CORS_HEADERS'] = 'Content-Type'
 migrate = Migrate()
 cors = CORS()
+
+scheduler = APScheduler()
+
+@scheduler.task("cron", id="update_streamlit_repo", hour=0, minute=0, misfire_grace_time=900) 
+def update_streamlit_repo():
+    print("Updating Streamlit chatbot repo")
+    REPO_NAME = "Panchofdez/ask-fyeo-chatbot-streamlit"
+    BRANCH_NAME = "main"
+
+    auth = Auth.Token(os.environ.get('GIT_TOKEN'))
+    g = Github(auth=auth)
+    
+    # Get the repository
+    repo = g.get_repo(REPO_NAME)
+
+    # Get the reference to the branch
+    branch_ref = repo.get_git_ref(f"heads/{BRANCH_NAME}")
+
+    # Get the current commit of the branch
+    latest_commit = repo.get_git_commit(branch_ref.object.sha)
+
+    # Create a tree identical to the current commit's tree
+    tree = repo.get_git_tree(latest_commit.tree.sha)
+
+    # Create a new commit with no changes
+    empty_commit_message = "Keep Streamlit app awake (empty commit)"
+    empty_commit = repo.create_git_commit(
+        message=empty_commit_message,
+        tree=tree,
+        parents=[latest_commit]
+    )
+    # Update the branch reference to point to the new commit
+    branch_ref.edit(sha=empty_commit.sha)
+
+    print(f"Empty commit pushed: {empty_commit.sha}")
+    
+    g.close()
 
 
 def create_app(mode=Mode.PROD,chatbot_mode=Mode.PROD,chatbot_type=ChatbotInterface.bow_model,init=False):
@@ -39,29 +75,8 @@ def create_app(mode=Mode.PROD,chatbot_mode=Mode.PROD,chatbot_type=ChatbotInterfa
     cors.init_app(app)
     migrate.init_app(app, db)
     
-    # initialize scheduler
-    scheduler = APScheduler()
     scheduler.api_enabled = True
     scheduler.init_app(app)
-
-    @scheduler.task("interval", id="update_streamlit_repo", days=1, misfire_grace_time=3600)
-    def update_streamlit_repo():
-        print("Updating README of chatbot streamlit repo")
-        auth = Auth.Token(os.environ.get('GIT_TOKEN'))
-        g = Github(auth=auth)
-        repo = g.get_repo("Panchofdez/ask-fyeo-chatbot-streamlit")    
-        readme = repo.get_contents("README.md")
-        contents = readme.decoded_content.decode()
-        if contents.find("UPDATED:") == -1:
-            contents += f"\nUPDATED:{datetime.datetime.now()}"
-        else:
-            contents = contents.split("UPDATED:")[0] + f"UPDATED:{datetime.datetime.now()}"
-    
-        print(contents)    
- 
-        repo.update_file(readme.path, "Update Repo README", contents, readme.sha, branch="main")
-        g.close()
-     
     scheduler.start()
     
     update_streamlit_repo()

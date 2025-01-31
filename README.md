@@ -18,7 +18,8 @@ There are two types of chatbot supported with this app each using different tech
 
 ### In Development Environment
 - using a database solely for development purposes
-- will create/run a docker container for the chatbot and another container for development database (postgres)
+- will create/run a docker container for the chatbot api and another container for development database (postgres)
+- ensure you have a .env file with the environment variables defined in docker-compose-dev.yml file
 
 Run app for the first time or if there are any new changes
 ```docker-compose -f docker-compose-dev.yml up --build```
@@ -32,7 +33,8 @@ Stop app
 
 ### Testing production environments on local machine
 - if you want to use the database used in production
-- will create/run a docker container only for the chatbot
+- will create/run a docker container only for the chatbot api
+- ensure you have a .env file with the environment variables defined in docker-compose.yml file
 
 Commands:
 Run app for the first time or if there are any new changes

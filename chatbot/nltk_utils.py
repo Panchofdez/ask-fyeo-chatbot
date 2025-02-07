@@ -73,20 +73,5 @@ def clean_links(text):
 
 def remove_punc(text):
     stop_punc_words = set(list(string.punctuation))
-    filtered_text = [token for token in text.split() if token not in stop_punc_words]
-    
-    return " ".join(filtered_text)
-    
-
-if __name__ == "__main__":
-    a ="How do I book an advising appointment?"
-
-    print(a)
-    print(clean_lemmatize(a))
-    # a = tokenize(a)
-    # print(a)
-    # stemmed_words  = [stem(w) for w in a ]
-
-    # print(stemmed_words)
-
-# print(bag_of_words(a))
+    filtered_text = "".join([char for char in text if char not in stop_punc_words])
+    return filtered_text       

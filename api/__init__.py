@@ -54,7 +54,7 @@ def update_streamlit_repo():
     g.close()
 
 
-def create_app(db_mode=Mode.DEV,chatbot_mode=Mode.DEV,chatbot_type=ChatbotInterface.sbert_model,init=False):
+def create_app(db_mode=Mode.DEV,chatbot_mode=Mode.DEV,chatbot_type=ChatbotInterface.bow_model,init=False):
     app = Flask(__name__)
     if os.environ.get('DB_MODE') == "production":
         db_mode = Mode.PROD

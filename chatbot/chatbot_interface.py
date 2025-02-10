@@ -1,6 +1,6 @@
 from .bow_chatbot import BOWChatbot
 from .bert_chatbot import BERTChatbot
-# from .st_chatbot import STChatbot
+from .sbert_chatbot import SBERTChatbot
 import torch
 from enums import Mode
 import io
@@ -10,7 +10,7 @@ from smart_open import open as smart_open
 class ChatbotInterface():
     bert_model = "bert"
     bow_model = "bow"
-    # st_model = "sentence-transformer"
+    sbert_model = "sbert"
 
 
     def __init__(self, type, data, mode, **kwargs):
@@ -23,12 +23,13 @@ class ChatbotInterface():
         else:
             bert_url = "https://fyeochatbotmodels.s3.us-east-2.amazonaws.com/bertmodel.pth"
             bow_url = "https://fyeochatbotmodels.s3.us-east-2.amazonaws.com/bowmodel.pth"
+            
         if type == ChatbotInterface.bert_model:
             self.model = BERTChatbot(**kwargs)
             self.file = self.get_file(bert_url, mode)
-        # elif type == ChatbotInterface.st_model:
-        #     self.model = STChatbot(**kwargs)
-        #     self.file = None
+        elif type == ChatbotInterface.sbert_model:
+            self.model = SBERTChatbot(**kwargs)
+            self.file = None
         else:
             self.model = BOWChatbot(**kwargs)
             self.file = self.get_file(bow_url, mode)

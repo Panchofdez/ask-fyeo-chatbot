@@ -71,7 +71,7 @@ def backup_faq():
 def get_data():
     faqs = FAQ.query.order_by(FAQ.tag).all()
     faqs = list(map(formatFAQ, map(asdict, faqs)))
-    print(len(faqs))
+    print("# FAQs: ", len(faqs))
     return {"intents":faqs}
 
 

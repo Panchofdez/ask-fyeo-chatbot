@@ -1,10 +1,12 @@
-FROM python:3.8.13-slim-buster
+FROM python:3.12-slim
 
 COPY ./requirements.txt /app/requirements.txt
 
 WORKDIR /app
 
-RUN pip install -r requirements.txt
+# Upgrade pip and install dependencies
+RUN python -m pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
 COPY . /app
 

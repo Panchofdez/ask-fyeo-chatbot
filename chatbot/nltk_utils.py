@@ -1,7 +1,7 @@
 import nltk
-nltk.download('punkt')
-nltk.download('punkt_tab')
-nltk.download('wordnet')
+# nltk.download('punkt')
+# nltk.download('punkt_tab')
+# nltk.download('wordnet')
 import numpy as np
 from nltk.stem.porter import PorterStemmer
 from nltk.stem import WordNetLemmatizer

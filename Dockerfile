@@ -8,6 +8,9 @@ WORKDIR /app
 RUN python -m pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
+# makes sure that each print() statement (or logs) is written immediately,    
+ENV PYTHONUNBUFFERED=1 
+
 # Pre-download NLTK data to a specific directory
 ENV NLTK_DATA=/app/nltk_data
 RUN mkdir -p /app/nltk_data && \

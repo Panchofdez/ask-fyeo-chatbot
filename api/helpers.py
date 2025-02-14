@@ -25,7 +25,7 @@ def addFAQStats(faqs, unidentified_queries, total_num_queries):
     return updated_faqs
 
 def getCount(q):
-    count_q = q.statement.with_only_columns([func.count()]).order_by(None)
+    count_q = q.statement.with_only_columns(func.count()).order_by(None)
     count = q.session.execute(count_q).scalar()
     return count
 

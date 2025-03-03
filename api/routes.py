@@ -689,10 +689,10 @@ def addAllFAQ(user):
 
     return jsonify({'error':'Invalid request type'}), 400
 
-@routes.route('/faq', methods=['PUT'])
+@routes.route('/faq/<faq_id>', methods=['PUT'])
 @cross_origin()
 @token_required
-def updateFAQ(user):
+def updateFAQ(user, faq_id):
     if request.method == 'PUT':
         try:
             tag = request.json['tag']
@@ -705,7 +705,10 @@ def updateFAQ(user):
 
             patterns = '|'.join(patterns)
             responses = '|'.join(responses)
-            current_faq = FAQ.query.filter(FAQ.tag == tag, FAQ.for_staff==for_staff).first()
+
+            current_faq = FAQ.query.get(faq_id)
+            if not current_faq:
+                return jsonify({'error':'Error FAQ not found'}), 404      
             current_faq.patterns = patterns
             current_faq.responses = responses
             current_faq.last_updated = datetime.now()

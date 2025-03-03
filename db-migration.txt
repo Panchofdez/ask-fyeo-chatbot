@@ -1,3 +1,5 @@
+#UPDATE ENV VARIABLE DB_MIGRATE IN CORRESPONDING DOCKER COMPOSE FILE
+DB_MIGRATE=True 
 #START UP CONTAINER
 #GET INSIDE RUNNING CONTAINER
 docker exec -it chatbot bash 
@@ -21,7 +23,6 @@ flask db upgrade --directory="migrations_prod"
 
 #BRING THE MIGRATIONS FOLDER BACK IN LOCAL MACHINE FROM CONTAINER
 docker cp {container ID}:/app/{migrations_folder} .
-
 
 #to Add a Non-Nullable Field to a Populated Table
 https://medium.com/the-andela-way/alembic-how-to-add-a-non-nullable-field-to-a-populated-table-998554003134

@@ -68,9 +68,11 @@ class FAQ(db.Model):
     last_updated: datetime
 
     id = db.Column(db.Integer, primary_key=True)
-    tag = db.Column(db.String, unique=True, nullable=False)
+    tag = db.Column(db.String, nullable=False)
     patterns = db.Column(db.String, nullable=False)
     responses = db.Column(db.String, nullable=False)
     last_updated = db.Column(db.DateTime, nullable=True, default=datetime.now)
     queries = db.relationship('Query', backref='parent', lazy=True)
+    for_staff = db.Column(db.Boolean, default=False, nullable=False)
+    __table_args__ = (db.UniqueConstraint('tag', 'for_staff', name='unique_faq_tag'),)
     

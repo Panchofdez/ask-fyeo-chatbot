@@ -28,6 +28,7 @@ services:
       - GIT_TOKEN=${GIT_TOKEN}
       - CHATBOT_MODE=${CHATBOT_MODE}
       - DB_MODE=dev
+      - DB_MIGRATE=False
     depends_on:
       - db
       

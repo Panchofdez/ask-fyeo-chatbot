@@ -2,8 +2,7 @@
 
 This is the backend API that powers the TMU First Year Engineering Office chatbot, designed to assist first-year engineering students and staff by answering their questions. It stores and manages the FAQs, along with key information and statistics related to each conversation, in a PostgreSQL database. 
 
-(DEPRECATED) The chatbot is created with a pytorch deep neural network and it is encapsulated into a flask API. 
-which is accessed via this API. The chatbot trains on the information from this FAQ.
+(DEPRECATED) The chatbot is created with a pytorch deep neural network and it is accessed via this API. The chatbot trains on the FAQ information stored in the database.
 
 There are two types of chatbot supported with this app each using different techniques:
 - Bag of words model 

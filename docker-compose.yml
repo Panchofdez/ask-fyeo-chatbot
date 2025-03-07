@@ -17,3 +17,4 @@ services:
       - GIT_TOKEN=${GIT_TOKEN}
       - CHATBOT_MODE=${CHATBOT_MODE}
       - DB_MODE=production
+      - DB_MIGRATE=False

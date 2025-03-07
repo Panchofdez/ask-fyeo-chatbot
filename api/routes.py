@@ -150,18 +150,19 @@ def predict():
         try:
             conversation_id = request.json['conversation_id']
             question = request.json['question']
+            for_staff = request.json.get('for_staff', False)
             
             if "tag" in request.json and "response" in request.json: 
                 tag = request.json['tag']
                 response = request.json['response']
             else:
-                faqs = FAQ.query.order_by(FAQ.tag).all()
+                faqs = FAQ.query.filter(FAQ.for_staff==for_staff).order_by(FAQ.tag).all()
                 faqs = list(map(formatFAQ, map(asdict, faqs)))
                 current_app.config["chatbot"].data = {"intents":faqs}
                 tag, response = current_app.config["chatbot"].get_response(question)
                 
             conversation = Conversation.query.get(conversation_id)
-            faq = FAQ.query.filter(FAQ.tag == tag).first()
+            faq = FAQ.query.filter(FAQ.tag == tag, FAQ.for_staff==for_staff).first()
             if faq == None:
                 query = Query(question=question, response=response, conversation_id=conversation.id)
             else:
@@ -601,8 +602,10 @@ def getChartData(user):
 @token_required
 def getFAQ(user):
     if request.method == 'GET':
+        staff_param = request.args.get('for_staff', 'false').lower()  # Default to 'false' if not provided
+        for_staff = staff_param == 'true'  # Convert to boolean
         try:
-            faqs = FAQ.query.order_by(FAQ.tag).all()
+            faqs = FAQ.query.filter(FAQ.for_staff==for_staff).order_by(FAQ.tag).all()
             unidentified_queries = Query.query.filter(Query.faq_id == None).all()
             num_total_queries = functools.reduce(lambda acc, f: acc + len(f.queries),faqs, 0) + len(unidentified_queries)
             
@@ -625,6 +628,7 @@ def addFAQ(user):
             tag = request.json['tag']
             patterns = request.json['patterns']
             responses = request.json['responses']
+            for_staff = request.json.get('for_staff', False)
 
             if len(list(filter(lambda p: p.find('|') != -1, patterns))) > 0 or len(list(filter(lambda r: r.find('|') != -1, responses))) > 0:
                 return jsonify({'error':'Error adding FAQ, Invalid character "|" found'}), 400
@@ -632,14 +636,14 @@ def addFAQ(user):
             patterns = '|'.join(patterns)
             responses = '|'.join(responses)
 
-            if len(FAQ.query.filter(FAQ.tag==tag).all()) > 0:
+            if len(FAQ.query.filter(FAQ.tag==tag, FAQ.for_staff==for_staff).all()) > 0:
                 return jsonify({'error':'Error adding FAQ, Tag must be unique'}), 400
 
-            new_faq = FAQ(tag=tag, patterns=patterns, responses=responses, last_updated=datetime.now())
+            new_faq = FAQ(tag=tag, patterns=patterns, responses=responses, for_staff=for_staff, last_updated=datetime.now())
             db.session.add(new_faq)
             db.session.commit()
 
-            faqs = FAQ.query.order_by(FAQ.tag).all()
+            faqs = FAQ.query.filter(FAQ.for_staff==for_staff).order_by(FAQ.tag).all()
             faqs = list(map(formatFAQ, map(asdict,faqs)))
             return jsonify({"FAQ": faqs})
         except Exception as e:
@@ -661,6 +665,7 @@ def addAllFAQ(user):
                 tag = q['tag']
                 patterns = q['patterns']
                 responses = q['responses']
+                for_staff = q.get('for_staff', False)
 
                 if len(list(filter(lambda p: p.find('|') != -1, patterns))) > 0 or len(list(filter(lambda r: r.find('|') != -1, responses))) > 0:
                     return jsonify({'error':'Error adding FAQ, Invalid character "|" found'}), 400
@@ -668,10 +673,10 @@ def addAllFAQ(user):
                 patterns = '|'.join(patterns)
                 responses = '|'.join(responses)
 
-                if len(FAQ.query.filter(FAQ.tag==tag).all()) > 0:
+                if len(FAQ.query.filter(FAQ.tag==tag, FAQ.for_staff==for_staff).all()) > 0:
                     return jsonify({'error':'Error adding FAQ, Tag must be unique'}), 400
 
-                new_faq = FAQ(tag=tag, patterns=patterns, responses=responses, last_updated=datetime.now())
+                new_faq = FAQ(tag=tag, patterns=patterns, responses=responses, for_staff=for_staff, last_updated=datetime.now())
                 db.session.add(new_faq)
            
             db.session.commit()
@@ -684,28 +689,32 @@ def addAllFAQ(user):
 
     return jsonify({'error':'Invalid request type'}), 400
 
-@routes.route('/faq', methods=['PUT'])
+@routes.route('/faq/<faq_id>', methods=['PUT'])
 @cross_origin()
 @token_required
-def updateFAQ(user):
+def updateFAQ(user, faq_id):
     if request.method == 'PUT':
         try:
             tag = request.json['tag']
             patterns = request.json['patterns']
             responses = request.json['responses']
+            for_staff = request.json.get('for_staff', False)
 
             if len(list(filter(lambda p: p.find('|') != -1, patterns))) > 0 or len(list(filter(lambda r: r.find('|') != -1, responses))) > 0:
                 return jsonify({'error':'Error adding FAQ, Invalid character "|" found'}), 400
 
             patterns = '|'.join(patterns)
             responses = '|'.join(responses)
-            current_faq = FAQ.query.filter(FAQ.tag == tag).first()
+
+            current_faq = FAQ.query.get(faq_id)
+            if not current_faq:
+                return jsonify({'error':'Error FAQ not found'}), 404      
             current_faq.patterns = patterns
             current_faq.responses = responses
             current_faq.last_updated = datetime.now()
             db.session.commit()
 
-            faqs = FAQ.query.order_by(FAQ.tag).all()
+            faqs = FAQ.query.filter(FAQ.for_staff==for_staff).order_by(FAQ.tag).all()
             faqs = list(map(formatFAQ, map(asdict, faqs)))
 
             return jsonify({"FAQ": faqs})
@@ -723,11 +732,13 @@ def deleteFAQ(user, faq_id):
     if request.method == 'DELETE':
         try:
             faq = FAQ.query.get(faq_id)
-            
+            if not faq:
+                return jsonify({'error':'Error FAQ not found'}), 404            
+            for_staff = faq.for_staff    
             db.session.delete(faq)
             db.session.commit()
 
-            faqs = FAQ.query.order_by(FAQ.tag).all()
+            faqs = FAQ.query.filter(FAQ.for_staff==for_staff).order_by(FAQ.tag).all()
             faqs = list(map(formatFAQ, map(asdict, faqs)))
 
             return jsonify({"FAQ": faqs})

@@ -89,38 +89,40 @@ def create_app(db_mode=Mode.DEV,chatbot_mode=Mode.DEV,chatbot_type=ChatbotInterf
     scheduler.start()
     
     # update_streamlit_repo()
-    
-    with app.app_context():
-        db.create_all()
-        if not init:
-            data = get_data()
-            chatbot = ChatbotInterface(type=chatbot_type, data=data, mode=chatbot_mode)
-            app.config["chatbot"] = chatbot
-        else:
-            #initialize the tables in postgres with pre-populated data
-            try:
-                with open('intents.json', 'r', encoding='utf8') as f:
-                    file_data = json.loads(f.read())
-                    for q in file_data['intents']:
-                        tag = q['tag']
-                        patterns = q['patterns']
-                        responses = q['responses']
-                    
-                        if len(list(filter(lambda p: p.find('|') != -1, patterns))) > 0 or len(list(filter(lambda r: r.find('|') != -1, responses))) > 0:
-                            continue
-
-                        patterns = '|'.join(patterns)
-                        responses = '|'.join(responses)
+    if os.environ.get("DB_MIGRATE") == "True":
+        print("Skipping database operations because DB_MIGRATE=True...")
+    else:
+        with app.app_context():
+            db.create_all()
+            if not init:
+                data = get_data()
+                chatbot = ChatbotInterface(type=chatbot_type, data=data, mode=chatbot_mode)
+                app.config["chatbot"] = chatbot
+            else:
+                #initialize the tables in postgres with pre-populated data
+                try:
+                    with open('intents.json', 'r', encoding='utf8') as f:
+                        file_data = json.loads(f.read())
+                        for q in file_data['intents']:
+                            tag = q['tag']
+                            patterns = q['patterns']
+                            responses = q['responses']
                         
-                        new_faq = FAQ(tag=tag, patterns=patterns, responses=responses)
-                        db.session.add(new_faq)
-                        db.session.commit()
+                            if len(list(filter(lambda p: p.find('|') != -1, patterns))) > 0 or len(list(filter(lambda r: r.find('|') != -1, responses))) > 0:
+                                continue
 
-                new_staff = Staff(email="pancho.fernandez@ryerson.ca")
-                db.session.add(new_staff)
-                db.session.commit()
-            except Exception as e:
-                print("ERROR", e)
+                            patterns = '|'.join(patterns)
+                            responses = '|'.join(responses)
+                            
+                            new_faq = FAQ(tag=tag, patterns=patterns, responses=responses)
+                            db.session.add(new_faq)
+                            db.session.commit()
+
+                    new_staff = Staff(email="pancho.fernandez@ryerson.ca")
+                    db.session.add(new_staff)
+                    db.session.commit()
+                except Exception as e:
+                    print("ERROR", e)
             
 
     

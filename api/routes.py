@@ -609,7 +609,7 @@ def getFAQ(user):
             unidentified_queries = Query.query.filter(Query.faq_id == None).all()
             num_total_queries = functools.reduce(lambda acc, f: acc + len(f.queries),faqs, 0) + len(unidentified_queries)
             
-            faqs = addFAQStats(faqs, unidentified_queries, num_total_queries)
+            faqs = addFAQStats(faqs, num_total_queries)
           
             return jsonify({"FAQ": faqs})
         except Exception as e:

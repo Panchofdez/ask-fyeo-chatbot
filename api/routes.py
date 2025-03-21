@@ -630,14 +630,22 @@ def addFAQ(user):
             responses = request.json['responses']
             for_staff = request.json.get('for_staff', False)
 
+            if len(FAQ.query.filter(FAQ.tag==tag, FAQ.for_staff==for_staff).all()) > 0:
+                return jsonify({'error':'Error adding FAQ. Tag must be unique'}), 400
+
             if len(list(filter(lambda p: p.find('|') != -1, patterns))) > 0 or len(list(filter(lambda r: r.find('|') != -1, responses))) > 0:
-                return jsonify({'error':'Error adding FAQ, Invalid character "|" found'}), 400
+                return jsonify({'error':'Error adding FAQ. Invalid character "|" found'}), 400
+            
+            faqs = FAQ.query.filter(FAQ.for_staff==for_staff).order_by(FAQ.tag).all()
+            faqs = list(map(formatFAQ, map(asdict, faqs)))
+            current_app.config["chatbot"].data = {"intents":faqs}
+            duplicates = current_app.config["chatbot"].find_duplicates(tag, patterns)
+
+            if duplicates and len(duplicates) > 0:
+                return jsonify({"error":f"Error adding FAQ. Very similar query patterns were found for other FAQs: {duplicates}"}), 400
 
             patterns = '|'.join(patterns)
             responses = '|'.join(responses)
-
-            if len(FAQ.query.filter(FAQ.tag==tag, FAQ.for_staff==for_staff).all()) > 0:
-                return jsonify({'error':'Error adding FAQ, Tag must be unique'}), 400
 
             new_faq = FAQ(tag=tag, patterns=patterns, responses=responses, for_staff=for_staff, last_updated=datetime.now())
             db.session.add(new_faq)
@@ -668,13 +676,13 @@ def addAllFAQ(user):
                 for_staff = q.get('for_staff', False)
 
                 if len(list(filter(lambda p: p.find('|') != -1, patterns))) > 0 or len(list(filter(lambda r: r.find('|') != -1, responses))) > 0:
-                    return jsonify({'error':'Error adding FAQ, Invalid character "|" found'}), 400
+                    return jsonify({'error':'Error adding FAQ. Invalid character "|" found'}), 400
 
                 patterns = '|'.join(patterns)
                 responses = '|'.join(responses)
 
                 if len(FAQ.query.filter(FAQ.tag==tag, FAQ.for_staff==for_staff).all()) > 0:
-                    return jsonify({'error':'Error adding FAQ, Tag must be unique'}), 400
+                    return jsonify({'error':'Error adding FAQ. Tag must be unique'}), 400
 
                 new_faq = FAQ(tag=tag, patterns=patterns, responses=responses, for_staff=for_staff, last_updated=datetime.now())
                 db.session.add(new_faq)
@@ -700,17 +708,23 @@ def updateFAQ(user, faq_id):
             responses = request.json['responses']
             for_staff = request.json.get('for_staff', False)
 
-            if len(list(filter(lambda p: p.find('|') != -1, patterns))) > 0 or len(list(filter(lambda r: r.find('|') != -1, responses))) > 0:
-                return jsonify({'error':'Error adding FAQ, Invalid character "|" found'}), 400
-
-            patterns = '|'.join(patterns)
-            responses = '|'.join(responses)
-
             current_faq = FAQ.query.get(faq_id)
             if not current_faq:
                 return jsonify({'error':'Error FAQ not found'}), 404      
-            current_faq.patterns = patterns
-            current_faq.responses = responses
+            
+            if len(list(filter(lambda p: p.find('|') != -1, patterns))) > 0 or len(list(filter(lambda r: r.find('|') != -1, responses))) > 0:
+                return jsonify({'error':'Error updating FAQ. Invalid character "|" found'}), 400
+            
+            faqs = FAQ.query.filter(FAQ.for_staff==for_staff).order_by(FAQ.tag).all()
+            faqs = list(map(formatFAQ, map(asdict, faqs)))
+            current_app.config["chatbot"].data = {"intents":faqs}
+            duplicates = current_app.config["chatbot"].find_duplicates(tag, patterns)
+
+            if duplicates and len(duplicates) > 0:
+                return jsonify({"error":f"Error updating FAQ. Very similar query patterns were found for other FAQs: {duplicates}"}), 400
+            
+            current_faq.patterns = '|'.join(patterns)
+            current_faq.responses = '|'.join(responses) 
             current_faq.last_updated = datetime.now()
             db.session.commit()
 

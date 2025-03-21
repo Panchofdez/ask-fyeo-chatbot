@@ -4,9 +4,10 @@ This is the backend API that powers the TMU First Year Engineering Office chatbo
 
 (DEPRECATED) The chatbot is created with a pytorch deep neural network and it is accessed via this API. The chatbot trains on the FAQ information stored in the database.
 
-There are two types of chatbot supported with this app each using different techniques:
-- Bag of words model 
-- Bert/transformer based model
+There are multiple types of chatbot supported with this app each using different techniques:
+- Bag Of Words (BOW) model 
+- BERT transformer based model
+- Sentence-Transformer (SBERT) model (no neural network)
 
 (UPDATED) The updated chatbot used in production has been decoupled from this API and is now available as a Streamlit app. You can find the repository [here](https://github.com/Panchofdez/ask-fyeo-chatbot-streamlit) and access the app [here](https://ask-fyeo.streamlit.app/).
 
@@ -55,20 +56,20 @@ Stop app
 
 
 There are 5 commands available when inside container:
-1. Train model - trains a chatbot model on the FAQ stored in the corresponding database and saves it into a .pth file
-```flask train_model```
+1. Train model: ```flask train_model``` - trains a chatbot model on the FAQ stored in the corresponding database and saves it into a .pth file. Will use Staff FAQ if ```--for_staff/-fs``` flag is set otherwise will use Student FAQ.
 
-2. Chat - Allows you to ask questions with the chatbot 
-```flask chat```
 
-3. View intents - View the current FAQ used by the chatbot running in the docker container
-```flask view_intents```
+2. Chat: ```flask chat``` - Allows you to ask questions with the chatbot. Will use Staff FAQ if ```--for_staff/-fs``` flag is set otherwise will use Student FAQ.
 
-4. Test model - Test the chatbot on the current FAQ stored in the corresponding database
-```flask test_model```
 
-5. Backup FAQ - Backup the contents of the current FAQ to a intents.json file
-```flask backup_faq```
+3. View intents: ```flask view_intents``` - View the current FAQ used by the chatbot running in the docker container
+
+
+4. Test model: ```flask test_model``` - Test the chatbot on the current FAQ stored in the corresponding database. Will use Staff FAQ if ```--for_staff/-fs``` flag is set otherwise will use Student FAQ.
+
+
+5. Backup FAQ: ```flask backup_faq``` - Backup the contents of the current FAQ to a intents.json file
+
 
 
 ### Database Migration

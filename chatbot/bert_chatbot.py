@@ -8,9 +8,8 @@ from sklearn.preprocessing import LabelEncoder
 from transformers import DistilBertTokenizer, DistilBertModel, AutoModel, BertTokenizerFast, RobertaTokenizer, RobertaModel
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler
 from torchinfo import summary
-from transformers import AdamW
 from sklearn.utils.class_weight import compute_class_weight
-from torch.optim import lr_scheduler
+from torch.optim import lr_scheduler, AdamW
 from .nltk_utils import tokenize, stem
 from .chatbot_abstract import Chatbot
 

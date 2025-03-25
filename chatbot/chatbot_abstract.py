@@ -14,6 +14,3 @@ class Chatbot(ABC):
     @abstractmethod
     def chat(self):
         pass
-
-    def find_duplicates(self, data, tag, patterns):
-        pass

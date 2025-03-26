@@ -1,6 +1,6 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from .nltk_utils import remove_punc
+from .nltk_utils import remove_punc, stem
 
 
 
@@ -15,14 +15,14 @@ class TFIDF():
                 continue
 
             for sent in patterns:
-                clean_sent = remove_punc(sent.lower())
+                clean_sent = " ".join([stem(token) for token in remove_punc(sent.lower()).split()])
                 all_patterns.append(clean_sent)
         
         start_index = len(all_patterns)
         target_index = start_index
 
         for pattern in target_patterns:
-            all_patterns.append(remove_punc(pattern.lower()))
+            all_patterns.append(" ".join([stem(token) for token in remove_punc(pattern.lower()).split()]))
 
         # Convert all sentences to TF-IDF vectors
         vectorizer = TfidfVectorizer()
@@ -39,7 +39,6 @@ class TFIDF():
             threshold = 0.8
             duplicates = [(i, all_patterns[i], sim) for i, sim in enumerate(similarities) if sim > threshold and i < start_index]
 
-            # Print results
             if duplicates:
                 # print("Duplicate sentences found:")
                 # for idx, dup_sentence, score in duplicates:

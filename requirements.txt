@@ -62,7 +62,7 @@ sacremoses==0.1.1
 safetensors==0.5.3
 scikit-learn==1.6.1
 scipy==1.15.2
-sentence-transformers==3.4.1
+# sentence-transformers==3.4.1
 setuptools==77.0.3
 six==1.17.0
 smart-open==7.1.0

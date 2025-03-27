@@ -1,0 +1,25 @@
+name: Wake Up Streamlit Chatbot
+
+on:
+  workflow_dispatch:  # Allows manual triggering
+  schedule:
+    - cron: "0 */12 * * *"  # Runs every 12 hours (at 00:00 and 12:00 UTC)
+
+jobs:
+  click_button:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: |
+          pip install selenium webdriver-manager
+
+      - name: Run Selenium Script
+        run: python wake_streamlit_chatbot.py

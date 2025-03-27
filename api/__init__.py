@@ -18,7 +18,7 @@ scheduler = APScheduler()
 
 load_dotenv() #load environment variables
 
-@scheduler.task("cron", id="update_streamlit_repo", hour=0, minute=0, misfire_grace_time=900) 
+@scheduler.scheduled_job('cron', id='update_streamlit_repo', hour='0,12', minute=0, misfire_grace_time=900)
 def update_streamlit_repo():
     print("Updating Streamlit chatbot repo")
     REPO_NAME = "Panchofdez/ask-fyeo-chatbot-streamlit"
